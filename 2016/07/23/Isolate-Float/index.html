@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Description-->
+    
+        <meta name="description" content="기존의 Isolate Float 기술을 이용해 다양한 사이즈의 박스들을 배치해보려고 이것저것 해보다가 조금 업데이트한 방법을 공유합니다.
+
+Floating boxCSS를 배우기 시작하면서 float만을 가지고 박스들을 원하는 위치에 배치하기는 쉽지 않았었습니다.약간의 ">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Woong">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Extended Isolate Float Technique"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Kim Han Woong"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content="undefined"/>
+    
+
+    <!-- Title -->
+    
+    <title>Extended Isolate Float Technique - Kim Han Woong</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/sass/main.css">
+
+    <!--[if lt IE 8]>
+        <script src="/js/ie/html5shiv.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        <link rel="stylesheet" href="/sass/ie8.css">
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        <link rel="stylesheet" href="/sass/ie9.css">
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <div class="inner">
+
+        <!-- Logo -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/cover.png" alt="" /></span><span class="title">Kim Han Woong</span>
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/projects">Projects</a>
+            </li>
+        
+            <li>
+                <a href="/about.html">About</a>
+            </li>
+        
+    </ul>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    <h1>Extended Isolate Float Technique</h1>
+
+
+
+<!-- Gallery -->
+
+
+<!-- Content -->
+<blockquote>
+<p>기존의 Isolate Float 기술을 이용해 다양한 사이즈의 박스들을 배치해보려고 이것저것 해보다가 조금 업데이트한 방법을 공유합니다.</p>
+</blockquote>
+<h3 id="Floating-box"><a href="#Floating-box" class="headerlink" title="Floating box"></a>Floating box</h3><p>CSS를 배우기 시작하면서 <code>float</code>만을 가지고 박스들을 원하는 위치에 배치하기는 쉽지 않았었습니다.<br>약간의 크기 차이만 생겨도 다음 라인으로 떨어지거나 다음 라인에서도 튀어나와 있는 박스에 걸리거나 하면서 조금 복잡한 레이아웃을 구성하다 보면 뒷골 땡기는 일이 많이 생기죠.<br>그리고 <code>float</code>된 박스들을 비율 값으로 배치할 때 발생하는 <a href="http://ejohn.org/blog/sub-pixel-problems-in-css/" target="_blank" rel="external">Sub-Pixel Problem</a> 과 같은 것들도 있어 브라우저마다 다른 결과 때문에 애를 먹기도 한다고 합니다. 아직 실무를 해본 건 아니라 이 문제가 피부에 와 닿지는 않지만 아무튼 컨트롤 하기 어려운 아이라는 거죠.<br>아무튼 조금 더 다양한 기법들을 배우기 시작하면서 <strong>Isolate Float</strong> 방식으로 <code>float</code>된 박스를 배치하는 방식을 알게 되었고 이것을 여러 예제에 이용해보고자 하였습니다.</p>
+<h3 id="Isolate-Float"><a href="#Isolate-Float" class="headerlink" title="Isolate Float"></a>Isolate Float</h3><p>먼저 알게 된 기존의 <strong><a href="https://www.palantir.net/blog/responsive-design-s-dirty-little-secret" target="_blank" rel="external">Isolate technique</a></strong> 은 하나의 행 안에서 박스들을 이동하는 방식이었습니다. 하나의 행 안에서 박스들의 순서를 바꾸기도 쉽고 Sub-Pixel Problem도 해결할 수 있었습니다.</p>
+<hr>
+<h3 id="Extended-Isolate-Float"><a href="#Extended-Isolate-Float" class="headerlink" title="Extended Isolate Float"></a>Extended Isolate Float</h3><blockquote>
+<p>이 방식은 제멋대로 이름을 한번 붙여 본 거고, 검색 능력이 부족한 것인지 같은 방식을 쓰는 사례는 찾지 못했습니다.</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.iso-box</span> &#123;</div><div class="line">  <span class="attribute">margin-right</span>: -<span class="number">100%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>이 코드가 기존 방식의 핵심이죠. <code>float: left</code>된 박스들 모두에게 <code>margin-right: -100%;</code> 속성을 준 후에 <code>margin-left</code> 속성으로 그 페이지의 그리드 시스템에 맞게 배치하는 방식이었습니다.</p>
+<p>그런데 한 디자인 예제를 구현해보면서 박스의 사이즈가 다양해 이 방법만으로는 레이아웃을 구성하기가 어려워서 고민하던 중에 <code>margin-top</code>을 활용해서 행 뿐만 아니라 열에도 Isolate Technique이 가능하지 않을까 생각이 들어서 한번 해보았습니다.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.iso-box</span> &#123;</div><div class="line">  <span class="attribute">margin-top</span>: -<span class="number">100%</span>;  </div><div class="line">  <span class="attribute">margin-right</span>: -<span class="number">100%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>그리고 요런 식으로 그리드 시스템도 구성했습니다.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.iso-col-1</span> &#123; <span class="attribute">margin-top</span>: <span class="built_in">calc</span>(20%*0); &#125;</div><div class="line"><span class="selector-class">.iso-col-2</span> &#123; <span class="attribute">margin-top</span>: <span class="built_in">calc</span>(20%*1); &#125;</div><div class="line"><span class="selector-class">.iso-col-3</span> &#123; <span class="attribute">margin-top</span>: <span class="built_in">calc</span>(20%*2); &#125;</div><div class="line"><span class="selector-class">.iso-col-4</span> &#123; <span class="attribute">margin-top</span>: <span class="built_in">calc</span>(20%*3); &#125;</div><div class="line"><span class="selector-class">.iso-col-5</span> &#123; <span class="attribute">margin-top</span>: <span class="built_in">calc</span>(20%*4); &#125;</div><div class="line"><span class="selector-class">.iso-row-1</span> &#123; <span class="attribute">margin-left</span>: <span class="built_in">calc</span>(20%*0); &#125;</div><div class="line"><span class="selector-class">.iso-row-2</span> &#123; <span class="attribute">margin-left</span>: <span class="built_in">calc</span>(20%*1); &#125;</div><div class="line"><span class="selector-class">.iso-row-3</span> &#123; <span class="attribute">margin-left</span>: <span class="built_in">calc</span>(20%*2); &#125;</div><div class="line"><span class="selector-class">.iso-row-4</span> &#123; <span class="attribute">margin-left</span>: <span class="built_in">calc</span>(20%*3); &#125;</div><div class="line"><span class="selector-class">.iso-row-5</span> &#123; <span class="attribute">margin-left</span>: <span class="built_in">calc</span>(20%*4); &#125;</div></pre></td></tr></table></figure>
+<p>해봤더니 되더라구요…</p>
+<p>이렇게 배치된 박스들을 ~</p>
+<style>
+  .iso-box { margin-top: -100%; margin-right: -100%; }
+  .iso-col-0 { margin-top: 0%; }
+  .iso-col-1 { margin-top: 20%; }
+  .iso-col-2 { margin-top: 40%; }
+  .iso-col-3 { margin-top: 60%; }
+  .iso-col-4 { margin-top: 80%; }
+  .iso-row-0 { margin-left: 0%; }
+  .iso-row-1 { margin-left: 20%; }
+  .iso-row-2 { margin-left: 40%; }
+  .iso-row-3 { margin-left: 60%; }
+  .iso-row-4 { margin-left: 80%; }
+  .container { width: 100%; }
+
+  .wrapper1,
+  .wrapper2 {
+    width: 500px;
+    height: 100px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 50px;
+  }
+  .wrapper2 {
+    height: 500px;
+    outline: 3px solid #999999;
+  }
+  .container::after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+  .box1,
+  .box2,
+  .box3,
+  .box4,
+  .box5 { float: left; width: 100px; height: 100px; line-height: 100px; text-align: center; }
+  .box1 { background: #FF6666; color: #fff; }
+  .box2 { background: #FFCC66; color: #fff; }
+  .box3 { background: #66CCFF; color: #fff; }
+  .box4 { background: #CC66FF; color: #fff; }
+  .box5 { background: #FFA3CF; color: #fff; }
+</style>
+
+<div class="container"><div class="wrapper1"><div class="box1">box1</div><div class="box2">box2</div><div class="box3">box3</div><div class="box4">box4</div><div class="box5">box5</div></div></div>
+
+<p>이렇게 내 맘대로 아무 데나 배치할 수 있습니다.</p>
+<div class="container"><div class="wrapper2"><div class="box1 iso-box iso-col-0 iso-row-3">box1</div><div class="box2 iso-box iso-col-0 iso-row-4">box2</div><div class="box3 iso-box iso-col-0 iso-row-0">box3</div><div class="box4 iso-box iso-col-0 iso-row-1">box4</div><div class="box5 iso-box iso-col-0 iso-row-2">box5</div><div class="box1 iso-box iso-col-1 iso-row-0">box1</div><div class="box2 iso-box iso-col-2 iso-row-1">box2</div><div class="box3 iso-box iso-col-3 iso-row-2">box3</div><div class="box4 iso-box iso-col-4 iso-row-3">box4</div><div class="box5 iso-box iso-col-3 iso-row-4">box5</div></div></div>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box1 iso-box iso-col-1 iso-row-0"</span>&gt;</span>box1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box2 iso-box iso-col-2 iso-row-1"</span>&gt;</span>box2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>위와 같이 일정한 그리드 시스템을 가진 컨테이너 안에서는 각 박스 아이템의 클래스를 조정해서 엑셀을 사용하듯이(?) 아주 쉽게(?) ㅎㅎ 아무튼 원하는 레이아웃으로 박스를 배치하기에 조금 쉬운 방법이 아닐까 생각합니다.</p>
+<p>그리고 물론 CSS에서 높이 값을 조절하는 데는 한계가 많죠. 이 방법도 박스들을 담고 있는 컨테이너가 높이 값을 가지고 있지 않거나 clearfix가 적용되어 있지 않다면 레이아웃이 무너질 수도 있을 것입니다. 아무튼 이 방법은 최근에 알게된 내용을 활용하다가 조금 확장해본 방법입니다. 요즘은 <code>flex</code>나 다른 프레임웍을 이용한 더 훌륭한 방법들도 많지만 이 방법도 어떤지 한번 참고 해보시고 보완할 점이나 더 좋은 방법들이 있다면 피드백 주시면 감사하겠습니다.</p>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/css-grid-layout-isolate-float-isolate-technique/" class="button small">css grid layout isolate-float isolate-technique</a>
+</div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Kommentare:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                Front-end Development Techs.
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/HanW000ng" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                    <li><a href="https://www.facebook.com/hanwong85" class="icon style2 fa-facebook" target="_blank" ><span class="label">Facebook</span></a></li>
+                
+                
+                    <li><a href="https://www.instagram.com/hanationbear" class="icon style2 fa-instagram" target="_blank" ><span class="label">Instagram</span></a></li>
+                
+                
+                
+                    <li><a href="https://github.com/hanwong" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="hanationbear@gmail.com" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; Untitled. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- skel -->
+<script src="/js/skel.min.js"></script>
+
+<!-- Custom Code -->
+<script src="/js/util.js"></script>
+
+<!--[if lte IE 8]>
+<script src="/js/ie/respond.min.js"></script>
+<![endif]-->
+
+<!-- Custom Code -->
+<script src="/js/main.js"></script>
+
+<!-- Gallery -->
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'hanwong';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+</body>
+
+</html>

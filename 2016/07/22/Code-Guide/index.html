@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Description-->
+    
+        <meta name="description" content="HTML, CSS 환경에서 코딩 할 때 알아두면 좋을 가이드들을 정리하고 있습니다.
+
+
+HTML
+CSS
+
+
+HTML
+Syntax
+HTML5 doctype
+Language attribute
+Internet Explorer compatibility mode
+Characte">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Woong">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="HTML &amp; CSS Code Guide"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Kim Han Woong"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content="undefined"/>
+    
+
+    <!-- Title -->
+    
+    <title>HTML &amp; CSS Code Guide - Kim Han Woong</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/sass/main.css">
+
+    <!--[if lt IE 8]>
+        <script src="/js/ie/html5shiv.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        <link rel="stylesheet" href="/sass/ie8.css">
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        <link rel="stylesheet" href="/sass/ie9.css">
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <div class="inner">
+
+        <!-- Logo -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/cover.png" alt="" /></span><span class="title">Kim Han Woong</span>
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/projects">Projects</a>
+            </li>
+        
+            <li>
+                <a href="/about.html">About</a>
+            </li>
+        
+    </ul>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    <h1>HTML & CSS Code Guide</h1>
+
+
+
+<!-- Gallery -->
+
+
+<!-- Content -->
+<blockquote>
+<p> HTML, CSS 환경에서 코딩 할 때 알아두면 좋을 가이드들을 정리하고 있습니다.</p>
+</blockquote>
+<ul>
+<li><a href="#html">HTML</a></li>
+<li><a href="#css">CSS</a></li>
+</ul>
+<hr>
+<h1 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h1><ul>
+<li><a href="#syntax">Syntax</a></li>
+<li><a href="#html5-doctype">HTML5 doctype</a></li>
+<li><a href="#language-attribute">Language attribute</a></li>
+<li><a href="#internet-explorer-compatibility-mode">Internet Explorer compatibility mode</a></li>
+<li><a href="#character-encoding">Character encoding</a></li>
+<li><a href="#css-and-javascript-includes">CSS and JavaScript includes</a></li>
+<li><a href="#attribute-order">Attribute order</a></li>
+<li><a href="#reducing-markup">Reducing markup</a></li>
+<li><a href="#sectioning-markup">Sectioning markup</a></li>
+<li><a href="#entity-code">Entity Code</a></li>
+</ul>
+<h3 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"ko-KR"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=Edge"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span>  </div><div class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"images/company-logo.png"</span> <span class="attr">alt</span>=<span class="string">"Company"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"hello-world"</span>&gt;</span>Hello, world!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>Indentation<ul>
+<li>직계 자식 요소는 <code>・ ・</code> , <code>Space</code> 두칸을 이용하여 들여쓰기 한다.</li>
+</ul>
+</li>
+<li><code>img</code> 요소의 <code>alt</code>속성은 반드시 의미 있는 단어를 사용한다.<ul>
+<li>별다른 의미를 가지지 않는 이미지의 경우 <code>background</code>속성을 활용한다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="HTML5-doctype"><a href="#HTML5-doctype" class="headerlink" title="HTML5 doctype"></a>HTML5 doctype</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>HTML5 표준 사용을 위해 위의 Doctype을 사용한다.<ul>
+<li>Doctype 코드는 반드시 문서 첫줄에 명시한다. 코드의 윗부분에는 절대로 아무런 요소도 삽입하지 않는다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Language-attribute"><a href="#Language-attribute" class="headerlink" title="Language attribute"></a>Language attribute</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"ko-KR"</span>&gt;</span></div><div class="line">  [・・・]</div><div class="line">  <span class="tag">&lt;<span class="name">section</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span>English<span class="tag">&lt;/<span class="name">section</span>&gt;</span></div><div class="line">  [・・・]</div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>문서에 쓰이는 주언어를 html 요소에 삽입한다.<ul>
+<li>문서 중간에 다른 언어를 사용하는 경우 해당 언어의 속성을 명시한다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Internet-Explorer-compatibility-mode"><a href="#Internet-Explorer-compatibility-mode" class="headerlink" title="Internet Explorer compatibility mode"></a>Internet Explorer compatibility mode</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--[if IE 6]&gt;&lt;html lang="ko-KR" class="ie6"&gt;&lt;![endif]--&gt;</span></div><div class="line"><span class="comment">&lt;!--[if IE 7]&gt;&lt;html lang="ko-KR" class="ie7"&gt;&lt;![endif]--&gt;</span></div><div class="line"><span class="comment">&lt;!--[if IE 8]&gt;&lt;html lang="ko-KR" class="ie8"&gt;&lt;![endif]--&gt;</span></div><div class="line"><span class="comment">&lt;!--[if IE 9]&gt;&lt;html lang="ko-KR" class="ie9"&gt;&lt;![endif]--&gt;</span></div><div class="line"><span class="comment">&lt;!--[if !IE]&gt;&lt;!--&gt;</span><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"ko-KR"</span>&gt;</span><span class="comment">&lt;!--&lt;![endif]--&gt;</span></div><div class="line">[・・・]</div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=Edge"</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>IE 하위 버전 호환이 필요한 경우 IE 조건부 주석문을 활용하여 각 버전의 클래스를 명시한다.</li>
+<li>IE 호환성 모드에 대한 대응을 위해서 최소 IE 동작 버전을 명시한다.</li>
+</ul>
+<h3 id="Character-encoding"><a href="#Character-encoding" class="headerlink" title="Character encoding"></a>Character encoding</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>텍스트 언어 인코딩을 UTF-8로 설정하여 모든 유니코드 문자를 표현할 수 있도록 설정하고, 깨지는 한글 문제를 해결한다.</li>
+</ul>
+<h3 id="CSS-and-JavaScript-includes"><a href="#CSS-and-JavaScript-includes" class="headerlink" title="CSS and JavaScript includes"></a>CSS and JavaScript includes</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"style.css"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"script.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li><code>link</code>, <code>style</code>, <code>script</code> 사용시 <code>type</code> 속성을 별도로 입력하지 않는다.</li>
+</ul>
+<h3 id="Attribute-order"><a href="#Attribute-order" class="headerlink" title="Attribute order"></a>Attribute order</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"..."</span> <span class="attr">id</span>=<span class="string">"..."</span> <span class="attr">data-modal</span>=<span class="string">"toggle"</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Example link<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">type</span>=<span class="string">"text"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"..."</span> <span class="attr">alt</span>=<span class="string">"..."</span>&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>코드의 가독성 향상을 위해 HTML 태그 속성들을 특정한 순서로 명시한다.</p>
+</blockquote>
+<ul>
+<li><code>class</code></li>
+<li><code>id</code>, <code>name</code></li>
+<li><code>data-*</code></li>
+<li><code>src</code>, <code>for</code>, <code>type</code>, <code>href</code>, <code>value</code></li>
+<li><code>title</code>, <code>alt</code></li>
+<li><code>aria-*</code>, <code>role</code></li>
+</ul>
+<h3 id="Reducing-markup"><a href="#Reducing-markup" class="headerlink" title="Reducing markup"></a>Reducing markup</h3><ul>
+<li>의미 없는 <code>div</code>, <code>span</code> 요소의 사용을 자제한다.</li>
+<li><code>&lt;b&gt;</code>, <code>&lt;i&gt;</code>, <code>&lt;u&gt;</code>, <code>&lt;strike&gt;</code>, <code>&lt;s&gt;</code>, <code>&lt;big&gt;</code>, <code>&lt;small&gt;</code>, <code>&lt;center&gt;</code>, <code>&lt;font&gt;</code> 등 표현에 국한된 요소는 사용하지 않는다.</li>
+</ul>
+<h3 id="Sectioning-markup"><a href="#Sectioning-markup" class="headerlink" title="Sectioning markup"></a>Sectioning markup</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">header</span>&gt;</span><span class="tag">&lt;/<span class="name">header</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"header"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">nav</span>&gt;</span><span class="tag">&lt;/<span class="name">nav</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">main</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">section</span>&gt;</span><span class="tag">&lt;/<span class="name">section</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">aside</span>&gt;</span><span class="tag">&lt;/<span class="name">aside</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">main</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"footer"</span>&gt;</span><span class="tag">&lt;/<span class="name">section</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">footer</span>&gt;</span><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>Sectioning 요소 - <code>section</code>, <code>article</code>, <code>main</code>, <code>nav</code>, <code>aside</code></li>
+<li>화면의 전체 구조를 마크업 할 때 헤더와 푸터 영역에 Sectioning 요소를 포함하지 않으면 <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code> 태그를 사용하고, <code>nav</code>와 같은 Sectioning요소를 포함할 경우 <code>&lt;section&gt;</code>태그를 활용하여 명시한다.</li>
+<li>헤더와 푸터 영역의 요소를 제외한 요소들은 <code>main</code> 요소 안에 명시한다.</li>
+</ul>
+<h3 id="Entity-Code"><a href="#Entity-Code" class="headerlink" title="Entity Code"></a>Entity Code</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>코드 가이드 &amp;amp; 스타일<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>문서 내에서 특수문자는 반드시 <a href="http://entitycode.com/" target="_blank" rel="external">Entity Code</a>를 활용한다.<ul>
+<li>특히 <code>title</code> 영역에서는 <code>&amp;</code> 도 <code>&amp;amp;</code> Entity Code로 명시한다.<ul>
+<li><code>title</code> 이 인코딩 선언 요소보다 앞에 있을 경우에 <code>&amp;</code> 가 포함되어 있으면 인코딩이 제대로 이루어지지 않을 수 있다.</li>
+<li>그래서 <code>title</code>를 인코딩 요소보다 뒤에 써주는 것이 좋다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h1><ul>
+<li><a href="#declaration-order">Declaration order</a></li>
+<li><a href="#dont-use-import">Don’t use @import</a></li>
+<li><a href="#classes">Classes</a></li>
+<li><a href="#selectors">Selectors</a></li>
+</ul>
+<h3 id="Declaration-order"><a href="#Declaration-order" class="headerlink" title="Declaration order"></a>Declaration order</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.declaration-order</span> &#123;</div><div class="line">  <span class="comment">/* Positioning */</span></div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">z-index</span>: <span class="number">100</span>;</div><div class="line"></div><div class="line">  <span class="comment">/* Box-model */</span></div><div class="line">  <span class="attribute">display</span>: block;</div><div class="line">  <span class="attribute">float</span>: right;</div><div class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</div><div class="line"></div><div class="line">  <span class="comment">/* Typography */</span></div><div class="line">  <span class="attribute">font</span>: normal <span class="number">13px</span> <span class="string">"Helvetica Neue"</span>, sans-serif;</div><div class="line">  <span class="attribute">line-height</span>: <span class="number">1.5</span>;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#333</span>;</div><div class="line">  <span class="attribute">text-align</span>: center;</div><div class="line"></div><div class="line">  <span class="comment">/* Visual */</span></div><div class="line">  <span class="attribute">background-color</span>: <span class="number">#f5f5f5</span>;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#e5e5e5</span>;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">3px</span>;</div><div class="line"></div><div class="line">  <span class="comment">/* Misc */</span></div><div class="line">  <span class="attribute">opacity</span>: <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>다음과 같은 속성의 순서대로 선언한다.</p>
+</blockquote>
+<ol>
+<li>Positioning</li>
+<li>Box</li>
+<li>Typography</li>
+<li>Visual, Misc</li>
+</ol>
+<h3 id="Don’t-use-import"><a href="#Don’t-use-import" class="headerlink" title="Don’t use @import"></a>Don’t use @import</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"core.css"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">  @<span class="keyword">import</span> url(<span class="string">"more.css"</span>);</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>CSS 파일을 연결할 때 <code>@import</code>를 사용하지 않고 <code>link</code>를 활용한다.<ul>
+<li><code>@import</code>는 직렬 방식으로 파일을 불러오기 때문에 성능에 영향을 미친다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Classes"><a href="#Classes" class="headerlink" title="Classes"></a>Classes</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">.btn &#123; ... &#125;</div><div class="line">.btn-focus &#123; ... &#125;</div><div class="line">.btn-hover &#123; ... &#125;</div><div class="line"></div><div class="line">.line &#123; ... &#125;</div><div class="line">.line-focus &#123; ... &#125;</div><div class="line">.line-hover &#123; ... &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>Class 명칭은 소문자를 사용하고, 단어 사이에는 <code>-</code> 로 구분한다.</li>
+<li>지나친 축약 보다는 의미가 명확히 전달 가능한 이름을 사용한다.</li>
+<li>인접한 부모 Class를 접두사로 활용한다.</li>
+</ul>
+<h3 id="Selectors"><a href="#Selectors" class="headerlink" title="Selectors"></a>Selectors</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/* Bad example */</div><div class="line">.btn.nav &#123; ... &#125;</div><div class="line">.line.nav &#123; ... &#125;</div><div class="line"></div><div class="line">/* Good example */</div><div class="line">.btn-nav &#123; ... &#125;</div><div class="line">.line-nav &#123; ... &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>선택자를 명시할 때 일반 요소를 지정하기 보다 Class를 지정하여 사용한다.</li>
+<li>멀티클래스로 클래스를 나누어 사용하기 보다 접두사를 이용하여 독립적인 클래스를 선택자로 명시한다.</li>
+<li><a href="http://markdotto.com/2012/02/16/scope-css-classes-with-prefixes/" target="_blank" rel="external">[Scope CSS classes with prefixes]</a></li>
+</ul>
+<hr>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/HTML-CSS-CodeGuide/" class="button small">HTML/CSS/CodeGuide</a>
+</div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Kommentare:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                Front-end Development Techs.
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/HanW000ng" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                    <li><a href="https://www.facebook.com/hanwong85" class="icon style2 fa-facebook" target="_blank" ><span class="label">Facebook</span></a></li>
+                
+                
+                    <li><a href="https://www.instagram.com/hanationbear" class="icon style2 fa-instagram" target="_blank" ><span class="label">Instagram</span></a></li>
+                
+                
+                
+                    <li><a href="https://github.com/hanwong" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="hanationbear@gmail.com" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; Untitled. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- skel -->
+<script src="/js/skel.min.js"></script>
+
+<!-- Custom Code -->
+<script src="/js/util.js"></script>
+
+<!--[if lte IE 8]>
+<script src="/js/ie/respond.min.js"></script>
+<![endif]-->
+
+<!-- Custom Code -->
+<script src="/js/main.js"></script>
+
+<!-- Gallery -->
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'hanwong';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+</body>
+
+</html>
