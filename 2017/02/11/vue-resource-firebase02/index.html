@@ -14,8 +14,7 @@
 
 
 이번 포스팅에서는 이전 포스트에 이어서 데이타베이스에서 데이타를 가져오는 방법에 대해서 알아 볼 것임
-
-가져올">
+데이타를">
     
 
     <!--Author-->
@@ -128,14 +127,14 @@
 </blockquote>
 <hr>
 <p><strong>이번 포스팅에서는 이전 포스트에 이어서 데이타베이스에서 데이타를 가져오는 방법에 대해서 알아 볼 것임</strong></p>
-<ul>
+<h3 id="데이타를-저장할-변수-설정"><a href="#데이타를-저장할-변수-설정" class="headerlink" title="데이타를 저장할 변수 설정"></a>데이타를 저장할 변수 설정</h3><ul>
 <li>가져올 데이타를 저장하는 변수 추가<ul>
 <li><code>users: []</code> 이 부분임</li>
 </ul>
 </li>
 </ul>
 <figure class="highlight js"><figcaption><span>App.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">data() &#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">user</span>: &#123;</div><div class="line">      <span class="attr">username</span>: <span class="string">''</span>,</div><div class="line">      <span class="attr">mail</span>: <span class="string">''</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">users</span>: []</div><div class="line">  &#125;;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
-<ul>
+<h3 id="데이타를-불러오는-메소드-설정"><a href="#데이타를-불러오는-메소드-설정" class="headerlink" title="데이타를 불러오는 메소드 설정"></a>데이타를 불러오는 메소드 설정</h3><ul>
 <li>데이타를 호출하는 메소드 추가<ul>
 <li>첫번째 응답에서 <code>response.json()</code>로 받은 데이타는 <code>promise</code> 객체가 리턴된다.</li>
 <li>다시 한번 <code>then</code>을 사용하면 우리가 원하는 데이타 만 가진 객체가 리턴된다.</li>
@@ -144,11 +143,11 @@
 </li>
 </ul>
 <figure class="highlight js"><figcaption><span>App.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">fetchData() &#123;</div><div class="line">  <span class="keyword">this</span>.$http</div><div class="line">    .get(<span class="string">'https://your-project.firebaseio.com/data.json'</span>)</div><div class="line">    .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</div><div class="line">      <span class="keyword">return</span> response.json();</div><div class="line">    &#125;)</div><div class="line">    .then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</div><div class="line">      <span class="keyword">const</span> resultArray = [];</div><div class="line">      <span class="keyword">for</span> ( <span class="keyword">let</span> key <span class="keyword">in</span> data ) &#123;</div><div class="line">        resultArray.push(data[key]);</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">this</span>.users = resultArray;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
+<h3 id="fetchData-메소드를-실행할-버튼-만들기"><a href="#fetchData-메소드를-실행할-버튼-만들기" class="headerlink" title="fetchData 메소드를 실행할 버튼 만들기"></a>fetchData 메소드를 실행할 버튼 만들기</h3><ul>
 <li>데이타를 가져오는 버튼 만들기</li>
 </ul>
 <figure class="highlight html"><figcaption><span>App.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"btn btn-primary"</span> @<span class="attr">click</span>=<span class="string">"fetchData"</span>&gt;</span>GetData<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"list-group"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-group-item"</span> <span class="attr">v-for</span>=<span class="string">"u in users"</span>&gt;</span>&#123;&#123;u.username&#125;&#125; - &#123;&#123;u.mail&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
+<h3 id="공통-url-설정"><a href="#공통-url-설정" class="headerlink" title="공통 url 설정"></a>공통 url 설정</h3><ul>
 <li><code>Vue.http.options.root</code> 사용하기<ul>
 <li>url의 반복되는 root 부분을 <code>main.js</code>에 설정해 놓으면 하위 구조에서는 편하게 필요한 정보만 입력 할 수 있게 해줌</li>
 </ul>
@@ -182,7 +181,7 @@ p img {
 <div>
     
     <hr />
-    <h3>Comments:</h3>
+    <h3>Kommentare:</h3>
     <div id="disqus_thread">
         <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
