@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Description-->
+    
+        <meta name="description" content="firebase를 아주 간단한 하게 활용해서 vue-resource를 아주 간단하게 체험해보기이 포스팅은 Max의 Vuejs 강좌 내용을 정리한것 입니다.
+
+
+
+필자 github의 소스를 모두 다운 받고 package.json 파일이 있는 위치에서 npm install">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Woong">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="VueJS 공부하기 (1)  &lt;br&gt;  vue-resource"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Kim Han Woong"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content="undefined"/>
+    
+
+    <!-- Title -->
+    
+    <title>VueJS 공부하기 (1)  &lt;br&gt;  vue-resource - Kim Han Woong</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/sass/main.css">
+
+    <!--[if lt IE 8]>
+        <script src="/js/ie/html5shiv.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        <link rel="stylesheet" href="/sass/ie8.css">
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        <link rel="stylesheet" href="/sass/ie9.css">
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <div class="inner">
+
+        <!-- Logo -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/cover.png" alt="" /></span><span class="title">Kim Han Woong</span>
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/about.html">About</a>
+            </li>
+        
+    </ul>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    <h1>VueJS 공부하기 (1)  <br>  vue-resource</h1>
+
+
+
+<!-- Gallery -->
+
+
+<!-- Content -->
+<blockquote>
+<p>firebase를 아주 간단한 하게 활용해서 vue-resource를 아주 간단하게 체험해보기<br>이 포스팅은 <a href="https://www.udemy.com/vuejs-2-the-complete-guide/learn/v4/overview" target="_blank" rel="external">Max의 Vuejs 강좌</a> 내용을 정리한것 입니다.</p>
+</blockquote>
+<hr>
+<ul>
+<li><a href="https://github.com/hanwong/TIL/tree/master/vue/vue-resource/001" target="_blank" rel="external">필자 github</a>의 소스를 모두 다운 받고 <code>package.json</code> 파일이 있는 위치에서 <code>npm install</code><ul>
+<li><code>github</code>에서 소스를 다운로드 받는게 번거롭다는 생각이 든다면 크롬 브라우저의 <code>octotree</code> 확장 프로그램 설치를 권장함</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>패키지가 설치된 뒤에 <code>npm run dev</code> 하면 브라우저에 짠~ 하고 알아서 켜지고 아래와 같이 빈화면이 출력됨</li>
+</ul>
+<p><img src="/assets/001-07.png" alt="007"></p>
+<ul>
+<li><code>vue-resource</code>를 <code>main.js</code> 파일에 설정함</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">import VueResource <span class="keyword">from</span> <span class="string">'vue-resource'</span></div><div class="line">...</div><div class="line">Vue.use(VueResource);</div><div class="line">...</div></pre></td></tr></table></figure>
+<ul>
+<li>기본 폼 동작 테스트<ul>
+<li>App.vue 파일 template, script 에 코드 작성</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">label</span>&gt;</span>UserName<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">v-model</span>=<span class="string">"user.username"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">label</span>&gt;</span>Mail<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">v-model</span>=<span class="string">"user.mail"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"btn btn-primary"</span> @<span class="attr">click</span>=<span class="string">"submit"</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  data() &#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      <span class="attr">user</span>: &#123;</div><div class="line">        <span class="attr">username</span>: <span class="string">''</span>,</div><div class="line">        <span class="attr">mail</span>: <span class="string">''</span></div><div class="line">      &#125;</div><div class="line">    &#125;;</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">methods</span>: &#123;</div><div class="line">    submit() &#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.user);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>firebase로 테스팅을 위한 DB 환경 설정<ul>
+<li>계정 생성</li>
+<li>프로젝트 생성</li>
+<li>데이터베이스(Database) - 규칙(Rule) 에서 <code>.read</code>, <code>.write</code> 값을 모두 <code>true</code>로 변경</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>아주 간단하게 그림으로 따라 해보기</p>
+<p><img src="/assets/001-01.png" alt="01"></p>
+<p><img src="/assets/001-02.png" alt="02"></p>
+<p><img src="/assets/001-03.png" alt="03"></p>
+</li>
+</ul>
+<ul>
+<li><code>$http.post()</code>로 데이터 보내기<ul>
+<li><code>post</code> 메소드 내에 첫번째 argument로 본인의 데이터베이스 주소 뒤에 <code>data.json</code>을 붙여서 입력하고, 다음 argument로 보낼 데이터를 입력<ul>
+<li><code>data.json</code>을 붙이는 것은 내 데이터베이스의 <code>data</code>라는 공간에 <code>json</code> 형식으로 저장한다라고 생각하면 됨</li>
+</ul>
+</li>
+<li><code>promise</code>를 당연히 지원해주므로 <code>then</code> 메소드에 성공, 실패에 대한 처리를 해줌<ul>
+<li>성공시 응답 메세지, 실패시 에러 메세지</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">  methods: &#123;</div><div class="line">    submit() &#123;</div><div class="line">      <span class="keyword">this</span>.$http</div><div class="line">        .post(<span class="string">'https://your-project.firebaseio.com/data.json'</span>, <span class="keyword">this</span>.user)</div><div class="line">        .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</div><div class="line">          <span class="built_in">console</span>.log(response);</div><div class="line">        &#125;, error =&gt; &#123;</div><div class="line">          <span class="built_in">console</span>.log(error);</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">...</div></pre></td></tr></table></figure>
+<ul>
+<li>그러면 성공을 할 것이므로 아래와 같은 결과가 나올것임</li>
+</ul>
+<p><img src="/assets/001-05.png" alt="05"></p>
+<p><img src="/assets/001-06.png" alt="06"></p>
+<h3 id="끝"><a href="#끝" class="headerlink" title="- 끝 -"></a>- 끝 -</h3><style>
+p img {
+  width: 80%;
+  box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+</style>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/vue/" class="button small">vue</a> <a href="/tags/vuejs/" class="button small">vuejs</a> <a href="/tags/vue-resource/" class="button small">vue-resource</a> <a href="/tags/firebase/" class="button small">firebase</a> <a href="/tags/http/" class="button small">http</a>
+</div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Kommentare:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                Front-end Development Techs.
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/HanW000ng" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                    <li><a href="https://www.facebook.com/hanwong85" class="icon style2 fa-facebook" target="_blank" ><span class="label">Facebook</span></a></li>
+                
+                
+                    <li><a href="https://www.instagram.com/hanationbear" class="icon style2 fa-instagram" target="_blank" ><span class="label">Instagram</span></a></li>
+                
+                
+                
+                    <li><a href="https://github.com/hanwong" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="hanationbear@gmail.com" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; Untitled. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- skel -->
+<script src="/js/skel.min.js"></script>
+
+<!-- Custom Code -->
+<script src="/js/util.js"></script>
+
+<!--[if lte IE 8]>
+<script src="/js/ie/respond.min.js"></script>
+<![endif]-->
+
+<!-- Custom Code -->
+<script src="/js/main.js"></script>
+
+<!-- Gallery -->
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'hanwong';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+</body>
+
+</html>
