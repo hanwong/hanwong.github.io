@@ -127,19 +127,21 @@ interceptors">
 </blockquote>
 <hr>
 <p><em>이번 포스팅에서는 <code>interceptors</code>와 <code>resource</code>에 대해서 알아 볼 것입니다.</em><br><br></p>
-<h3 id="interceptors"><a href="#interceptors" class="headerlink" title="interceptors"></a>interceptors</h3><ul>
-<li>인터셉터는 전역에서 request 프로세스 이전 이후에 필요한 조건들을 처리 할 수 있습니다.<br>– <a href="https://github.com/pagekit/vue-resource/blob/develop/docs/http.md#interceptors" target="_blank" rel="external">[github -  interceptors]</a></li>
-</ul>
+<h3 id="interceptors"><a href="#interceptors" class="headerlink" title="interceptors"></a>interceptors</h3><p><a href="https://github.com/pagekit/vue-resource/blob/develop/docs/http.md#interceptors" target="_blank" rel="external">[github -  interceptors]</a></p>
 <ul>
-<li>Intercepting Request<br>– 요청을 인터셉트하는 예제에서는 간단히 POST 메소드로 요청시에 PUT 메소드로 변경해서 처리를 하는 것을 구현하였습니다.</li>
+<li><p>인터셉터는 전역에서 request, response 프로세스 이전 이후에 필요한 조건들을 처리 할 수 있습니다.</p>
+</li>
+<li><p>Intercepting Request<br>– 요청을 인터셉트하는 예제에서는 간단히 POST 메소드로 요청시에 PUT 메소드로 변경해서 처리를 하는 것을 구현하였습니다.</p>
+</li>
 </ul>
 <figure class="highlight js"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">Vue.http.interceptors.push(<span class="function">(<span class="params">request, next</span>) =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(request);</div><div class="line">    <span class="keyword">if</span>(request.method === <span class="string">'POST'</span>) &#123;</div><div class="line">        request.method = <span class="string">'PUT'</span>;</div><div class="line">    &#125;</div><div class="line">    next();</div><div class="line">&#125;);</div><div class="line">...</div></pre></td></tr></table></figure>
 <ul>
 <li>Intercepting Response<br>– 인터셉터를 사용하면 응답이 왔을 때에도 데이터를 필요한 형태의 구조로 변경해서 반환해주는 처리를 할 수 있도록 구현 할 수 있습니다.</li>
 </ul>
 <figure class="highlight js"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">  next(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</div><div class="line">      response.json = <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="keyword">return</span> &#123; <span class="attr">message</span>: response.body &#125; &#125;;</div><div class="line">  &#125;);</div><div class="line">...</div></pre></td></tr></table></figure>
-<h3 id="resource"><a href="#resource" class="headerlink" title="$resource"></a>$resource</h3><ul>
-<li><code>resource</code>를 사용하면 <code>$http</code> 보다 더욱 간편하고 좀 더 RESTful하게 사용 할 수 있는것 같습니다.<br>– 전역에서는 <code>Vue.resource</code>로 사용 할 수 있고 개별 인스턴스 안에서는 <code>this.$resource</code>로 사용 할 수 있습니다.<br>– <code>resource(url, [params], [actions], [options])</code><br>– <a href="https://github.com/pagekit/vue-resource/blob/develop/docs/resource.md" target="_blank" rel="external">[github - resource]</a></li>
+<h3 id="resource"><a href="#resource" class="headerlink" title="$resource"></a>$resource</h3><p><a href="https://github.com/pagekit/vue-resource/blob/develop/docs/resource.md" target="_blank" rel="external">[github - resource]</a></p>
+<ul>
+<li><code>resource</code>를 사용하면 <code>$http</code> 보다 더욱 간편하고 좀 더 RESTful하게 사용 할 수 있는것 같습니다.<br>– 전역에서는 <code>Vue.resource</code>로 사용 할 수 있고 개별 인스턴스 안에서는 <code>this.$resource</code>로 사용 할 수 있습니다.<br>– <code>resource(url, [params], [actions], [options])</code></li>
 </ul>
 <h4 id="1-resource-기본-세팅"><a href="#1-resource-기본-세팅" class="headerlink" title="1. resource 기본 세팅"></a>1. resource 기본 세팅</h4><ul>
 <li>먼저 <code>data</code>에 <code>resource</code>를 활용할 객체를 하나 선언합니다.</li>
