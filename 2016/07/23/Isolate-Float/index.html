@@ -203,13 +203,22 @@ Floating boxCSS를 배우기 시작하면서 float만을 가지고 박스들을 
 <!-- Comments -->
 <div>
     
+
+
     <hr />
-    <h3>Kommentare:</h3>
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
+    <h3>Comments:</h3>
+    <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=hanwong85";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 
-
+    <div class="fb-comments" data-href="http://hanwong.github.io/2016/07/23/Isolate-Float/index.html" data-num-posts="5" data-width="100%" data-colorscheme="light"></div>
 
 </div>
 
@@ -283,18 +292,6 @@ Floating boxCSS를 배우기 시작하면서 float만을 가지고 박스들을 
 <script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 
 <!-- Disqus Comments -->
-
-<script type="text/javascript">
-    var disqus_shortname = 'hanwong';
-
-    (function(){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 </body>
