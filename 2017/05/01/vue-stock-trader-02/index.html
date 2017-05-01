@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Description-->
+    
+        <meta name="description" content="이 포스팅은 Max의 Vuejs 강좌 내용을 정리한 것이고,VueJS의 개념을 익히고 연습해보기 위한 튜토리얼을 다룬 글 입니다.
+
+
+
+이번 포스팅에서는 프로젝트의 상태 관리를 위한 vuex 환경을 세팅하고 상태 변화에 따라 View의 변화를 확인 할 수 있도록 구현하">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Woong">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="VueJS Study (5)  &lt;br&gt;  Stock-Trader Project Tutorial"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Woong&#39;s blog."/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content="undefined"/>
+    
+
+    <!-- Title -->
+    
+    <title>VueJS Study (5)  &lt;br&gt;  Stock-Trader Project Tutorial - Woong&#39;s blog.</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/sass/main.css">
+
+    <!--[if lt IE 8]>
+        <script src="/js/ie/html5shiv.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        <link rel="stylesheet" href="/sass/ie8.css">
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        <link rel="stylesheet" href="/sass/ie9.css">
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" />
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <div class="inner">
+
+        <!-- Logo -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/cover.png" alt="" /></span><span class="title">Woong's blog.</span>
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/about.html">About</a>
+            </li>
+        
+    </ul>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    <h1>VueJS Study (5)  <br>  Stock-Trader Project Tutorial</h1>
+
+
+
+<!-- Gallery -->
+
+
+<!-- Content -->
+<blockquote>
+<p>이 포스팅은 <a href="https://www.udemy.com/vuejs-2-the-complete-guide/learn/v4/overview" target="_blank" rel="external">Max의 Vuejs 강좌</a> 내용을 정리한 것이고,<br>VueJS의 개념을 익히고 연습해보기 위한 튜토리얼을 다룬 글 입니다.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>이번 포스팅에서는 프로젝트의 상태 관리를 위한 <code>vuex</code> 환경을 세팅하고 상태 변화에 따라 View의 변화를 확인 할 수 있도록 구현하고자 합니다.</p>
+</blockquote>
+<h2 id="1-Stock-컴포넌트-생성하기"><a href="#1-Stock-컴포넌트-생성하기" class="headerlink" title="1. Stock 컴포넌트 생성하기"></a>1. Stock 컴포넌트 생성하기</h2><ul>
+<li>가장 먼저 아래 그림과 같이 UI를 구현합니다.<ul>
+<li><code>props: [&#39;stock&#39;]</code> 는 상위 컴포넌트로 부터 데이타를 받아오기 위한 설정입니다. 그러면 현재 템플릿 안에서 <code></code> 와 같이 설정된 이름으로 변수를 설정 할 수 있습니다. </li>
+<li>부모 컴포넌트에서 데이타를 전달 할 때는 <code>전달할이름=&quot;부모컴포넌트내부데이타&quot;</code>와 같이 부모 컴포넌트에서 자식 컴포넌트를 사용하는 태그 내에 속성으로 적용하면 됩니다.</li>
+<li>그리고 데이타를 전송하기 위해서 Buy 버튼에는 클릭을 했을 때 <code>buyStock</code> 메소드를 사용하도록 설정해줍니다. </li>
+<li>템플릿 내부의 디렉티브나 스크립트 부분에 사용하는 메소드 같은 기본적인 개념들은  <a href="https://kr.vuejs.org/v2/guide/" target="_blank" rel="external">VueJS</a>에 아주 친절하게 설명되어 있으니 참고 하시기 바랍니다. </li>
+</ul>
+</li>
+</ul>
+<div class="stock"><br><img src="/assets/stock-trader02.png" alt="002"><br></div>
+
+<figure class="highlight html"><figcaption><span>src/components/stocks/Stock.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-4 col-sm-6"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel panel-success"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel-heading"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">h3</span> <span class="attr">class</span>=<span class="string">"panel-title"</span>&gt;</span></div><div class="line">          &#123;&#123; stock.name &#125;&#125; <span class="comment">&lt;!-- 상위 컴포넌트로 부터 전달 받은 props 데이타 --&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">small</span>&gt;</span>(Price: &#123;&#123; stock.price &#125;&#125; )<span class="tag">&lt;/<span class="name">small</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel-body"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pull-left"</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">input</span> </span></div><div class="line">              <span class="attr">type</span>=<span class="string">"number"</span></div><div class="line">              <span class="attr">class</span>=<span class="string">"form-control"</span></div><div class="line">              <span class="attr">placeholder</span>=<span class="string">"Quantity"</span></div><div class="line">              <span class="attr">v-model.number</span>=<span class="string">"quantity"</span></div><div class="line">          &gt;</div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pull-right"</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">button</span></span></div><div class="line">              <span class="attr">class</span>=<span class="string">"btn btn-success"</span></div><div class="line">              @<span class="attr">click</span>=<span class="string">"buyStock"</span></div><div class="line">              <span class="attr">:disabled</span>=<span class="string">"quantity &lt;= 0 || !Number.isInteger(quantity)"</span></div><div class="line">              &gt;Buy<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">  export default &#123;</div><div class="line">    props: ['stock'],</div><div class="line">    </div><div class="line">    data() &#123;</div><div class="line">      return &#123;</div><div class="line">        quantity: 0</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    methods: &#123;</div><div class="line">      buyStock() &#123;</div><div class="line">        const order = &#123;</div><div class="line">          stockId: this.stock.id,</div><div class="line">          stockPrice: this.stock.price,</div><div class="line">          quantity: this.quantity,</div><div class="line">        &#125;;</div><div class="line">        console.log(order);</div><div class="line">        this.quantity = 0;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>이전 포스팅에서 <code>stocks</code> 폴더 내에는 <code>Stocks.vue</code>, <code>Stock.vue</code> 파일을 생성하였습니다. 위에서 구현한 <code>Stock.vue</code> 내용은 위 그림처럼 데이타에 따라 하나의 박스를 그려 줍니다. 그리고 <code>Stocks.vue</code>에서는 가지고 있는 데이타에 따라서 <code>Stock.vue</code>를 반복적으로 사용합니다.<ul>
+<li>위에서 생성한 <code>Stock.vue</code> 파일을 import 해주고 <code>components</code> 에 사용할 이름을 설정해줍니다.</li>
+<li>컴포넌트 이름을 설정할때는 보통 <code>&lt;script&gt;</code> 부분에서 <code>camelCase</code> 방식으로 선언하면 <code>&lt;template&gt;</code> 부분에서 <code>kebab-case</code> 방식으로 해당 컴포넌트를 사용 할 수 있습니다.</li>
+<li>세팅된 컴포넌트는 <code>data</code> 에 있는 <code>stocks</code> 데이타에 따라 컴포넌트들을 출력해줍니다.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><figcaption><span>src/components/stocks/Stocks.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">app-stock</span> <span class="attr">v-for</span>=<span class="string">"stock in stocks"</span> <span class="attr">:stock</span>=<span class="string">"stock"</span>&gt;</span><span class="tag">&lt;/<span class="name">app-stock</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">  import Stock from './Stock.vue';</div><div class="line">  export default &#123;</div><div class="line">    data() &#123;</div><div class="line">      return &#123;</div><div class="line">        stocks: [</div><div class="line">          &#123; id: 1, name: 'BENZ', price: 200&#125;,</div><div class="line">          &#123; id: 2, name: 'AUDI', price: 150&#125;,</div><div class="line">          &#123; id: 3, name: 'HONDA', price: 180&#125;,</div><div class="line">          &#123; id: 4, name: 'LEXUS', price: 195&#125;</div><div class="line">        ]</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    components: &#123;</div><div class="line">      appStock: Stock</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<hr>
+<h2 id="2-Vuex-환경-세팅하기"><a href="#2-Vuex-환경-세팅하기" class="headerlink" title="2. Vuex 환경 세팅하기"></a>2. Vuex 환경 세팅하기</h2><h4 id="1-vuex-모듈-설치-및-파일-생성"><a href="#1-vuex-모듈-설치-및-파일-생성" class="headerlink" title="1. vuex 모듈 설치 및 파일 생성"></a>1. <code>vuex</code> 모듈 설치 및 파일 생성</h4><ul>
+<li>먼저 <code>npm install --save vuex</code>로 <code>vuex</code>를 설치해줍니다.</li>
+<li>그리고 아래 파일 구조에 맞게 <code>store</code> 폴더 내에 파일들을 생성해줍니다.</li>
+<li><p>이 프로젝트에서 <code>vuex</code> 환경은 컴포넌트 단위 별로 <code>modules</code> 폴더에 분리해서 설정해주고 <code>store.js</code> 에 각각의 설정을 추가하여 사용합니다.</p>
+</li>
+<li><p><code>vuex</code> 관련 개념들은 <a href="https://vuex.vuejs.org/kr/" target="_blank" rel="external">Vuex</a>에 친절하게 잘 나와 있습니다. VueJS는 대부분 관련 문서들이 한글화 되어 있어 참 좋습니다. ^^</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">src</div><div class="line">├── data</div><div class="line">│  └── stocks.js</div><div class="line">├── components</div><div class="line">│  ├── Header.vue</div><div class="line">│  ├── Home.vue</div><div class="line">│  ├── portfolio</div><div class="line">│  │   ├── Portfolio.vue</div><div class="line">│  │   └── Stock.vue</div><div class="line">│  └── stocks</div><div class="line">│      ├── Stock.vue</div><div class="line">│      └── Stocks.vue</div><div class="line">└── store</div><div class="line">   ├── store.js</div><div class="line">   └── modules</div><div class="line">       ├── stocks.js</div><div class="line">       └── portpolio.js</div></pre></td></tr></table></figure>
+<h4 id="2-stocks-js-모듈-구현하기"><a href="#2-stocks-js-모듈-구현하기" class="headerlink" title="2. stocks.js 모듈 구현하기"></a>2. <code>stocks.js</code> 모듈 구현하기</h4><ul>
+<li>컴포넌트 단위 별로 분리하여 설정하기로 하였기 때문에 <code>Stocks</code> 관련 설정 먼저 해줍니다.</li>
+<li><p><code>vuex</code>를 구성하는 핵심 기능은 <code>state</code>, <code>mutation</code>, <code>action</code>, <code>getter</code> 입니다.</p>
+<ul>
+<li>각각에 대한 상세한 개념은 <a href="https://vuex.vuejs.org/kr/state.html" target="_blank" rel="external">Vuex-State</a> 를 참고해주세요.</li>
+</ul>
+</li>
+<li><p>먼저 <code>initStocks</code> action을 사용 가능하도록 구현하기 위해 <code>Stocks.vue</code> 에서 배열 데이타를 컴포넌트에 직접 추가해서 사용했던 것을 별도 파일로 <code>data</code> 폴더에 분리시켜 가져오도록 하는 방식으로 데이타를 초기화 하는 기능을 구현합니다.</p>
+<ul>
+<li><code>data</code> 폴더는 임시로 사용하는 것이고, 나중에 삭제하셔도 됩니다. 다다음 포스팅 쯤에서 <code>vue-resource</code>를 활용해서 <code>firebase</code>를 활용한 DB와 통신하는 부분을 구현 할 것입니다.</li>
+<li><code>buyStock</code>, <code>randomizeStocks</code> action은 나중에 구현하겠습니다.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><figcaption><span>src/data/stocks.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> [</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">name</span>: <span class="string">'BENZ'</span>,  <span class="attr">price</span>: <span class="number">200</span>&#125;,</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">2</span>, <span class="attr">name</span>: <span class="string">'AUDI'</span>,  <span class="attr">price</span>: <span class="number">150</span>&#125;,</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">3</span>, <span class="attr">name</span>: <span class="string">'HONDA'</span>, <span class="attr">price</span>: <span class="number">180</span>&#125;,</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">4</span>, <span class="attr">name</span>: <span class="string">'LEXUS'</span>, <span class="attr">price</span>: <span class="number">195</span>&#125;</div><div class="line">];</div></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>src/store/modules/stocks.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> stocks <span class="keyword">from</span> <span class="string">'../../data/stocks'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> state = &#123;</div><div class="line">  <span class="attr">stocks</span>: []</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> mutations = &#123;</div><div class="line">  <span class="string">'SET_STOCKS'</span> (state, stocks) &#123;</div><div class="line">    state.stocks = stocks;</div><div class="line">  &#125;,</div><div class="line">  <span class="string">'RND_STOCKS'</span> (state) &#123;</div><div class="line"></div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> actions = &#123;</div><div class="line">  <span class="attr">buyStock</span>: <span class="function">(<span class="params">&#123;commit&#125;, order</span>) =&gt;</span> &#123;</div><div class="line">    commit();</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">initStocks</span>: <span class="function">(<span class="params">&#123;commit&#125;</span>) =&gt;</span> &#123;</div><div class="line">    commit(<span class="string">'SET_STOCKS'</span>, stocks);</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">randomizeStocks</span>: <span class="function">(<span class="params">&#123;commit&#125;</span>) =&gt;</span> &#123;</div><div class="line">    commit(<span class="string">'RND_STOCKS'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> getters = &#123;</div><div class="line">  <span class="attr">stocks</span>: <span class="function"><span class="params">state</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> state.stocks;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  state, </div><div class="line">  mutations,</div><div class="line">  actions,</div><div class="line">  getters</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="3-store-js-main-js-설정-추가하기"><a href="#3-store-js-main-js-설정-추가하기" class="headerlink" title="3. store.js, main.js 설정 추가하기"></a>3. <code>store.js</code>, <code>main.js</code> 설정 추가하기</h4><ul>
+<li><code>store.js</code> 에서 사용 할 모든 모듈들을 등록해서 사용합니다. <ul>
+<li><code>Vuex.Store</code> 의 <code>modules</code>에 위에서 구현한 <code>stocks</code> 모듈을 등록해줍니다.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><figcaption><span>src/store/store.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</div><div class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> stocks <span class="keyword">from</span> <span class="string">'./modules/stocks'</span></div><div class="line"></div><div class="line">Vue.use(Vuex);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Vuex.Store(&#123;</div><div class="line">  <span class="attr">modules</span>: &#123;</div><div class="line">    stocks</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li><code>store.js</code> 는 <code>main.js</code>에 등록하여 사용합니다.</li>
+</ul>
+<figure class="highlight js"><figcaption><span>src/main.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</div><div class="line"><span class="keyword">import</span> VueRouter <span class="keyword">from</span> <span class="string">'vue-router'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App.vue'</span>;</div><div class="line"><span class="keyword">import</span> &#123; routes &#125; <span class="keyword">from</span> <span class="string">'./routes'</span>;</div><div class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'./store/store'</span>; <span class="comment">// store.js를 import 합니다.</span></div><div class="line"></div><div class="line">Vue.use(VueRouter);</div><div class="line"></div><div class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRouter(&#123;</div><div class="line">  <span class="attr">mode</span>: <span class="string">'history'</span>,</div><div class="line">  routes</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>: <span class="string">'#app'</span>,</div><div class="line">  router,</div><div class="line">  store, <span class="comment">// store를 등록해줍니다.</span></div><div class="line">  render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</div></pre></td></tr></table></figure>
+<h4 id="4-store-사용하기"><a href="#4-store-사용하기" class="headerlink" title="4. store 사용하기"></a>4. <code>store</code> 사용하기</h4><ul>
+<li><code>main.js</code>에 <code>store</code>를 등록하였기 때문에 이제 어떤 컴포넌트에서든지 별도의 설정 없이 <code>store</code>를 사용 할 수 있습니다.<ul>
+<li>컴포넌트 내에서 <code>store</code> 에 접근 하는 방법은 <code>this.$store</code> 입니다. </li>
+<li>그리고 기능에 맞는 메소드를 사용하여 등록된 기능을 활용합니다.</li>
+<li>action은 <code>this.$store.dispatch(&#39;action이름&#39;)</code> 과 같이 사용하면 됩니다.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><figcaption><span>src/App.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">app-header</span>&gt;</span><span class="tag">&lt;/<span class="name">app-header</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-12"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="keyword">import</span> Header <span class="keyword">from</span> <span class="string">'./components/Header.vue'</span>;</div><div class="line">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">    <span class="attr">components</span>: &#123;</div><div class="line">      <span class="string">'appHeader'</span>: Header</div><div class="line">    &#125;,</div><div class="line">    created() &#123;  </div><div class="line">      <span class="keyword">this</span>.$store.dispatch(<span class="string">'initStocks'</span>);  <span class="comment">// store에 등록된 action을 사용합니다.</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">  body &#123;</div><div class="line">    padding: 30px;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li><code>App.vue</code>에서 <code>initStocks</code> action 으로 <code>stocks</code> state를 초기화 해주었습니다.</li>
+<li><p><code>Stocks.vue</code>에서 store에 등록된 state를 사용하기 위해 <code>data</code>에 있던 <code>stocks</code>는 제거합니다.</p>
+<ul>
+<li>등록되어 있는 state의 값을 값을 가져오기 위해 getter를 등록하고 사용해주어야 합니다.</li>
+<li>컴포넌트 내에서 getter를 사용하는 방밥은 <code>this.$store.getters.메소드이름</code> 입니다.</li>
+</ul>
+</li>
+<li><p>자식 컴포넌트로 props를 전달하는 부분에서 본인이 이름이 햇갈려서 props의 이름을 <code>propStock</code> 으로 변경하였습니다.</p>
+<ul>
+<li><code>Stock.vue</code> 에서도 전달 받는 props의 이름을 <code>props: [&#39;propStock&#39;]</code> 과 같이 변경해주고 관련된 변수들을 모두 변경해주셔야 합니다.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><figcaption><span>src/components/stocks/Stocks.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">app-stock</span> <span class="attr">v-for</span>=<span class="string">"stock in stocks"</span> <span class="attr">:propStock</span>=<span class="string">"stock"</span>&gt;</span><span class="tag">&lt;/<span class="name">app-stock</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="keyword">import</span> Stock <span class="keyword">from</span> <span class="string">'./Stock.vue'</span>;</div><div class="line">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">    <span class="attr">components</span>: &#123;</div><div class="line">      <span class="attr">appStock</span>: Stock</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">computed</span>: &#123;</div><div class="line">      stocks() &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.$store.getters.stocks;  <span class="comment">// getter로 현재 state 값을 가져옵니다.</span></div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p>모두 완료되었다면 아래와 같은 화면이 출력될 것이고 <code>data/stocks.js</code>에 있는 데이타에 따라 Stock 컴포넌트들이 출력 될 것입니다.<br><code>git clone</code> 으로 프로젝트를 시작하셨다면 <code>git checkout step04</code> 로 이번 포스팅의 마지막 결과물을 확인 하실 수 있습니다.<br>다음 포스팅에서는 Portfolio 컴포넌트의 상태 설정을 추가하고 Stocks 컴포넌트와 함께 state의 변화에 따라 View 가 갱신 되는 부분까지 구현해보겠습니다.<br>한번에 해보려고 했더니 너무 길어질 것 같아서 여기서 끊고 추후에 진행해보려 합니다. ㅎㅎ 별거 없는 내용인데도 손이 느려서 시간이 꽤 걸리네요.<br>필요하신 부분이나 보완할 점이 있다면 댓글로 의견 남겨주시기 바랍니다. 감사합니다.</p>
+</blockquote>
+<p><img src="/assets/stock-trader03.png" alt="003"></p>
+<p><br></p>
+<h3 id="끝"><a href="#끝" class="headerlink" title="- 끝 -"></a>- 끝 -</h3><style>
+p { margin: 0; } 
+
+video,
+p img {
+  width: 100%;
+  box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.stock {
+  max-width: 400px;
+}
+.stock img {
+  width: 100%;
+  box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+</style>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/vue/" class="button small">vue</a> <a href="/tags/vuejs/" class="button small">vuejs</a> <a href="/tags/vue-resource/" class="button small">vue-resource</a> <a href="/tags/components/" class="button small">components</a> <a href="/tags/vue-router/" class="button small">vue-router</a> <a href="/tags/vuex/" class="button small">vuex</a>
+</div>
+
+
+
+<!-- Comments -->
+<div>
+    
+
+
+    <hr />
+    <h3>Comments:</h3>
+    <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=hanwong85";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <div class="fb-comments" data-href="http://hanwong.github.io/2017/05/01/vue-stock-trader-02/index.html" data-num-posts="5" data-width="100%" data-colorscheme="light"></div>
+
+
+<div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- git-blog2 -->
+    <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-1634774047569138"
+        data-ad-slot="3851029049"
+        data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+</div>
+
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                Front-end Development Tech Blog
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/HanW000ng" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                    <li><a href="https://www.facebook.com/hanwong85" class="icon style2 fa-facebook" target="_blank" ><span class="label">Facebook</span></a></li>
+                
+                
+                    <li><a href="https://www.instagram.com/hanationbear" class="icon style2 fa-instagram" target="_blank" ><span class="label">Instagram</span></a></li>
+                
+                
+                
+                    <li><a href="https://github.com/hanwong" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="hanationbear@gmail.com" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; Untitled. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- skel -->
+<script src="/js/skel.min.js"></script>
+
+<!-- Custom Code -->
+<script src="/js/util.js"></script>
+
+<!--[if lte IE 8]>
+<script src="/js/ie/respond.min.js"></script>
+<![endif]-->
+
+<!-- Custom Code -->
+<script src="/js/main.js"></script>
+
+<!-- Gallery -->
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+</body>
+
+</html>
