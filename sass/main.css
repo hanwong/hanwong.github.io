@@ -1231,7 +1231,7 @@ body {
 /* Type */
 body, input, select, textarea {
   color: #585858;
-  font-family: "Source Sans Pro", Helvetica, sans-serif;
+  font-family: "Spoqa Han Sans", "Source Sans Pro", Helvetica, sans-serif;
   font-size: 16pt;
   font-weight: 300;
   line-height: 1.75; }
