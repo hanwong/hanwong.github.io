@@ -1,131 +1,257 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<!-- Head tag -->
+<html lang=ko>
 <head>
-
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!--Description-->
     
-        <meta name="description" content="firebase를 아주 간단한 하게 활용해서 vue-resource를 아주 간단하게 체험해보기이 포스팅은 Max의 Vuejs 강좌 내용을 정리한것 입니다.
-
-
-VusJS 개발 환경 초기 세팅
-필자 github의 소스를 모두 다운 받고 package.json 파일이 있는">
-    
-
-    <!--Author-->
-    
-        <meta name="author" content="Woong">
-    
-
-    <!--Open Graph Title-->
-    
-        <meta property="og:title" content="VueJS 공부하기 (1)  &lt;br&gt;  vue-resource - $http.post()"/>
+    <title>VueJS 공부하기 (1) | vue-resource - $http.post() | Woong&#39;s blog.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="firebase를 아주 간단한 하게 활용해서 vue-resource를 아주 간단하게 체험해보기이 포스팅은 Max의 Vuejs 강좌 내용을 정리한것 입니다.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VueJS 공부하기 (1) | vue-resource - $http.post()">
+<meta property="og:url" content="http://hanwong.github.io/2017/02/11/vue-resource-firebase01/index.html">
+<meta property="og:site_name" content="Woong's blog.">
+<meta property="og:description" content="firebase를 아주 간단한 하게 활용해서 vue-resource를 아주 간단하게 체험해보기이 포스팅은 Max의 Vuejs 강좌 내용을 정리한것 입니다.">
+<meta property="og:image" content="http://hanwong.github.io/assets/vue.png">
+<meta property="og:updated_time" content="2017-05-06T05:08:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VueJS 공부하기 (1) | vue-resource - $http.post()">
+<meta name="twitter:description" content="firebase를 아주 간단한 하게 활용해서 vue-resource를 아주 간단하게 체험해보기이 포스팅은 Max의 Vuejs 강좌 내용을 정리한것 입니다.">
+<meta name="twitter:image" content="http://hanwong.github.io/assets/vue.png">
     
 
-    <!--Open Graph Site Name-->
-    <meta property="og:site_name" content="Woong&#39;s blog."/>
-
-    <!--Page Cover-->
-    
-        <meta property="og:image" content="undefined"/>
     
 
-    <!-- Title -->
     
-    <title>VueJS 공부하기 (1)  &lt;br&gt;  vue-resource - $http.post() - Woong&#39;s blog.</title>
+        <link rel="icon" href="/css/images/favicon-32.png" />
+    
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/sass/main.css">
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
 
-    <!--[if lt IE 8]>
-        <script src="/js/ie/html5shiv.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" href="/css/style.css">
 
-    <!--[if lt IE 8]>
-        <link rel="stylesheet" href="/sass/ie8.css">
-    <![endif]-->
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
 
-    <!--[if lt IE 9]>
-        <link rel="stylesheet" href="/sass/ie9.css">
-    <![endif]-->
 
-    <!-- Gallery -->
-    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" />
     <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
-    <!-- Google Analytics -->
-    
-
-
 </head>
 
 <body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Woong&#39;s blog.</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/profile.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
 
-    <div id="wrapper">
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
 
-        <!-- Menu -->
-        <!-- Header -->
-<header id="header">
-    <div class="inner">
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
 
-        <!-- Logo -->
-        <a href="/" class="logo">
-            <span class="symbol"><img src="/images/cover.png" alt="" /></span><span class="title">Woong's blog.</span>
-        </a>
-
-        <!-- Nav -->
-        <nav>
-            <ul>
-                <li><a href="#menu">Menu</a></li>
-            </ul>
-        </nav>
-
+                </td>
+            </tr>
+        </table>
     </div>
 </header>
 
-<!-- Menu -->
-<nav id="menu">
-    <h2>Menu</h2>
-    <ul>
-        
-            <li>
-                <a href="/">Home</a>
-            </li>
-        
-            <li>
-                <a href="/archives">Archives</a>
-            </li>
-        
-            <li>
-                <a href="/about.html">About</a>
-            </li>
-        
-    </ul>
-</nav>
-
-
-        <div id="main">
-            <div class="inner">
-
-                <!-- Main Content -->
+        <div class="outer">
+            
                 
 
-    <h1>VueJS 공부하기 (1)  <br>  vue-resource - $http.post()</h1>
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/profile.png" />
+            <h2 id="name">Hanwong</h2>
+            <h3 id="title">Front-end Developer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Korea</span>
+            <a id="follow" target="_blank" href="https://github.com/hanwong/">팔로우</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                8
+                <span>포스트</span>
+            </div>
+            <div class="article-info-block">
+                19
+                <span>태그</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/hanwong" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.instagram.com/hanationbear" target="_blank" title="instagram" class=tooltip>
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.facebook.com/hanwong85" target="_blank" title="facebook" class=tooltip>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://twitter.com/HanW000ng" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-vue-resource-firebase01" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            VueJS 공부하기 (1) | vue-resource - $http.post()
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/02/11/vue-resource-firebase01/">
+            <time datetime="2017-02-10T15:00:00.000Z" itemprop="datePublished">2017-02-11</time>
+        </a>
+    </div>
 
 
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/VueJS/">VueJS</a>
+    </div>
 
-<!-- Gallery -->
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/firebase/">firebase</a>, <a class="tag-link" href="/tags/http/">http</a>, <a class="tag-link" href="/tags/vue/">vue</a>, <a class="tag-link" href="/tags/vue-resource/">vue-resource</a>, <a class="tag-link" href="/tags/vuejs/">vuejs</a>
+    </div>
 
-
-<!-- Content -->
-<blockquote>
-<p>firebase를 아주 간단한 하게 활용해서 vue-resource를 아주 간단하게 체험해보기<br>이 포스팅은 <a href="https://www.udemy.com/vuejs-2-the-complete-guide/learn/v4/overview" target="_blank" rel="external">Max의 Vuejs 강좌</a> 내용을 정리한것 입니다.</p>
-</blockquote>
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>firebase를 아주 간단한 하게 활용해서 vue-resource를 아주 간단하게 체험해보기<br>이 포스팅은 <a href="https://www.udemy.com/vuejs-2-the-complete-guide/learn/v4/overview" target="_blank" rel="external">Max의 Vuejs 강좌</a> 내용을 정리한것 입니다.</p>
 <hr>
+<a id="more"></a>
 <h3 id="VusJS-개발-환경-초기-세팅"><a href="#VusJS-개발-환경-초기-세팅" class="headerlink" title="VusJS 개발 환경 초기 세팅"></a>VusJS 개발 환경 초기 세팅</h3><ul>
 <li><a href="https://github.com/hanwong/TIL/tree/master/vue/vue-resource/001" target="_blank" rel="external">필자 github</a>의 소스를 모두 다운 받고 <code>package.json</code> 파일이 있는 위치에서 <code>npm install</code><ul>
 <li><code>github</code>에서 소스를 다운로드 받는게 번거롭다는 생각이 든다면 크롬 브라우저의 <code>octotree</code> 확장 프로그램 설치를 권장함</li>
@@ -189,36 +315,283 @@ p img {
 }
 </style>
 
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
 
-<!-- Tags -->
 
 
-
-<div class="tags">
-    <a href="/tags/vue/" class="button small">vue</a> <a href="/tags/vuejs/" class="button small">vuejs</a> <a href="/tags/vue-resource/" class="button small">vue-resource</a> <a href="/tags/firebase/" class="button small">firebase</a> <a href="/tags/http/" class="button small">http</a>
 </div>
 
+    <a data-url="http://hanwong.github.io/2017/02/11/vue-resource-firebase01/" data-id="cj2cuvnox0001f2270xpo0h8v" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
 
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
 
-<!-- Comments -->
-<div>
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://hanwong.github.io/2017/02/11/vue-resource-firebase01/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://hanwong.github.io/2017/02/11/vue-resource-firebase01/">댓글</a>
     
 
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/02/12/vue-resource-firebase02/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    VueJS 공부하기 (2) | vue-resource - $http.get()
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2016/07/23/Isolate-Float/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">Extended Isolate Float Technique</div>
+        </a>
+    
+</nav>
 
-    <hr />
-    <h3>Comments:</h3>
-    <div id="fb-root"></div>
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+<div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- git-blog2 -->
+    <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-1634774047569138"
+        data-ad-slot="3851029049"
+        data-ad-format="auto"></ins>
     <script>
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=hanwong85";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
+    (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
+</div></section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">최근 글</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/05/04/vue-stock-trader-03/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS | Stock-Trader Project Tutorial (3)" class="thumbnail-image"></span>
+    
+</a>
 
-    <div class="fb-comments" data-href="http://hanwong.github.io/2017/02/11/vue-resource-firebase01/index.html" data-num-posts="5" data-width="100%" data-colorscheme="light"></div>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/05/04/vue-stock-trader-03/" class="title">VueJS | Stock-Trader Project Tutorial (3)</a></p>
+                            <p class="item-date"><time datetime="2017-05-03T15:00:00.000Z" itemprop="datePublished">2017-05-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/05/01/vue-stock-trader-02/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS | Stock-Trader Project Tutorial (2)" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/05/01/vue-stock-trader-02/" class="title">VueJS | Stock-Trader Project Tutorial (2)</a></p>
+                            <p class="item-date"><time datetime="2017-04-30T15:00:00.000Z" itemprop="datePublished">2017-05-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/08/vue-stock-trader-01/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS | Stock-Trader Project Tutorial (1)" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/04/08/vue-stock-trader-01/" class="title">VueJS | Stock-Trader Project Tutorial (1)</a></p>
+                            <p class="item-date"><time datetime="2017-04-07T15:00:00.000Z" itemprop="datePublished">2017-04-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/02/25/vue-resource-firebase03/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS 공부하기 (3) | vue-resource - interceptors, $resource" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/02/25/vue-resource-firebase03/" class="title">VueJS 공부하기 (3) | vue-resource - interceptors, $resource</a></p>
+                            <p class="item-date"><time datetime="2017-02-24T15:00:00.000Z" itemprop="datePublished">2017-02-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/02/12/vue-resource-firebase02/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS 공부하기 (2) | vue-resource - $http.get()" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/02/12/vue-resource-firebase02/" class="title">VueJS 공부하기 (2) | vue-resource - $http.get()</a></p>
+                            <p class="item-date"><time datetime="2017-02-11T15:00:00.000Z" itemprop="datePublished">2017-02-12</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">카테고리</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Guide/">Guide</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VueJS/">VueJS</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">아카이브</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">5월 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">4월 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2월 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">7월 2016</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">태그</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/resource/">$resource</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeGuide/">CodeGuide</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/components/">components</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/firebase/">firebase</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/interceptors/">interceptors</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/isolate-float/">isolate-float</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/isolate-technique/">isolate-technique</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/resource/">resource</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-resource/">vue-resource</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-router/">vue-router</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuejs/">vuejs</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuex/">vuex</a><span class="tag-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">태그 클라우드</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/resource/" style="font-size: 10px;">$resource</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CodeGuide/" style="font-size: 10px;">CodeGuide</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/components/" style="font-size: 13.33px;">components</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/firebase/" style="font-size: 13.33px;">firebase</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/http/" style="font-size: 13.33px;">http</a> <a href="/tags/interceptors/" style="font-size: 10px;">interceptors</a> <a href="/tags/isolate-float/" style="font-size: 10px;">isolate-float</a> <a href="/tags/isolate-technique/" style="font-size: 10px;">isolate-technique</a> <a href="/tags/layout/" style="font-size: 10px;">layout</a> <a href="/tags/resource/" style="font-size: 10px;">resource</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/vue-resource/" style="font-size: 16.67px;">vue-resource</a> <a href="/tags/vue-router/" style="font-size: 13.33px;">vue-router</a> <a href="/tags/vuejs/" style="font-size: 20px;">vuejs</a> <a href="/tags/vuex/" style="font-size: 13.33px;">vuex</a>
+        </div>
+    </div>
+
 
 
 <div>
@@ -233,81 +606,60 @@ p img {
     (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
 </div>
-</div>
-
-
-
-
-            </div>
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
         </div>
-
-        <!-- Footer -->
-<footer id="footer">
-    <div class="inner">
-        <section>
-            <h2>About</h2>
-            <div>
-                Front-end Development Tech Blog
-            </div>
-        </section>
-        <section>
-            <h2>Follow</h2>
-            <ul class="icons">
-                
-                    <li><a href="https://twitter.com/HanW000ng" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
-                
-                
-                    <li><a href="https://www.facebook.com/hanwong85" class="icon style2 fa-facebook" target="_blank" ><span class="label">Facebook</span></a></li>
-                
-                
-                    <li><a href="https://www.instagram.com/hanationbear" class="icon style2 fa-instagram" target="_blank" ><span class="label">Instagram</span></a></li>
-                
-                
-                
-                    <li><a href="https://github.com/hanwong" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
-                
-                
-                
-                
-                
-                    <li><a href="hanationbear@gmail.com" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
-                
-                
-            </ul>
-        </section>
-        <ul class="copyright">
-            <li>&copy; Untitled. All rights reserved</li>
-            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
-            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
-        </ul>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2017 Woong<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
     </div>
 </footer>
-    </div>
-
-    <!-- After footer scripts -->
+        
     
-<!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
+    <script>
+    var disqus_config = function () {
+        
+            this.page.url = 'http://hanwong.github.io/2017/02/11/vue-resource-firebase01/';
+        
+        this.page.identifier = 'vue-resource-firebase01';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'hanwong' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
 
-<!-- skel -->
-<script src="/js/skel.min.js"></script>
 
-<!-- Custom Code -->
-<script src="/js/util.js"></script>
 
-<!--[if lte IE 8]>
-<script src="/js/ie/respond.min.js"></script>
-<![endif]-->
 
-<!-- Custom Code -->
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
 <script src="/js/main.js"></script>
 
-<!-- Gallery -->
-<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
-
-<!-- Disqus Comments -->
-
-
+    </div>
 </body>
-
 </html>

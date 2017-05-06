@@ -1,203 +1,532 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<!-- Head tag -->
+<html lang=ko>
 <head>
-
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!--Description-->
+    
+    <title>태그: vue-router | Woong&#39;s blog.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Woong's blog.">
+<meta property="og:url" content="http://hanwong.github.io/tags/vue-router/index.html">
+<meta property="og:site_name" content="Woong's blog.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Woong's blog.">
     
 
-    <!--Author-->
-    
-        <meta name="author" content="Woong">
     
 
-    <!--Open Graph Title-->
+    
+        <link rel="icon" href="/css/images/favicon-32.png" />
     
 
-    <!--Open Graph Site Name-->
-    <meta property="og:site_name" content="Woong&#39;s blog."/>
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
 
-    <!--Page Cover-->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
     
-        <meta property="og:image" content="undefined"/>
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
     
 
-    <!-- Title -->
-    
-    <title>vue-router - Woong&#39;s blog.</title>
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/sass/main.css">
-
-    <!--[if lt IE 8]>
-        <script src="/js/ie/html5shiv.js"></script>
-    <![endif]-->
-
-    <!--[if lt IE 8]>
-        <link rel="stylesheet" href="/sass/ie8.css">
-    <![endif]-->
-
-    <!--[if lt IE 9]>
-        <link rel="stylesheet" href="/sass/ie9.css">
-    <![endif]-->
-
-    <!-- Gallery -->
-    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" />
     <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
-    <!-- Google Analytics -->
-    
-
-
 </head>
 
 <body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Woong&#39;s blog.</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/profile.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
 
-    <div id="wrapper">
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
 
-        <!-- Menu -->
-        <!-- Header -->
-<header id="header">
-    <div class="inner">
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
 
-        <!-- Logo -->
-        <a href="/" class="logo">
-            <span class="symbol"><img src="/images/cover.png" alt="" /></span><span class="title">Woong's blog.</span>
-        </a>
-
-        <!-- Nav -->
-        <nav>
-            <ul>
-                <li><a href="#menu">Menu</a></li>
-            </ul>
-        </nav>
-
+                </td>
+            </tr>
+        </table>
     </div>
 </header>
 
-<!-- Menu -->
-<nav id="menu">
-    <h2>Menu</h2>
-    <ul>
-        
-            <li>
-                <a href="/">Home</a>
-            </li>
-        
-            <li>
-                <a href="/archives">Archives</a>
-            </li>
-        
-            <li>
-                <a href="/about.html">About</a>
-            </li>
-        
-    </ul>
-</nav>
-
-
-        <div id="main">
-            <div class="inner">
-
-                <!-- Main Content -->
+        <div class="outer">
+            
                 
 
-<section class="archives">
-    
-        <div class="archive-title">vue-router</div>
-    
-    <ul class="archive-list">
-        
-            <li>
-    <a href="/2017/04/08/vue-stock-trader-01/">VueJS Study (4)  <br>  Stock-Trader Project Tutorial</a>
-</li>
-
-        
-            <li>
-    <a href="/2017/05/01/vue-stock-trader-02/">VueJS Study (5)  <br>  Stock-Trader Project Tutorial</a>
-</li>
-
-        
-    </ul>
-</section><!-- end main -->
-
-
-
-
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/profile.png" />
+            <h2 id="name">Hanwong</h2>
+            <h3 id="title">Front-end Developer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Korea</span>
+            <a id="follow" target="_blank" href="https://github.com/hanwong/">팔로우</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                8
+                <span>포스트</span>
+            </div>
+            <div class="article-info-block">
+                19
+                <span>태그</span>
             </div>
         </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/hanwong" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.instagram.com/hanationbear" target="_blank" title="instagram" class=tooltip>
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.facebook.com/hanwong85" target="_blank" title="facebook" class=tooltip>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://twitter.com/HanW000ng" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
 
-        <!-- Footer -->
-<footer id="footer">
-    <div class="inner">
-        <section>
-            <h2>About</h2>
-            <div>
-                Front-end Development Tech Blog
+            
+            <section id="main">
+<div class="timeline timeline-wrap">
+    <div class="timeline-row timeline-row-major">
+        <span class="node"><i class="fa fa-tag"></i></span>
+        <h1 class="title">#vue-router</h1>
+    </div>
+    
+        <div class="timeline-row">
+            <span class="node"></span>
+            <div class="content">
+                
+    
+        <h1 itemprop="name">
+            <a class="timeline-article-title" href="/2017/05/04/vue-stock-trader-03/">VueJS | Stock-Trader Project Tutorial (3)</a>
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/05/04/vue-stock-trader-03/">
+            <time datetime="2017-05-03T15:00:00.000Z" itemprop="datePublished">2017-05-04</time>
+        </a>
+    </div>
+
+
+                    
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/VueJS/">VueJS</a>
+    </div>
+
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/components/">components</a>, <a class="tag-link" href="/tags/vue/">vue</a>, <a class="tag-link" href="/tags/vue-resource/">vue-resource</a>, <a class="tag-link" href="/tags/vue-router/">vue-router</a>, <a class="tag-link" href="/tags/vuejs/">vuejs</a>, <a class="tag-link" href="/tags/vuex/">vuex</a>
+    </div>
+
+                </div>
             </div>
-        </section>
-        <section>
-            <h2>Follow</h2>
-            <ul class="icons">
+        </div>
+    
+        <div class="timeline-row">
+            <span class="node"></span>
+            <div class="content">
                 
-                    <li><a href="https://twitter.com/HanW000ng" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+    
+        <h1 itemprop="name">
+            <a class="timeline-article-title" href="/2017/05/01/vue-stock-trader-02/">VueJS | Stock-Trader Project Tutorial (2)</a>
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/05/01/vue-stock-trader-02/">
+            <time datetime="2017-04-30T15:00:00.000Z" itemprop="datePublished">2017-05-01</time>
+        </a>
+    </div>
+
+
+                    
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/VueJS/">VueJS</a>
+    </div>
+
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/components/">components</a>, <a class="tag-link" href="/tags/vue/">vue</a>, <a class="tag-link" href="/tags/vue-resource/">vue-resource</a>, <a class="tag-link" href="/tags/vue-router/">vue-router</a>, <a class="tag-link" href="/tags/vuejs/">vuejs</a>, <a class="tag-link" href="/tags/vuex/">vuex</a>
+    </div>
+
+                </div>
+            </div>
+        </div>
+    
+        <div class="timeline-row">
+            <span class="node"></span>
+            <div class="content">
                 
+    
+        <h1 itemprop="name">
+            <a class="timeline-article-title" href="/2017/04/08/vue-stock-trader-01/">VueJS | Stock-Trader Project Tutorial (1)</a>
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/04/08/vue-stock-trader-01/">
+            <time datetime="2017-04-07T15:00:00.000Z" itemprop="datePublished">2017-04-08</time>
+        </a>
+    </div>
+
+
+                    
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/VueJS/">VueJS</a>
+    </div>
+
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/components/">components</a>, <a class="tag-link" href="/tags/vue/">vue</a>, <a class="tag-link" href="/tags/vue-router/">vue-router</a>, <a class="tag-link" href="/tags/vuejs/">vuejs</a>, <a class="tag-link" href="/tags/vuex/">vuex</a>
+    </div>
+
+                </div>
+            </div>
+        </div>
+    
+</div>
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">최근 글</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
                 
-                    <li><a href="https://www.facebook.com/hanwong85" class="icon style2 fa-facebook" target="_blank" ><span class="label">Facebook</span></a></li>
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/05/04/vue-stock-trader-03/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS | Stock-Trader Project Tutorial (3)" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/05/04/vue-stock-trader-03/" class="title">VueJS | Stock-Trader Project Tutorial (3)</a></p>
+                            <p class="item-date"><time datetime="2017-05-03T15:00:00.000Z" itemprop="datePublished">2017-05-04</time></p>
+                        </div>
+                    </li>
                 
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/05/01/vue-stock-trader-02/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS | Stock-Trader Project Tutorial (2)" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/05/01/vue-stock-trader-02/" class="title">VueJS | Stock-Trader Project Tutorial (2)</a></p>
+                            <p class="item-date"><time datetime="2017-04-30T15:00:00.000Z" itemprop="datePublished">2017-05-01</time></p>
+                        </div>
+                    </li>
                 
-                    <li><a href="https://www.instagram.com/hanationbear" class="icon style2 fa-instagram" target="_blank" ><span class="label">Instagram</span></a></li>
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/08/vue-stock-trader-01/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS | Stock-Trader Project Tutorial (1)" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/04/08/vue-stock-trader-01/" class="title">VueJS | Stock-Trader Project Tutorial (1)</a></p>
+                            <p class="item-date"><time datetime="2017-04-07T15:00:00.000Z" itemprop="datePublished">2017-04-08</time></p>
+                        </div>
+                    </li>
                 
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/02/25/vue-resource-firebase03/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS 공부하기 (3) | vue-resource - interceptors, $resource" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/02/25/vue-resource-firebase03/" class="title">VueJS 공부하기 (3) | vue-resource - interceptors, $resource</a></p>
+                            <p class="item-date"><time datetime="2017-02-24T15:00:00.000Z" itemprop="datePublished">2017-02-25</time></p>
+                        </div>
+                    </li>
                 
-                
-                    <li><a href="https://github.com/hanwong" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
-                
-                
-                
-                
-                
-                    <li><a href="hanationbear@gmail.com" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
-                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/02/12/vue-resource-firebase02/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS 공부하기 (2) | vue-resource - $http.get()" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/02/12/vue-resource-firebase02/" class="title">VueJS 공부하기 (2) | vue-resource - $http.get()</a></p>
+                            <p class="item-date"><time datetime="2017-02-11T15:00:00.000Z" itemprop="datePublished">2017-02-12</time></p>
+                        </div>
+                    </li>
                 
             </ul>
-        </section>
-        <ul class="copyright">
-            <li>&copy; Untitled. All rights reserved</li>
-            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
-            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
-        </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">카테고리</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Guide/">Guide</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VueJS/">VueJS</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">아카이브</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">5월 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">4월 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2월 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">7월 2016</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">태그</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/resource/">$resource</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodeGuide/">CodeGuide</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/components/">components</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/firebase/">firebase</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/interceptors/">interceptors</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/isolate-float/">isolate-float</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/isolate-technique/">isolate-technique</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/resource/">resource</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-resource/">vue-resource</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-router/">vue-router</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuejs/">vuejs</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuex/">vuex</a><span class="tag-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">태그 클라우드</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/resource/" style="font-size: 10px;">$resource</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CodeGuide/" style="font-size: 10px;">CodeGuide</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/components/" style="font-size: 13.33px;">components</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/firebase/" style="font-size: 13.33px;">firebase</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/http/" style="font-size: 13.33px;">http</a> <a href="/tags/interceptors/" style="font-size: 10px;">interceptors</a> <a href="/tags/isolate-float/" style="font-size: 10px;">isolate-float</a> <a href="/tags/isolate-technique/" style="font-size: 10px;">isolate-technique</a> <a href="/tags/layout/" style="font-size: 10px;">layout</a> <a href="/tags/resource/" style="font-size: 10px;">resource</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/vue-resource/" style="font-size: 16.67px;">vue-resource</a> <a href="/tags/vue-router/" style="font-size: 13.33px;">vue-router</a> <a href="/tags/vuejs/" style="font-size: 20px;">vuejs</a> <a href="/tags/vuex/" style="font-size: 13.33px;">vuex</a>
+        </div>
+    </div>
+
+
+
+<div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- git-blog2 -->
+    <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-1634774047569138"
+        data-ad-slot="3851029049"
+        data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2017 Woong<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
     </div>
 </footer>
-    </div>
-
-    <!-- After footer scripts -->
+        
     
-<!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
+    <script>
+    var disqus_config = function () {
+        
+        this.page.identifier = 'undefined';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'hanwong' + '.disqus.com/count.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
 
-<!-- skel -->
-<script src="/js/skel.min.js"></script>
 
-<!-- Custom Code -->
-<script src="/js/util.js"></script>
 
-<!--[if lte IE 8]>
-<script src="/js/ie/respond.min.js"></script>
-<![endif]-->
 
-<!-- Custom Code -->
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
 <script src="/js/main.js"></script>
 
-<!-- Gallery -->
-<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
-
-<!-- Disqus Comments -->
-
-
+    </div>
 </body>
-
 </html>
