@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>VueJS | Stock-Trader Project Tutorial (4) | Woong&#39;s blog.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="이 포스팅은 Max의 Vuejs 강좌 내용을 정리한 것이고, VueJS의 개념을 익히고 연습해보기 위한 튜토리얼을 다룬 글 입니다.
+
+이번 포스팅은 Stock-Trader Project Tutorial의 마지막 편입니다.Filter, Animation 을 추가하고 vue-resource를 활용해 Firebase와 연결해서 데이터를 저장하고 불러오는 기능까지">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VueJS | Stock-Trader Project Tutorial (4)">
+<meta property="og:url" content="http://hanwong.github.io/2017/05/10/vue-stock-trader-04/index.html">
+<meta property="og:site_name" content="Woong's blog.">
+<meta property="og:description" content="이 포스팅은 Max의 Vuejs 강좌 내용을 정리한 것이고, VueJS의 개념을 익히고 연습해보기 위한 튜토리얼을 다룬 글 입니다.
+
+이번 포스팅은 Stock-Trader Project Tutorial의 마지막 편입니다.Filter, Animation 을 추가하고 vue-resource를 활용해 Firebase와 연결해서 데이터를 저장하고 불러오는 기능까지">
+<meta property="og:image" content="http://hanwong.github.io/assets/vue.png">
+<meta property="og:updated_time" content="2017-05-20T13:53:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VueJS | Stock-Trader Project Tutorial (4)">
+<meta name="twitter:description" content="이 포스팅은 Max의 Vuejs 강좌 내용을 정리한 것이고, VueJS의 개념을 익히고 연습해보기 위한 튜토리얼을 다룬 글 입니다.
+
+이번 포스팅은 Stock-Trader Project Tutorial의 마지막 편입니다.Filter, Animation 을 추가하고 vue-resource를 활용해 Firebase와 연결해서 데이터를 저장하고 불러오는 기능까지">
+<meta name="twitter:image" content="http://hanwong.github.io/assets/vue.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/css/images/favicon-32.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Woong&#39;s blog.</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/profile.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/profile.png" />
+            <h2 id="name">Kim Han Woong</h2>
+            <h3 id="title">Front-end Developer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Korea</span>
+            <a id="follow" target="_blank" href="https://github.com/hanwong/">FOLLOW</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                9
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                21
+                <span>tags</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/hanwong" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.instagram.com/hanationbear" target="_blank" title="instagram" class=tooltip>
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.facebook.com/hanwong85" target="_blank" title="facebook" class=tooltip>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://twitter.com/HanW000ng" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-vue-stock-trader-04" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="/assets/vuebanner.jpg" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            VueJS | Stock-Trader Project Tutorial (4)
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/05/10/vue-stock-trader-04/">
+            <time datetime="2017-05-09T15:00:00.000Z" itemprop="datePublished">2017-05-10</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/VueJS/">VueJS</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/animation/">animation</a>, <a class="tag-link" href="/tags/components/">components</a>, <a class="tag-link" href="/tags/filter/">filter</a>, <a class="tag-link" href="/tags/firebase/">firebase</a>, <a class="tag-link" href="/tags/vue/">vue</a>, <a class="tag-link" href="/tags/vue-resource/">vue-resource</a>, <a class="tag-link" href="/tags/vue-router/">vue-router</a>, <a class="tag-link" href="/tags/vuejs/">vuejs</a>, <a class="tag-link" href="/tags/vuex/">vuex</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>이 포스팅은 <a href="https://www.udemy.com/vuejs-2-the-complete-guide/learn/v4/overview" target="_blank" rel="external">Max의 Vuejs 강좌</a> 내용을 정리한 것이고, VueJS의 개념을 익히고 연습해보기 위한 튜토리얼을 다룬 글 입니다.</p>
+<hr>
+<p>이번 포스팅은 <code>Stock-Trader Project Tutorial</code>의 마지막 편입니다.<br><code>Filter</code>, <code>Animation</code> 을 추가하고 <code>vue-resource</code>를 활용해 <code>Firebase</code>와 연결해서 데이터를 저장하고 불러오는 기능까지 구현하여 이번 튜토리얼을 마치려고 합니다.</p>
+<a id="more"></a>
+<h2 id="1-Filter-기능-추가-하기"><a href="#1-Filter-기능-추가-하기" class="headerlink" title="1. Filter 기능 추가 하기"></a>1. <code>Filter</code> 기능 추가 하기</h2><h4 id="1-funds-값-표시하기"><a href="#1-funds-값-표시하기" class="headerlink" title="1. funds 값 표시하기"></a>1. <code>funds</code> 값 표시하기</h4><ul>
+<li><code>Filter</code> 기능을 적용하기 위해 <code>funds</code> state를 표시할 요소를 <code>Header.vue</code>와 <code>Home.vue</code>에 추가합니다. </li>
+</ul>
+<figure class="highlight html"><figcaption><span>src/components/Header.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--...생략...--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"nav navbar-nav"</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/portfolio"</span> <span class="attr">activeClass</span>=<span class="string">"active"</span> <span class="attr">tag</span>=<span class="string">"li"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span>&gt;</span>Portfolio<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/stocks"</span> <span class="attr">activeClass</span>=<span class="string">"active"</span> <span class="attr">tag</span>=<span class="string">"li"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span>&gt;</span>Stocks<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!-- Funds 요소 추가 Start --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">strong</span> <span class="attr">class</span>=<span class="string">"navbar-text navbar-right"</span>&gt;</span>Funds: &#123;&#123; funds &#125;&#125;<span class="tag">&lt;/<span class="name">strong</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!-- Funds 요소 추가 End --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"nav navbar-nav navbar-right"</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> @<span class="attr">click</span>=<span class="string">"endDay"</span>&gt;</span>End Day<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--...생략...--&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">  export default &#123;</div><div class="line">    computed: &#123;</div><div class="line">      funds() &#123;</div><div class="line">        return this.$store.getters.funds;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>src/components/Home.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Trade or View your Portfolio<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h6</span>&gt;</span>You may Save &amp; Load your Data<span class="tag">&lt;/<span class="name">h6</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h6</span>&gt;</span>Click on 'End Day' to begin a New Day!<span class="tag">&lt;/<span class="name">h6</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">hr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Your Funds: &#123;&#123; funds &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">  export default &#123;</div><div class="line">    computed: &#123;</div><div class="line">      funds() &#123;</div><div class="line">        return this.$store.getters.funds;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="2-filter-등록하기"><a href="#2-filter-등록하기" class="headerlink" title="2. filter 등록하기"></a>2. <code>filter</code> 등록하기</h4><ul>
+<li><code>main.js</code>에 프로젝트 어디에서나 사용 할 수 있도록 <code>filter</code>를 등록해줍니다.</li>
+<li>사용할 <code>filter</code>의 이름은 <code>currency</code>이고 변수 앞에 <code>$</code> 표시를 붙여주는 단순한 <code>filter</code>입니다.</li>
+</ul>
+<figure class="highlight js"><figcaption><span>src/main.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//...생략...</span></div><div class="line"></div><div class="line">Vue.use(VueRouter);</div><div class="line"></div><div class="line">Vue.filter(<span class="string">'currency'</span>, value =&gt; &#123;</div><div class="line">  <span class="keyword">return</span> <span class="string">'$'</span> + value.toLocaleString();</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">//...생략...</span></div></pre></td></tr></table></figure>
+<h4 id="3-filter-사용하기"><a href="#3-filter-사용하기" class="headerlink" title="3. filter 사용하기"></a>3. <code>filter</code> 사용하기</h4><ul>
+<li>1번 과정에서 <code>Header.vue</code>와 <code>Home.vue</code>에 추가한 <code>funds</code> 요소 안에 아래 코드와 같이 파이프라인 뒤에 사용할 필터 이름을 추가해줍니다.</li>
+</ul>
+<figure class="highlight html"><figcaption><span>src/components/Header.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--...생략...--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">strong</span> <span class="attr">class</span>=<span class="string">"navbar-text navbar-right"</span>&gt;</span>Funds: &#123;&#123; funds | currency &#125;&#125;<span class="tag">&lt;/<span class="name">strong</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--...생략...--&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>src/components/Home.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--...생략...--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Your Funds: &#123;&#123; funds | currency &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--...생략...--&gt;</span></div></pre></td></tr></table></figure>
+<hr>
+<h2 id="2-주문량-제한하는-기능-추가하기"><a href="#2-주문량-제한하는-기능-추가하기" class="headerlink" title="2. 주문량 제한하는 기능 추가하기"></a>2. 주문량 제한하는 기능 추가하기</h2><ul>
+<li><code>Stocks</code> 페이지나 <code>Portfolio</code> 페이지에서 각 <code>Stock</code> 컴포넌트를 통해 사거나 파는 액션을 실행하면서 <code>funds</code>와 <code>order</code>주문량에 따라서 가능한 범위 내에서만 주문할 수 있도록 <code>button</code> 요소에 제한하는 기능을 추가해봅니다.</li>
+<li><code>insufficientFunds</code>, <code>insufficientQuantity</code> 메소드를 만들고 <code>button</code>과 <code>input</code>요소에 추가해줍니다.</li>
+<li>상태가 변했을 때 스타일이 변할수 있도록 설정한 클래스를 <code>&lt;style&gt;</code> 에 추가해줍니다. <ul>
+<li><code>&lt;style scpoed&gt;</code> 와 같이 <code>style</code> 태그 안에 <code>scoped</code>라는 속성을 추가하면 해당 컴포넌트의 요소들에만 영향을 주고 다른 컴포넌트의 요소들에는 전혀 영향이 가지 않도록 할 수 있습니다.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><figcaption><span>src/components/stocks/Stock.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--...생략...--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pull-left"</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">input</span> </span></div><div class="line">              <span class="attr">type</span>=<span class="string">"number"</span></div><div class="line">              <span class="attr">class</span>=<span class="string">"form-control"</span></div><div class="line">              <span class="attr">placeholder</span>=<span class="string">"Quantity"</span></div><div class="line">              <span class="attr">v-model.number</span>=<span class="string">"quantity"</span></div><div class="line">              <span class="attr">:class</span>=<span class="string">"&#123;danger: insufficientFunds&#125;"</span></div><div class="line">          &gt;</div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pull-right"</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">button</span></span></div><div class="line">              <span class="attr">class</span>=<span class="string">"btn btn-success"</span></div><div class="line">              @<span class="attr">click</span>=<span class="string">"buyStock"</span></div><div class="line">              <span class="attr">:disabled</span>=<span class="string">"insufficientFunds || quantity &lt;= 0 || !Number.isInteger(quantity)"</span></div><div class="line">              &gt;&#123;&#123; insufficientFunds ? 'Too Much' : 'Buy'&#125;&#125;</div><div class="line">              <span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--...생략...--&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scpoed</span>&gt;</span><span class="undefined"></span></div><div class="line">  .danger,</div><div class="line">  .danger:focus &#123;</div><div class="line">    border: 1px solid red;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="comment">//...생략...</span></div><div class="line">    computed: &#123;</div><div class="line">      funds() &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.$store.getters.funds;</div><div class="line">      &#125;,</div><div class="line">      insufficientFunds() &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.quantity * <span class="keyword">this</span>.propStock.price &gt; <span class="keyword">this</span>.funds;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line"><span class="comment">//...생략...</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>src/components/portfolio/Stock.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--...생략...--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pull-left"</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">input</span> </span></div><div class="line">              <span class="attr">type</span>=<span class="string">"number"</span></div><div class="line">              <span class="attr">class</span>=<span class="string">"form-control"</span></div><div class="line">              <span class="attr">placeholder</span>=<span class="string">"Quantity"</span></div><div class="line">              <span class="attr">v-model.number</span>=<span class="string">"quantity"</span></div><div class="line">              <span class="attr">:class</span>=<span class="string">"&#123;danger: insufficientQuantity&#125;"</span></div><div class="line">          &gt;</div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pull-right"</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">button</span></span></div><div class="line">              <span class="attr">class</span>=<span class="string">"btn btn-success"</span></div><div class="line">              @<span class="attr">click</span>=<span class="string">"sellStock"</span></div><div class="line">              <span class="attr">:disabled</span>=<span class="string">"insufficientQuantity || quantity &lt;= 0 || !Number.isInteger(quantity)"</span></div><div class="line">              &gt;&#123;&#123;insufficientQuantity ? 'Too Much' : 'Sell'&#125;&#125;</div><div class="line">              <span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--...생략...--&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scpoed</span>&gt;</span><span class="undefined"></span></div><div class="line">  .danger,</div><div class="line">  .danger:focus &#123;</div><div class="line">    border: 1px solid red;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="comment">//...생략...</span></div><div class="line">    computed: &#123;</div><div class="line">      funds() &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.$store.getters.funds;</div><div class="line">      &#125;,</div><div class="line">      insufficientQuantity() &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.quantity &gt; <span class="keyword">this</span>.propStock.quantity;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line"><span class="comment">//...생략...</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<hr>
+<h2 id="3-End-Day-랜덤-시세-변경-기능-추가하기"><a href="#3-End-Day-랜덤-시세-변경-기능-추가하기" class="headerlink" title="3. End Day 랜덤 시세 변경 기능 추가하기"></a>3. <code>End Day</code> 랜덤 시세 변경 기능 추가하기</h2><h4 id="1-RND-STOCKS-mutation-만들기"><a href="#1-RND-STOCKS-mutation-만들기" class="headerlink" title="1. RND_STOCKS mutation 만들기"></a>1. <code>RND_STOCKS</code> mutation 만들기</h4><ul>
+<li>이전 포스팅에서는 비어 두웠던 <code>RND_STOCKS</code> mutation에 그냥 적당한 선에서 각 <code>stock</code>의 <code>price</code> 값이 랜덤하게 변경할 수 있도록 기능을 추가해 줍니다.</li>
+</ul>
+<figure class="highlight js"><figcaption><span>src/store/modules/stocks.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ...생략...</span></div><div class="line">  <span class="string">'RND_STOCKS'</span> (state) &#123;</div><div class="line">    state.stocks.forEach( <span class="function"><span class="params">stock</span> =&gt;</span> &#123;</div><div class="line">      stock.price = <span class="built_in">Math</span>.round(stock.price * (<span class="number">1</span> + <span class="built_in">Math</span>.random() - <span class="number">0.5</span>));</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line"><span class="comment">// ...생략...</span></div></pre></td></tr></table></figure>
+<h4 id="2-endDay-기능-추가하기"><a href="#2-endDay-기능-추가하기" class="headerlink" title="2. endDay 기능 추가하기"></a>2. <code>endDay</code> 기능 추가하기</h4><ul>
+<li><code>RND_STOCKS</code> mutation을 실행하는 action인 <code>randomizeStocks</code>을 활용해서 클릭했을 때 실행 할 메소드를 추가해줍니다.</li>
+</ul>
+<figure class="highlight html"><figcaption><span>src/components/Header.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--...생략...--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"nav navbar-nav navbar-right"</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> @<span class="attr">click</span>=<span class="string">"endDay"</span>&gt;</span>End Day<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--...생략...--&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="keyword">import</span> &#123;mapActions&#125; <span class="keyword">from</span> <span class="string">'vuex'</span>;</div><div class="line"></div><div class="line">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">    <span class="attr">computed</span>: &#123;</div><div class="line">      funds() &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.$store.getters.funds;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">methods</span>: &#123;</div><div class="line">      ...mapActions([</div><div class="line">        <span class="string">'randomizeStocks'</span></div><div class="line">      ]),</div><div class="line">      endDay() &#123;</div><div class="line">        <span class="keyword">this</span>.randomizeStocks();</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<hr>
+<h2 id="4-Animation-효과-추가하기"><a href="#4-Animation-효과-추가하기" class="headerlink" title="4. Animation 효과 추가하기"></a>4. <code>Animation</code> 효과 추가하기</h2><ul>
+<li><code>VueJS</code>에서는 <code>Animation</code> 효과를 좀 더 명확하고 구조적으로 적용할 수 있는 <code>transition</code>이라는 요소가 있습니다.<ul>
+<li>자세한 API는 이 링크를 참조해주세요. <a href="https://kr.vuejs.org/v2/api/#transition" target="_blank" rel="external">Transition</a></li>
+</ul>
+</li>
+<li>먼저 <code>Animation</code> 효과를 적용하기 위해서는 적용할 요소를 <code>transition</code> 요소로 감싸주고 <code>name</code>과 <code>mode</code>를 지정해줍니다.</li>
+<li>그러면 지정된 <code>transition</code>요소의 <code>name</code> 뒤로 <code>-enter-active</code>, <code>-leave-active</code>, 등의 포스트픽스가 붙는 이름의 클래스 안에 각 상태에 맞는 효과를 추가해줍니다.<ul>
+<li>관련된 보다 자세한 사항들도 위 링크를 참주해주세요.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><figcaption><span>src/App.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">app-header</span>&gt;</span><span class="tag">&lt;/<span class="name">app-header</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-12"</span>&gt;</span></div><div class="line">      <span class="comment">&lt;!--여기에 animation 이 적용되는 transition 영역을 만들어줍니다.--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">transition</span> <span class="attr">name</span>=<span class="string">"slide"</span> <span class="attr">mode</span>=<span class="string">"out-in"</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">transition</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--...생략...--&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">  body &#123;</div><div class="line">    padding: 30px;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  .slide-enter-active &#123;</div><div class="line">    animation: slide-in 200ms ease-out forwards;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  .slide-leave-active &#123;</div><div class="line">    animation: slide-out 200ms ease-out forwards;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  @keyframes slide-in &#123;</div><div class="line">    from &#123;</div><div class="line">      transform: translateY(-30px);</div><div class="line">      opacity: 0;</div><div class="line">    &#125;</div><div class="line">    to &#123;</div><div class="line">      transform: translateY(0);</div><div class="line">      opacity: 1;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  @keyframes slide-out &#123;</div><div class="line">    from &#123;</div><div class="line">      transform: translateY(0px);</div><div class="line">      opacity: 1;</div><div class="line">    &#125;</div><div class="line">    to &#123;</div><div class="line">      transform: translateY(-30px);</div><div class="line">      opacity: 0;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><video autoplay loop src="/assets/animation.mov"></video></p>
+<p>위의 설정을 완료하면 이와 같은 <code>Animation</code> 효과를 확인하실 수 있습니다.</p>
+<hr>
+<h2 id="5-Firebase에-데이타-저장하고-불러오기"><a href="#5-Firebase에-데이타-저장하고-불러오기" class="headerlink" title="5. Firebase에 데이타 저장하고 불러오기"></a>5. <code>Firebase</code>에 데이타 저장하고 불러오기</h2><p>마지막으로 대망의 <code>Firebase</code>와 연결하기 입니다.<br><code>vue-resource</code> 설정을 추가하기 이전에 <code>save</code>, <code>load</code> 기능을 사용할 <code>dropdown</code> 요소를 열었다 닫았다 할 수 있도록 간단히 세팅해줍니다.</p>
+<figure class="highlight html"><figcaption><span>src/components/Header.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--...생략...--&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"dropdown"</span></span></div><div class="line">              <span class="attr">:class</span>=<span class="string">"&#123;open: isDropDownOpen&#125;"</span></div><div class="line">              @<span class="attr">click</span>=<span class="string">"isDropDownOpen = !isDropDownOpen"</span>&gt;</div><div class="line"><span class="comment">&lt;!--...생략...--&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="comment">//...생략...</span></div><div class="line">    data() &#123;</div><div class="line">      <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">isDropDownOpen</span>: <span class="literal">false</span></div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line"><span class="comment">//...생략...</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="1-Firebase-초기-세팅하기"><a href="#1-Firebase-초기-세팅하기" class="headerlink" title="1. Firebase 초기 세팅하기"></a>1. <code>Firebase</code> 초기 세팅하기</h4><p>먼저 <code>Firebase</code> 계정을 생성하고 프로젝트 초기 세팅을 하는 부분은 <a href="https://hanwong.github.io/2017/02/11/vue-resource-firebase01/#firebase-초기-세팅">firebase 초기 세팅</a> 이곳을 참고해주시기 바랍니다.</p>
+<h4 id="2-main-js에-vue-resource와-Firebase-추가하기"><a href="#2-main-js에-vue-resource와-Firebase-추가하기" class="headerlink" title="2. main.js에 vue-resource와 Firebase 추가하기"></a>2. <code>main.js</code>에 <code>vue-resource</code>와 <code>Firebase</code> 추가하기</h4><ul>
+<li>가장 먼저 터미널에서 <code>npm install --save vue-resource</code> 를 실행하여 <code>vue-resource</code> 모듈을 설치합니다.</li>
+<li>그리고 아래 코드와 같이 <code>main.js</code>에 <code>vue-resource</code> 모듈을 추가하고 DB의 root 주소를 등록해주면 기본 설정은 모두 완료된것입니다. <strong>참 간단하죠~^^</strong></li>
+</ul>
+<figure class="highlight js"><figcaption><span>src/main.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//...생략...</span></div><div class="line"><span class="keyword">import</span> VueResource <span class="keyword">from</span> <span class="string">'vue-resource'</span>;</div><div class="line"><span class="comment">//...생략...</span></div><div class="line">Vue.use(VueResource);</div><div class="line"></div><div class="line">Vue.http.options.root = <span class="string">'https://본인 Firebase DB 주소'</span>;</div><div class="line"><span class="comment">//...생략...</span></div></pre></td></tr></table></figure>
+<h4 id="3-데이타-저장하기"><a href="#3-데이타-저장하기" class="headerlink" title="3. 데이타 저장하기"></a>3. 데이타 저장하기</h4><ul>
+<li><code>saveData</code> 메소드에서 DB에 현재 저장할 데이터들을 추가해줍니다.<ul>
+<li><code>vue-resource</code>의 API는 <code>this.$http.put</code> 와 같이 <code>this.$http</code> 뒤에 필요한 메소드를 붙혀서 사용할 수 있습니다.</li>
+<li><code>put</code>메소드를 사용할 때는 <code>data.json</code> <code>테이블이름.데이타타입</code> 과 같이 데이타를 저장할 위치와 형태를 결정해주고 추가할 데이타를 변수로 넘겨주면 됩니다.</li>
+</ul>
+</li>
+<li><code>dropdown-menu</code> 에서 <code>Save Data</code> 메뉴에 <code>saveData</code> 메소드를 추가해줍니다.</li>
+</ul>
+<figure class="highlight html"><figcaption><span>src/components/Header.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--...생략...--&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"dropdown-menu"</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> @<span class="attr">click</span>=<span class="string">"saveData"</span>&gt;</span>Save Data<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> @<span class="attr">click</span>=<span class="string">""</span>&gt;</span>Load Data<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--...생략...--&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="comment">//...생략...</span></div><div class="line">    methods: &#123;</div><div class="line"><span class="comment">//...생략...</span></div><div class="line">      saveData() &#123;</div><div class="line">        <span class="keyword">const</span> data = &#123;</div><div class="line">          <span class="attr">funds</span>: <span class="keyword">this</span>.$store.getters.funds,</div><div class="line">          <span class="attr">stockPortfolio</span>: <span class="keyword">this</span>.$store.getters.stockPortfolio,</div><div class="line">          <span class="attr">stocks</span>: <span class="keyword">this</span>.$store.getters.stocks</div><div class="line">        &#125;;</div><div class="line">        <span class="keyword">this</span>.$http.put(<span class="string">'data.json'</span>, data);</div><div class="line">      &#125;,</div><div class="line"><span class="comment">//...생략...</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="4-데이타-불러오기"><a href="#4-데이타-불러오기" class="headerlink" title="4. 데이타 불러오기"></a>4. 데이타 불러오기</h4><ul>
+<li>초기에 <code>SET_STOCKS</code> mutation으로 고정된 초기값으로 데이타를 불러오는 부분은 있었지만 새로 생성된 <code>portfolio</code> 데이타를 불러와서 초기 설정 해주는 부분이 없었습니다. 그래서 <code>portfolio.js</code> 모듈 안에 <code>portfolio</code> 데이타를 설정해주는 <code>SET_PORTFOLIO</code> mutation을 추가해줍니다.</li>
+</ul>
+<figure class="highlight js"><figcaption><span>src/store/modules/portfolio.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ...생략...</span></div><div class="line">  <span class="string">'SET_PORTFOLIO'</span> (state, portfolio) &#123;</div><div class="line">    state.funds = portfolio.funds;</div><div class="line">    state.stocks = portfolio.stockPortfolio ? portfolio.stockPortfolio : [];</div><div class="line">  &#125;</div><div class="line"><span class="comment">// ...생략...</span></div></pre></td></tr></table></figure>
+<ul>
+<li>이 프로젝트의 DB에서 데이타를 불러오는 것은 <code>Stocks</code>, <code>Portfolio</code> 와 관련된 모든 데이타를 불러오는 것이기 때문에 어디서나 공통으로 사용하는 <code>loadData</code> action을 따로 생성해줍니다.</li>
+<li>이렇게 공통적으로 사용해야 하는 기능은 action만 따로 모아서 등록을 해놓을 수도 있습니다.</li>
+<li>컴포넌트 환경과는 다르게 JS에서 <code>vue-resource</code>를 사용할 때는 <code>Vue</code>인스턴스를 활용해서 <code>Vue.http</code> 뒤에 메소드를 호출하는 방식으로 사용합니다. </li>
+<li><code>loadData</code> action 에서는 저장하기에서 데이타를 저장했던 위치와 형태 그대로 <code>get</code> 메소드로 데이타를 호출하고 데이타를 각 컴포넌트에서 사용하는 형태로 변환하여 전달해줍니다.</li>
+</ul>
+<figure class="highlight js"><figcaption><span>src/store/actions.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> loadData = <span class="function">(<span class="params">&#123;commit&#125;</span>) =&gt;</span> &#123;</div><div class="line">  Vue.http.get(<span class="string">'data.json'</span>)</div><div class="line">    .then( <span class="function"><span class="params">response</span> =&gt;</span> response.json() )</div><div class="line">    .then( <span class="function"><span class="params">data</span> =&gt;</span> &#123;</div><div class="line">      <span class="keyword">if</span>(data) &#123;</div><div class="line">        <span class="keyword">const</span> stocks = data.stocks;</div><div class="line">        <span class="keyword">const</span> funds = data.funds;</div><div class="line">        <span class="keyword">const</span> stockPortfolio = data.stockPortfolio;</div><div class="line"></div><div class="line">        <span class="keyword">const</span> portfolio = &#123;</div><div class="line">          stockPortfolio,</div><div class="line">          funds</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        commit(<span class="string">'SET_STOCKS'</span>, stocks);</div><div class="line">        commit(<span class="string">'SET_PORTFOLIO'</span>, portfolio);</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ul>
+<li>그리고 생상한 <code>actions.js</code>는 <code>store.js</code>에 추가해줍니다.</li>
+</ul>
+<figure class="highlight js"><figcaption><span>src/store/store.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ...생략...</span></div><div class="line"><span class="keyword">import</span> * <span class="keyword">as</span> actions <span class="keyword">from</span> <span class="string">'./actions'</span>; <span class="comment">// actions.js 추가를 위한분</span></div><div class="line"></div><div class="line">Vue.use(Vuex);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Vuex.Store(&#123;</div><div class="line">  actions, <span class="comment">// actions.js 추가를 위한분부분</span></div><div class="line">  modules: &#123;</div><div class="line">    stocks,</div><div class="line">    portfolio</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>마지막으로 등록된 <code>loadData</code> action을 Header 컴포넌트에 추가해줍니다.</li>
+<li>아래 코드에서 기존 코드와 조금 바뀐점은 <code>mapActions</code> 헬퍼함수 안에 action의 key 값을 설정해주는 부분입니다. <ul>
+<li>기존 코드에서는 <code>...mapActions([])</code> 배열 안에 필요한 action을 등록해주었었는데 그래서 key 값을 따로 설정해줄 수는 없었습니다. </li>
+<li>프로젝트에 기능이 점점 추가되고 action 들이 많아지기 시작하면 이름들이 중복될 수도 있고 헷갈릴수도 있기 때문에  <code>...mapActions({})</code> 처럼 객체를 사용하면 등록한 action의 key값을 별도로 정의할수도 있습니다. 그리고 해당 컴포넌트 내에서는 그 key로 해당 action을 사용하면 됩니다.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><figcaption><span>src/components/Header.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--...생략...--&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"dropdown-menu"</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> @<span class="attr">click</span>=<span class="string">"saveData"</span>&gt;</span>Save Data<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> @<span class="attr">click</span>=<span class="string">"loadData"</span>&gt;</span>Load Data<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--...생략...--&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="comment">// ...생략...</span></div><div class="line">    methods: &#123;</div><div class="line">      ...mapActions(&#123;</div><div class="line">        <span class="attr">randomizeStocks</span>: <span class="string">'randomizeStocks'</span>,</div><div class="line">        <span class="attr">fetchData</span>: <span class="string">'loadData'</span></div><div class="line">      &#125;),</div><div class="line">      endDay() &#123;</div><div class="line">        <span class="keyword">this</span>.randomizeStocks();</div><div class="line">      &#125;,</div><div class="line">      saveData() &#123;</div><div class="line">        <span class="keyword">const</span> data = &#123;</div><div class="line">          <span class="attr">funds</span>: <span class="keyword">this</span>.$store.getters.funds,</div><div class="line">          <span class="attr">stockPortfolio</span>: <span class="keyword">this</span>.$store.getters.stockPortfolio,</div><div class="line">          <span class="attr">stocks</span>: <span class="keyword">this</span>.$store.getters.stocks</div><div class="line">        &#125;;</div><div class="line">        <span class="keyword">this</span>.$http.put(<span class="string">'data.json'</span>, data);</div><div class="line">      &#125;,</div><div class="line">      loadData() &#123;</div><div class="line">        <span class="keyword">this</span>.fetchData();</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="5-페이지-접속시-데이타-불러오기"><a href="#5-페이지-접속시-데이타-불러오기" class="headerlink" title="5. 페이지 접속시 데이타 불러오기"></a>5. 페이지 접속시 데이타 불러오기</h4><ul>
+<li><code>Load Data</code> 버튼이 있기는 하지만 앱에 접속 했을 때 바로 이전 데이타를 불러오는 것이 자연스럽기 때문에 앱 접속시 이전 데이타를 바로 불러올 수 있도록 <code>App.vue</code> 에 <code>loadData</code> action을 추가해줍니다.</li>
+<li>VueJS는 컴포넌트의 <code>script</code> 영역에서 <code>created</code> 라이프사이클 훅을 사용해서 요소들이 렌더링이 되기 전에 미리 데이타를 로딩 해놓을 수 있습니다. <code>created</code> 외에도 다양한 라이프사이클을 활용 할 수 있습니다.</li>
+</ul>
+<figure class="highlight html"><figcaption><span>src/App.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--...생략...--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="keyword">import</span> &#123;mapActions&#125; <span class="keyword">from</span> <span class="string">'vuex'</span>;</div><div class="line">  <span class="keyword">import</span> Header <span class="keyword">from</span> <span class="string">'./components/Header.vue'</span>;</div><div class="line"></div><div class="line">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">    <span class="attr">methods</span>: &#123;</div><div class="line">      ...mapActions(&#123;</div><div class="line">        <span class="attr">fetchData</span>: <span class="string">'loadData'</span></div><div class="line">      &#125;)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">components</span>: &#123;</div><div class="line">      <span class="string">'appHeader'</span>: Header</div><div class="line">    &#125;,</div><div class="line">    created() &#123;</div><div class="line">      <span class="keyword">this</span>.fetchData();</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--...생략...--&gt;</span></div></pre></td></tr></table></figure>
+<p><img src="https://kr.vuejs.org/images/lifecycle.png" alt="VueJS 라이프사이클"></p>
+<hr>
+<blockquote>
+<p>기본적인 구조를 잡고 컴포넌트를 만드는 것 부터 <code>vue-router</code>, <code>vuex</code>, <code>vue-resource</code> 까지 <code>VueJS</code> 를 활용하여 SPA를 만드는 과정을 소개해보았습니다. 깊이 있는 내용은 많이 다루지 못했지만 전체적인 흐름으르 한번 체험해보면 <code>VueJS</code>를 학습하는데 조금 도움이 되지 않을까 싶어서 작성하기 시작한 포스팅이었습니다. 한분에게라도 도움이 되는 글이 되었다면 감사할것 같습니다. 좀 더 필요하신 부분이나 보완할 점이 있다면 댓글로 의견 남겨주시기 바랍니다. 감사합니다.</p>
+<p><code>git clone https://github.com/hanwong/vue-stock-trader.git</code> 으로 프로젝트를 다운로드하고 <code>git checkout step07</code> 로 프로젝트의 최종 결과물을 확인 하실 수 있습니다.</p>
+</blockquote>
+<p><br></p>
+<h3 id="끝"><a href="#끝" class="headerlink" title="- 끝 -"></a>- 끝 -</h3><style>
+
+video,
+p img {
+  width: 100%;
+  box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+</style>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://hanwong.github.io/2017/05/10/vue-stock-trader-04/" data-id="cj2to35x90000tt27eg1kh07r" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://hanwong.github.io/2017/05/10/vue-stock-trader-04/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://hanwong.github.io/2017/05/10/vue-stock-trader-04/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/05/09/vue-stock-trader-03/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">VueJS | Stock-Trader Project Tutorial (3)</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+<div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- git-blog2 -->
+    <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-1634774047569138"
+        data-ad-slot="3851029049"
+        data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div></section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/05/10/vue-stock-trader-04/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS | Stock-Trader Project Tutorial (4)" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/05/10/vue-stock-trader-04/" class="title">VueJS | Stock-Trader Project Tutorial (4)</a></p>
+                            <p class="item-date"><time datetime="2017-05-09T15:00:00.000Z" itemprop="datePublished">2017-05-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/05/09/vue-stock-trader-03/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS | Stock-Trader Project Tutorial (3)" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/05/09/vue-stock-trader-03/" class="title">VueJS | Stock-Trader Project Tutorial (3)</a></p>
+                            <p class="item-date"><time datetime="2017-05-08T15:00:00.000Z" itemprop="datePublished">2017-05-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/05/01/vue-stock-trader-02/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS | Stock-Trader Project Tutorial (2)" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/05/01/vue-stock-trader-02/" class="title">VueJS | Stock-Trader Project Tutorial (2)</a></p>
+                            <p class="item-date"><time datetime="2017-04-30T15:00:00.000Z" itemprop="datePublished">2017-05-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/08/vue-stock-trader-01/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS | Stock-Trader Project Tutorial (1)" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/04/08/vue-stock-trader-01/" class="title">VueJS | Stock-Trader Project Tutorial (1)</a></p>
+                            <p class="item-date"><time datetime="2017-04-07T15:00:00.000Z" itemprop="datePublished">2017-04-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/02/25/vue-resource-firebase03/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS 공부하기 (3) | vue-resource - interceptors, $resource" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/02/25/vue-resource-firebase03/" class="title">VueJS 공부하기 (3) | vue-resource - interceptors, $resource</a></p>
+                            <p class="item-date"><time datetime="2017-02-24T15:00:00.000Z" itemprop="datePublished">2017-02-25</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Guide/">Guide</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VueJS/">VueJS</a><span class="category-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/resource/" style="font-size: 10px;">$resource</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CodeGuide/" style="font-size: 10px;">CodeGuide</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/animation/" style="font-size: 10px;">animation</a> <a href="/tags/components/" style="font-size: 15px;">components</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/filter/" style="font-size: 10px;">filter</a> <a href="/tags/firebase/" style="font-size: 15px;">firebase</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/http/" style="font-size: 12.5px;">http</a> <a href="/tags/interceptors/" style="font-size: 10px;">interceptors</a> <a href="/tags/isolate-float/" style="font-size: 10px;">isolate-float</a> <a href="/tags/isolate-technique/" style="font-size: 10px;">isolate-technique</a> <a href="/tags/layout/" style="font-size: 10px;">layout</a> <a href="/tags/resource/" style="font-size: 10px;">resource</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/vue-resource/" style="font-size: 17.5px;">vue-resource</a> <a href="/tags/vue-router/" style="font-size: 15px;">vue-router</a> <a href="/tags/vuejs/" style="font-size: 20px;">vuejs</a> <a href="/tags/vuex/" style="font-size: 15px;">vuex</a>
+        </div>
+    </div>
+
+
+
+<div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- git-blog2 -->
+    <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-1634774047569138"
+        data-ad-slot="3851029049"
+        data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2017 Woong - 
+            <span id="busuanzi_container_site_pv">
+                Total visit <span id="busuanzi_value_site_pv"></span> views.
+            </span>
+            <br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+        
+    
+    <script>
+    var disqus_config = function () {
+        
+            this.page.url = 'http://hanwong.github.io/2017/05/10/vue-stock-trader-04/';
+        
+        this.page.identifier = 'vue-stock-trader-04';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'hanwong' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
