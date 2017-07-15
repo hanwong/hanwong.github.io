@@ -16,7 +16,7 @@
 
 이전 포스팅에서는 vuex를 활용한 프로젝트의 상태 관리 환경 세팅과 vuex의 기본적인 사용방법에 대해서 알아 보았습니다. 이번 포스팅에서는 또 다른 컴포넌트의 상태 관리 설정을 추가하고 컴포넌트 간의 상태 변화에 따라 뷰">
 <meta property="og:image" content="http://hanwong.github.io/assets/vue.png">
-<meta property="og:updated_time" content="2017-05-09T03:40:24.000Z">
+<meta property="og:updated_time" content="2017-07-15T06:43:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VueJS | Stock-Trader Project Tutorial (3)">
 <meta name="twitter:description" content="이 포스팅은 Max의 Vuejs 강좌 내용을 정리한 것이고, VueJS의 개념을 익히고 연습해보기 위한 튜토리얼을 다룬 글 입니다.
@@ -303,8 +303,14 @@
 <ul>
 <li>이전 포스팅에서는 store를 사용할 때 <code>this.$store.{...}</code> 방법으로 일일이 찾아와서 사용을 했었는데 이번에는 헬퍼함수를 통해 설정해보았습니다.</li>
 <li><code>mapActions</code> 헬퍼를 사용하여 store에 등록되어 있는 action중에 필요한 action만 불러와서 사용합니다. </li>
-<li>컴포넌트 내에서는 mutation을 건드릴 일은 없습니다. 모든 동작은 action을 통해서 실행됩니다.</li>
+<li><p>컴포넌트 내에서는 mutation을 건드릴 일은 없습니다. 모든 동작은 action을 통해서 실행됩니다.</p>
+<ul>
+<li><code>...mapActions</code>과 같이  <code>spread operator</code>를 사용하기 때문에 미리 babel모듈도 설치해줍니다.<br> <code>npm install --save-dev babel-preset-stage-2</code> </li>
+<li>설치한 다음 <code>.babelrc</code> 파일에 다음과 같이 설정을 변경해 줍니다. <code>.babelrc</code> 파일은 프로젝트 제일 상단인 src 폴더와 같은 위치에 있습니다.</li>
 </ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;presets&quot;: [</div><div class="line">    [&quot;es2015&quot;, &#123;&quot;modules&quot;: false&#125;],</div><div class="line">    [&quot;stage-2&quot;]</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight html"><figcaption><span>src/components/portfolio/Portfolio.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">...생략</div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="comment">// mapGetters 헬퍼를 사용하기 위해 vuex를 임포트해줍니다.</span></div><div class="line">  <span class="keyword">import</span> &#123; mapGetters &#125; <span class="keyword">from</span> <span class="string">'vuex'</span>;</div><div class="line">  <span class="keyword">import</span> Stock <span class="keyword">from</span> <span class="string">'./Stock.vue'</span>;</div><div class="line"></div><div class="line">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">    <span class="comment">// 위 예제에서 사용했던 data부분을 삭제하고 mapGetters 헬퍼를 사용하여 필요한 state를 맵핑해줍니다.</span></div><div class="line">    computed: &#123;</div><div class="line">      ...mapGetters(&#123;</div><div class="line">        <span class="attr">stocks</span>: <span class="string">'stockPortfolio'</span></div><div class="line">      &#125;),</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">components</span>: &#123;</div><div class="line">      <span class="attr">appStock</span>: Stock</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <ul>
 <li><code>mapGetters</code> 헬퍼를 사용하여 Portfolio 컴포넌트에서 필요한 데이타를 조합해둔 <code>stockPortfolio</code> getter 를 <code>stocks</code>로 참조하여 사용합니다.</li>

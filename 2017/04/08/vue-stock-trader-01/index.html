@@ -16,7 +16,7 @@
 
 프로젝트 소개 이 프로젝트는 아래의 영상과 같이 VueJS를 활용해서 간단한 모의 주식 시스템을 만들어보는것 입니다. 주식 리스트들이 있고 End Day 버튼을 누르면 시세가 랜덤하게 변경되고 시세에 따라 사고 팔고하는 리스">
 <meta property="og:image" content="http://hanwong.github.io/assets/vue.png">
-<meta property="og:updated_time" content="2017-07-15T06:39:59.000Z">
+<meta property="og:updated_time" content="2017-07-15T06:41:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VueJS | Stock-Trader Project Tutorial (1)">
 <meta name="twitter:description" content="이 포스팅은 Max의 Vuejs 강좌 내용을 정리한 것이고, VueJS의 개념을 익히고 연습해보기 위한 튜토리얼을 다룬 글 입니다.
@@ -288,11 +288,6 @@
 <hr>
 <h2 id="3-vue-router-세팅하기"><a href="#3-vue-router-세팅하기" class="headerlink" title="3. vue-router 세팅하기"></a>3. <code>vue-router</code> 세팅하기</h2><p> <code>vue-router</code>는 다들 아시다시피 VueJS에서 페이지 라우팅을 도와주는 고마운 모듈입니다. 이번 프로젝트에서는 페이지나 세팅할 내용이 많지 않아서 초기 세팅 이후에 별도로 추가할 내용이 없어 아주 간단한 라우팅 구성만 해주면 됩니다.</p>
 <h4 id="1-가장-먼저-vue-router-모듈을-설치해줍니다"><a href="#1-가장-먼저-vue-router-모듈을-설치해줍니다" class="headerlink" title="1. 가장 먼저 vue-router 모듈을 설치해줍니다."></a>1. 가장 먼저 <code>vue-router</code> 모듈을 설치해줍니다.</h4><p><code>npm instal --save vue-router</code> </p>
-<ul>
-<li>그리고 이후에 <code>spread operator</code>를 사용하기 때문에 미리 babel모듈도 설치해줍니다.<br><code>npm install --save-dev babel-preset-stage-2</code> </li>
-<li>설치한 다음 <code>.babelrc</code> 파일에 다음과 같이 설정을 변경해 줍니다. <code>.babelrc</code> 파일은 프로젝트 제일 상단인 src 폴더와 같은 위치에 있습니다.</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;presets&quot;: [</div><div class="line">    [&quot;es2015&quot;, &#123;&quot;modules&quot;: false&#125;],</div><div class="line">    [&quot;stage-2&quot;]</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="2-라우트-설정들을-입력할-routes-js-파일을-src폴더-안에-생성합니다"><a href="#2-라우트-설정들을-입력할-routes-js-파일을-src폴더-안에-생성합니다" class="headerlink" title="2. 라우트 설정들을 입력할 routes.js 파일을 src폴더 안에 생성합니다."></a>2. 라우트 설정들을 입력할 <code>routes.js</code> 파일을 <code>src</code>폴더 안에 생성합니다.</h4><ul>
 <li>이 프로젝트에서 보여지는 페이지는 <code>Home.vue</code>, <code>Stocks.vue</code>, <code>Portfolio.vue</code> 입니다. 그래서 각 파일들을 각각의 url로 호출 할 수 있도록 라우팅을 구성합니다.</li>
 <li><code>Home.vue</code>는 메인 화면이므로 url을 <code>/</code> 로  <code>Stocks.vue</code>는 <code>/stocks</code>, <code>Portfolio.vue</code>는 <code>/portfolio</code> 로 설정하였습니다. </li>
