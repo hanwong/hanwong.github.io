@@ -5,17 +5,17 @@
     
     <title>VueJS | Vuex Unit Test (1) | Woong&#39;s blog.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Axios를 활용해서 API 호출을 주로 담당하는 Action들을 Unit Test 할 때 Mock을 활요한 방법에 대해 다루는 글입니다.">
+    <meta name="description" content="Axios를 활용해서 API 호출을 주로 담당하는 Action들의 Unit Test에 대해 다루는 글입니다.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VueJS | Vuex Unit Test (1)">
 <meta property="og:url" content="http://hanwong.github.io/2017/09/22/vuex-actions-unit-test/index.html">
 <meta property="og:site_name" content="Woong's blog.">
-<meta property="og:description" content="Axios를 활용해서 API 호출을 주로 담당하는 Action들을 Unit Test 할 때 Mock을 활요한 방법에 대해 다루는 글입니다.">
+<meta property="og:description" content="Axios를 활용해서 API 호출을 주로 담당하는 Action들의 Unit Test에 대해 다루는 글입니다.">
 <meta property="og:image" content="http://hanwong.github.io/assets/vue.png">
-<meta property="og:updated_time" content="2017-09-21T14:20:43.000Z">
+<meta property="og:updated_time" content="2017-09-21T14:50:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VueJS | Vuex Unit Test (1)">
-<meta name="twitter:description" content="Axios를 활용해서 API 호출을 주로 담당하는 Action들을 Unit Test 할 때 Mock을 활요한 방법에 대해 다루는 글입니다.">
+<meta name="twitter:description" content="Axios를 활용해서 API 호출을 주로 담당하는 Action들의 Unit Test에 대해 다루는 글입니다.">
 <meta name="twitter:image" content="http://hanwong.github.io/assets/vue.png">
     
 
@@ -257,17 +257,15 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>Axios를 활용해서 API 호출을 주로 담당하는 Action들을 Unit Test 할 때 Mock을 활요한 방법에 대해 다루는 글입니다.</p>
-<hr>
+            <p>Axios를 활용해서 API 호출을 주로 담당하는 Action들의 Unit Test에 대해 다루는 글입니다.</p>
 <a id="more"></a>
 <p>이번 포스팅에서는 비동기 호출을 주로 담당하는 Action들을 테스트 하는 방법에 대해서 다루고자 합니다.</p>
-<ul>
-<li><p>원칙적으로 TDD를 하고자 하면 TDD 구성을 먼저 한 후에 그에 맞춰서 코드를 작성해 나가는것이라고 알고 있지만 막상 일정을 타이트하게 잡고 개발을 시작하게 되면 TDD라는 것은 까마득하게 잊어 버리는 것 같습니다.<br>그러나 마무리가 되어갈 쯤 TDD 해야 하나 하는 생각이 항상 스쳐지나가고 한번 해봐야지 해봐야지 하다가 매번 미루고 그냥 지나갔었던것 같습니다.<br>요번엔 마침 여유 아닌 여유가 생겨서 TDD를 한번 시도해보았습니다.</p>
-</li>
-<li><p>이미 개발을 많이 해놓은지라 컴포넌트 단위의 이벤트를 처리하는 것은 시간이 많이 걸릴것 같고 API 호출을 담당하는 Action들을 조금이라도 Unit Test를 해보면 좋을것 같다는 생각이 들어서 Action Unit Test를 해보기 시작했습니다. 실제적인 Vuejs의 Unit Test에 대한 지식은 전무했던지라 하나 하나 검색해보았습니다. 처음에 생각 했을 때는 API 호출하는 기능들을 테스트하려면 DB에 뭔가 더미 데이터가 박혀 있어야 하나 생각 했었는데 이미 TDD 를 하고 계신 백엔드를 담당하시는 팀장님께서 백엔드에서는 호출 하지 않고 Mock을 만들어서 테스트를 한다고 하시더군요… Mock이라는게 있는지도 몰랐었는데 axios 관련해서도 mock을 검색하니 바로 나오더 군요. <code>axios-mock-adapter</code>라는 것이었습니다. 그런데 Unit Test를 시작하지도 않았으니… 설명을 봐도 뭔소린지 모르겠더군요… 이 모듈에 대해서는 제일 마지막에 다루게 될것 같습니다.</p>
-</li>
-</ul>
-<p>아무튼 서두가 조금 길어졌는데 </p>
+<p> 원칙적으로 TDD를 하고자 하면 TDD 구성을 먼저 한 후에 그에 맞춰서 코드를 작성해 나가는것이라고 알고 있지만 막상 일정을 타이트하게 잡고 개발을 시작하게 되면 TDD라는 것은 까마득하게 잊어 버리는 것 같습니다.<br>그러나 마무리가 되어갈 쯤 TDD 해야 하나 하는 생각이 항상 스쳐지나가고 한번 해봐야지 해봐야지 하다가 매번 미루고 그냥 지나갔었던것 같습니다.<br>요번엔 마침 여유 아닌 여유가 생겨서 TDD를 한번 시도해보았습니다.</p>
+<p> 이미 개발을 많이 해놓은지라 컴포넌트 단위의 이벤트를 처리하는 것은 시간이 많이 걸릴것 같고 API 호출을 담당하는 Action들을 조금이라도 Unit Test를 해보면 좋을것 같다는 생각이 들어서 Action Unit Test를 해보기 시작했습니다.<br> 실제적인 Vuejs의 Unit Test에 대한 지식은 전무했던지라 하나 하나 검색해보았습니다. 처음에 생각 했을 때는 API 호출하는 기능들을 테스트하려면 DB에 뭔가 더미 데이터가 박혀 있어야 하나 생각 했었는데 이미 TDD 를 하고 계신 백엔드를 담당하시는 팀장님께서 백엔드에서는 호출 하지 않고 Mock을 만들어서 테스트를 한다고 하시더군요…<br> Mock이라는게 있는지도 몰랐었는데 axios 관련해서도 mock을 검색하니 바로 나오더 군요. <code>axios-mock-adapter</code>라는 것이었습니다. 그런데 Unit Test를 시작하지도 않았던 상태였던지라… 설명을 봐도 뭔소린지 모르겠더군요… 이 모듈에 대해서는 제일 마지막에 다루게 될것 같습니다.</p>
+<p>아무튼 서두가 많이 길어졌는데 TDD를 하기 위해서는 얕은 지식으로 Test코드를 먼저 구현한 다음에 실제 코딩을 하는것이라고 알고 있었는데 역시 그래야 하는것을 몸으로 부딪히며 느꼈습니다.<br>제가 개발한 환경은 <code>vue-cli</code>로 기본 환경을 설정하였고 <code>store</code>에 <code>vuex</code> 관련 설정을 하였었습니다. 아래 코드와 같이 기능에 따라서 <code>module</code>로 분리를 하고 <code>module</code>안에 <code>state</code>, <code>mutations</code>, <code>actions</code>, <code>getters</code>를 모두 담은 구조로 개발해놓은 상태였었습니다.</p>
+<figure class="highlight js"><figcaption><span>store/modules/project.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> state = &#123;&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> mutations = &#123;&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> actions = &#123;&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> getters = &#123;&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  state, </div><div class="line">  mutations,</div><div class="line">  actions,</div><div class="line">  getters</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>그런데…</p>
+<p>axios를 </p>
 <p><img src="" alt="VueJS"></p>
 <hr>
 <blockquote>
@@ -275,6 +273,454 @@
 </blockquote>
 <p><br></p>
 <h3 id="끝"><a href="#끝" class="headerlink" title="- 끝 -"></a>- 끝 -</h3><style>
+
+video,
+p img {
+  width: 100%;
+  box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+
+  'SET_PROJECT' (state, project) {
+    state.project = project
+    },
+
+    'SET_PROJECTS' (state, projects) {
+        state.projects = projects
+    },
+
+  'SET_CHANNEL' (state, channels) {
+    state.channels = channels
+  },
+
+  'SET_HISTORY' (state, history) {
+    state.history = history
+  },
+
+  'SET_DATA' (state, data) {
+    Array.prototype.push.apply(state.data,data) 
+    },
+
+    'SET_PROJECTDATA' (state, data) {
+    state.projectData = data
+    },
+
+  'SET_USERDATA' (state, data) {
+    state.userData = data
+  },
+
+    'SET_GROUPEDDATA' (state, data) {
+    state.groupedData = data
+  },
+
+    'SET_COMPAREDATA' (state, data) {
+    state.compareData = data
+    },
+
+  'RESET_DATA' (state) {
+    state.data = []
+  },
+
+  'RESET_PROJECT' (state) {
+    state.project = {}
+  },
+
+  'RESET_PROJECTS' (state) {
+    state.data = []
+    state.project = {}
+    state.projects = []
+    state.channels = []
+    state.history = []
+  }
+
+}
+
+const getters = {
+  getData: state => {
+    return state.data
+  },
+  getUserdata: state => {
+    return state.userData
+    },
+    getProjectData: state => {
+        return state.projectData
+    },
+    getGroupedData: state => {
+        return state.groupedData
+    },
+  getProject: state => {
+    return state.project
+    },
+    getProjects: state => {
+        return state.projects
+    },
+  getChannels: state => {
+    return state.channels
+  },
+  getHistory: state => {
+    return state.history
+  },
+  getCompareData: state => {
+    return state.compareData
+  }
+}
+
+export default {
+  state, 
+  mutations,
+  actions,
+  getters
+}
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">![VueJS]()</div><div class="line"></div><div class="line"></div><div class="line">---</div><div class="line"></div><div class="line">&gt; .</div><div class="line"></div><div class="line">&lt;br&gt;</div><div class="line"></div><div class="line">### - 끝 -</div><div class="line"></div><div class="line">&lt;style&gt;</div><div class="line"></div><div class="line">video,</div><div class="line">p img &#123;</div><div class="line">  width: 100%;</div><div class="line">  box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);</div><div class="line">&#125;</div><div class="line"></div><div class="line">  </div><div class="line">  &apos;SET_PROJECT&apos; (state, project) &#123;</div><div class="line">    state.project = project</div><div class="line">	&#125;,</div><div class="line">	</div><div class="line">	&apos;SET_PROJECTS&apos; (state, projects) &#123;</div><div class="line">		state.projects = projects</div><div class="line">	&#125;,</div><div class="line">	</div><div class="line">  &apos;SET_CHANNEL&apos; (state, channels) &#123;</div><div class="line">    state.channels = channels</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  &apos;SET_HISTORY&apos; (state, history) &#123;</div><div class="line">    state.history = history</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  &apos;SET_DATA&apos; (state, data) &#123;</div><div class="line">    Array.prototype.push.apply(state.data,data) </div><div class="line">	&#125;,</div><div class="line">	</div><div class="line">	&apos;SET_PROJECTDATA&apos; (state, data) &#123;</div><div class="line">    state.projectData = data</div><div class="line">	&#125;,</div><div class="line"></div><div class="line">  &apos;SET_USERDATA&apos; (state, data) &#123;</div><div class="line">    state.userData = data</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">	&apos;SET_GROUPEDDATA&apos; (state, data) &#123;</div><div class="line">    state.groupedData = data</div><div class="line">  &#125;,</div><div class="line">  </div><div class="line">	&apos;SET_COMPAREDATA&apos; (state, data) &#123;</div><div class="line">    state.compareData = data</div><div class="line">	&#125;,</div><div class="line">	</div><div class="line">  &apos;RESET_DATA&apos; (state) &#123;</div><div class="line">    state.data = []</div><div class="line">  &#125;,</div><div class="line">  </div><div class="line">  &apos;RESET_PROJECT&apos; (state) &#123;</div><div class="line">    state.project = &#123;&#125;</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  &apos;RESET_PROJECTS&apos; (state) &#123;</div><div class="line">    state.data = []</div><div class="line">    state.project = &#123;&#125;</div><div class="line">    state.projects = []</div><div class="line">    state.channels = []</div><div class="line">    state.history = []</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">const getters = &#123;</div><div class="line">  getData: state =&gt; &#123;</div><div class="line">    return state.data</div><div class="line">  &#125;,</div><div class="line">  getUserdata: state =&gt; &#123;</div><div class="line">    return state.userData</div><div class="line">	&#125;,</div><div class="line">	getProjectData: state =&gt; &#123;</div><div class="line">		return state.projectData</div><div class="line">	&#125;,</div><div class="line">	getGroupedData: state =&gt; &#123;</div><div class="line">		return state.groupedData</div><div class="line">	&#125;,</div><div class="line">  getProject: state =&gt; &#123;</div><div class="line">    return state.project</div><div class="line">	&#125;,</div><div class="line">	getProjects: state =&gt; &#123;</div><div class="line">		return state.projects</div><div class="line">	&#125;,</div><div class="line">  getChannels: state =&gt; &#123;</div><div class="line">    return state.channels</div><div class="line">  &#125;,</div><div class="line">  getHistory: state =&gt; &#123;</div><div class="line">    return state.history</div><div class="line">  &#125;,</div><div class="line">  getCompareData: state =&gt; &#123;</div><div class="line">    return state.compareData</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default &#123;</div><div class="line">  state, </div><div class="line">  mutations,</div><div class="line">  actions,</div><div class="line">  getters</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+![VueJS]()
+
+
+---
+
+> .
+
+<br>
+
+### - 끝 -
+
+<style>
+
+video,
+p img {
+  width: 100%;
+  box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+
+  'SET_PROJECT' (state, project) {
+    state.project = project
+    },
+
+    'SET_PROJECTS' (state, projects) {
+        state.projects = projects
+    },
+
+  'SET_CHANNEL' (state, channels) {
+    state.channels = channels
+  },
+
+  'SET_HISTORY' (state, history) {
+    state.history = history
+  },
+
+  'SET_DATA' (state, data) {
+    Array.prototype.push.apply(state.data,data) 
+    },
+
+    'SET_PROJECTDATA' (state, data) {
+    state.projectData = data
+    },
+
+  'SET_USERDATA' (state, data) {
+    state.userData = data
+  },
+
+    'SET_GROUPEDDATA' (state, data) {
+    state.groupedData = data
+  },
+
+    'SET_COMPAREDATA' (state, data) {
+    state.compareData = data
+    },
+
+  'RESET_DATA' (state) {
+    state.data = []
+  },
+
+  'RESET_PROJECT' (state) {
+    state.project = {}
+  },
+
+  'RESET_PROJECTS' (state) {
+    state.data = []
+    state.project = {}
+    state.projects = []
+    state.channels = []
+    state.history = []
+  }
+
+}
+
+const getters = {
+  getData: state => {
+    return state.data
+  },
+  getUserdata: state => {
+    return state.userData
+    },
+    getProjectData: state => {
+        return state.projectData
+    },
+    getGroupedData: state => {
+        return state.groupedData
+    },
+  getProject: state => {
+    return state.project
+    },
+    getProjects: state => {
+        return state.projects
+    },
+  getChannels: state => {
+    return state.channels
+  },
+  getHistory: state => {
+    return state.history
+  },
+  getCompareData: state => {
+    return state.compareData
+  }
+}
+
+export default {
+  state, 
+  mutations,
+  actions,
+  getters
+}
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">![VueJS]()</div><div class="line"></div><div class="line"></div><div class="line">---</div><div class="line"></div><div class="line">&gt; .</div><div class="line"></div><div class="line">&lt;br&gt;</div><div class="line"></div><div class="line">### - 끝 -</div><div class="line"></div><div class="line">&lt;style&gt;</div><div class="line"></div><div class="line">video,</div><div class="line">p img &#123;</div><div class="line">  width: 100%;</div><div class="line">  box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);</div><div class="line">&#125;</div><div class="line"></div><div class="line">  </div><div class="line">  &apos;SET_PROJECT&apos; (state, project) &#123;</div><div class="line">    state.project = project</div><div class="line">	&#125;,</div><div class="line">	</div><div class="line">	&apos;SET_PROJECTS&apos; (state, projects) &#123;</div><div class="line">		state.projects = projects</div><div class="line">	&#125;,</div><div class="line">	</div><div class="line">  &apos;SET_CHANNEL&apos; (state, channels) &#123;</div><div class="line">    state.channels = channels</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  &apos;SET_HISTORY&apos; (state, history) &#123;</div><div class="line">    state.history = history</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  &apos;SET_DATA&apos; (state, data) &#123;</div><div class="line">    Array.prototype.push.apply(state.data,data) </div><div class="line">	&#125;,</div><div class="line">	</div><div class="line">	&apos;SET_PROJECTDATA&apos; (state, data) &#123;</div><div class="line">    state.projectData = data</div><div class="line">	&#125;,</div><div class="line"></div><div class="line">  &apos;SET_USERDATA&apos; (state, data) &#123;</div><div class="line">    state.userData = data</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">	&apos;SET_GROUPEDDATA&apos; (state, data) &#123;</div><div class="line">    state.groupedData = data</div><div class="line">  &#125;,</div><div class="line">  </div><div class="line">	&apos;SET_COMPAREDATA&apos; (state, data) &#123;</div><div class="line">    state.compareData = data</div><div class="line">	&#125;,</div><div class="line">	</div><div class="line">  &apos;RESET_DATA&apos; (state) &#123;</div><div class="line">    state.data = []</div><div class="line">  &#125;,</div><div class="line">  </div><div class="line">  &apos;RESET_PROJECT&apos; (state) &#123;</div><div class="line">    state.project = &#123;&#125;</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  &apos;RESET_PROJECTS&apos; (state) &#123;</div><div class="line">    state.data = []</div><div class="line">    state.project = &#123;&#125;</div><div class="line">    state.projects = []</div><div class="line">    state.channels = []</div><div class="line">    state.history = []</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">const getters = &#123;</div><div class="line">  getData: state =&gt; &#123;</div><div class="line">    return state.data</div><div class="line">  &#125;,</div><div class="line">  getUserdata: state =&gt; &#123;</div><div class="line">    return state.userData</div><div class="line">	&#125;,</div><div class="line">	getProjectData: state =&gt; &#123;</div><div class="line">		return state.projectData</div><div class="line">	&#125;,</div><div class="line">	getGroupedData: state =&gt; &#123;</div><div class="line">		return state.groupedData</div><div class="line">	&#125;,</div><div class="line">  getProject: state =&gt; &#123;</div><div class="line">    return state.project</div><div class="line">	&#125;,</div><div class="line">	getProjects: state =&gt; &#123;</div><div class="line">		return state.projects</div><div class="line">	&#125;,</div><div class="line">  getChannels: state =&gt; &#123;</div><div class="line">    return state.channels</div><div class="line">  &#125;,</div><div class="line">  getHistory: state =&gt; &#123;</div><div class="line">    return state.history</div><div class="line">  &#125;,</div><div class="line">  getCompareData: state =&gt; &#123;</div><div class="line">    return state.compareData</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default &#123;</div><div class="line">  state, </div><div class="line">  mutations,</div><div class="line">  actions,</div><div class="line">  getters</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+![VueJS]()
+
+
+---
+
+> .
+
+<br>
+
+### - 끝 -
+
+<style>
+
+video,
+p img {
+  width: 100%;
+  box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+
+  'SET_PROJECT' (state, project) {
+    state.project = project
+    },
+
+    'SET_PROJECTS' (state, projects) {
+        state.projects = projects
+    },
+
+  'SET_CHANNEL' (state, channels) {
+    state.channels = channels
+  },
+
+  'SET_HISTORY' (state, history) {
+    state.history = history
+  },
+
+  'SET_DATA' (state, data) {
+    Array.prototype.push.apply(state.data,data) 
+    },
+
+    'SET_PROJECTDATA' (state, data) {
+    state.projectData = data
+    },
+
+  'SET_USERDATA' (state, data) {
+    state.userData = data
+  },
+
+    'SET_GROUPEDDATA' (state, data) {
+    state.groupedData = data
+  },
+
+    'SET_COMPAREDATA' (state, data) {
+    state.compareData = data
+    },
+
+  'RESET_DATA' (state) {
+    state.data = []
+  },
+
+  'RESET_PROJECT' (state) {
+    state.project = {}
+  },
+
+  'RESET_PROJECTS' (state) {
+    state.data = []
+    state.project = {}
+    state.projects = []
+    state.channels = []
+    state.history = []
+  }
+
+}
+
+const getters = {
+  getData: state => {
+    return state.data
+  },
+  getUserdata: state => {
+    return state.userData
+    },
+    getProjectData: state => {
+        return state.projectData
+    },
+    getGroupedData: state => {
+        return state.groupedData
+    },
+  getProject: state => {
+    return state.project
+    },
+    getProjects: state => {
+        return state.projects
+    },
+  getChannels: state => {
+    return state.channels
+  },
+  getHistory: state => {
+    return state.history
+  },
+  getCompareData: state => {
+    return state.compareData
+  }
+}
+
+export default {
+  state, 
+  mutations,
+  actions,
+  getters
+}
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">![VueJS]()</div><div class="line"></div><div class="line"></div><div class="line">---</div><div class="line"></div><div class="line">&gt; .</div><div class="line"></div><div class="line">&lt;br&gt;</div><div class="line"></div><div class="line">### - 끝 -</div><div class="line"></div><div class="line">&lt;style&gt;</div><div class="line"></div><div class="line">video,</div><div class="line">p img &#123;</div><div class="line">  width: 100%;</div><div class="line">  box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);</div><div class="line">&#125;</div><div class="line"></div><div class="line">  </div><div class="line">  &apos;SET_PROJECT&apos; (state, project) &#123;</div><div class="line">    state.project = project</div><div class="line">	&#125;,</div><div class="line">	</div><div class="line">	&apos;SET_PROJECTS&apos; (state, projects) &#123;</div><div class="line">		state.projects = projects</div><div class="line">	&#125;,</div><div class="line">	</div><div class="line">  &apos;SET_CHANNEL&apos; (state, channels) &#123;</div><div class="line">    state.channels = channels</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  &apos;SET_HISTORY&apos; (state, history) &#123;</div><div class="line">    state.history = history</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  &apos;SET_DATA&apos; (state, data) &#123;</div><div class="line">    Array.prototype.push.apply(state.data,data) </div><div class="line">	&#125;,</div><div class="line">	</div><div class="line">	&apos;SET_PROJECTDATA&apos; (state, data) &#123;</div><div class="line">    state.projectData = data</div><div class="line">	&#125;,</div><div class="line"></div><div class="line">  &apos;SET_USERDATA&apos; (state, data) &#123;</div><div class="line">    state.userData = data</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">	&apos;SET_GROUPEDDATA&apos; (state, data) &#123;</div><div class="line">    state.groupedData = data</div><div class="line">  &#125;,</div><div class="line">  </div><div class="line">	&apos;SET_COMPAREDATA&apos; (state, data) &#123;</div><div class="line">    state.compareData = data</div><div class="line">	&#125;,</div><div class="line">	</div><div class="line">  &apos;RESET_DATA&apos; (state) &#123;</div><div class="line">    state.data = []</div><div class="line">  &#125;,</div><div class="line">  </div><div class="line">  &apos;RESET_PROJECT&apos; (state) &#123;</div><div class="line">    state.project = &#123;&#125;</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  &apos;RESET_PROJECTS&apos; (state) &#123;</div><div class="line">    state.data = []</div><div class="line">    state.project = &#123;&#125;</div><div class="line">    state.projects = []</div><div class="line">    state.channels = []</div><div class="line">    state.history = []</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">const getters = &#123;</div><div class="line">  getData: state =&gt; &#123;</div><div class="line">    return state.data</div><div class="line">  &#125;,</div><div class="line">  getUserdata: state =&gt; &#123;</div><div class="line">    return state.userData</div><div class="line">	&#125;,</div><div class="line">	getProjectData: state =&gt; &#123;</div><div class="line">		return state.projectData</div><div class="line">	&#125;,</div><div class="line">	getGroupedData: state =&gt; &#123;</div><div class="line">		return state.groupedData</div><div class="line">	&#125;,</div><div class="line">  getProject: state =&gt; &#123;</div><div class="line">    return state.project</div><div class="line">	&#125;,</div><div class="line">	getProjects: state =&gt; &#123;</div><div class="line">		return state.projects</div><div class="line">	&#125;,</div><div class="line">  getChannels: state =&gt; &#123;</div><div class="line">    return state.channels</div><div class="line">  &#125;,</div><div class="line">  getHistory: state =&gt; &#123;</div><div class="line">    return state.history</div><div class="line">  &#125;,</div><div class="line">  getCompareData: state =&gt; &#123;</div><div class="line">    return state.compareData</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default &#123;</div><div class="line">  state, </div><div class="line">  mutations,</div><div class="line">  actions,</div><div class="line">  getters</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+![VueJS]()
+
+
+---
+
+> .
+
+<br>
+
+### - 끝 -
+
+<style>
+
+video,
+p img {
+  width: 100%;
+  box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+
+  'SET_PROJECT' (state, project) {
+    state.project = project
+    },
+
+    'SET_PROJECTS' (state, projects) {
+        state.projects = projects
+    },
+
+  'SET_CHANNEL' (state, channels) {
+    state.channels = channels
+  },
+
+  'SET_HISTORY' (state, history) {
+    state.history = history
+  },
+
+  'SET_DATA' (state, data) {
+    Array.prototype.push.apply(state.data,data) 
+    },
+
+    'SET_PROJECTDATA' (state, data) {
+    state.projectData = data
+    },
+
+  'SET_USERDATA' (state, data) {
+    state.userData = data
+  },
+
+    'SET_GROUPEDDATA' (state, data) {
+    state.groupedData = data
+  },
+
+    'SET_COMPAREDATA' (state, data) {
+    state.compareData = data
+    },
+
+  'RESET_DATA' (state) {
+    state.data = []
+  },
+
+  'RESET_PROJECT' (state) {
+    state.project = {}
+  },
+
+  'RESET_PROJECTS' (state) {
+    state.data = []
+    state.project = {}
+    state.projects = []
+    state.channels = []
+    state.history = []
+  }
+
+}
+
+const getters = {
+  getData: state => {
+    return state.data
+  },
+  getUserdata: state => {
+    return state.userData
+    },
+    getProjectData: state => {
+        return state.projectData
+    },
+    getGroupedData: state => {
+        return state.groupedData
+    },
+  getProject: state => {
+    return state.project
+    },
+    getProjects: state => {
+        return state.projects
+    },
+  getChannels: state => {
+    return state.channels
+  },
+  getHistory: state => {
+    return state.history
+  },
+  getCompareData: state => {
+    return state.compareData
+  }
+}
+
+export default {
+  state, 
+  mutations,
+  actions,
+  getters
+}
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">![VueJS]()</div><div class="line"></div><div class="line"></div><div class="line">---</div><div class="line"></div><div class="line">&gt; .</div><div class="line"></div><div class="line">&lt;br&gt;</div><div class="line"></div><div class="line">### - 끝 -</div><div class="line"></div><div class="line">&lt;style&gt;</div><div class="line"></div><div class="line">video,</div><div class="line">p img &#123;</div><div class="line">  width: 100%;</div><div class="line">  box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);</div><div class="line">&#125;</div><div class="line"></div><div class="line">  </div><div class="line">  &apos;SET_PROJECT&apos; (state, project) &#123;</div><div class="line">    state.project = project</div><div class="line">	&#125;,</div><div class="line">	</div><div class="line">	&apos;SET_PROJECTS&apos; (state, projects) &#123;</div><div class="line">		state.projects = projects</div><div class="line">	&#125;,</div><div class="line">	</div><div class="line">  &apos;SET_CHANNEL&apos; (state, channels) &#123;</div><div class="line">    state.channels = channels</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  &apos;SET_HISTORY&apos; (state, history) &#123;</div><div class="line">    state.history = history</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  &apos;SET_DATA&apos; (state, data) &#123;</div><div class="line">    Array.prototype.push.apply(state.data,data) </div><div class="line">	&#125;,</div><div class="line">	</div><div class="line">	&apos;SET_PROJECTDATA&apos; (state, data) &#123;</div><div class="line">    state.projectData = data</div><div class="line">	&#125;,</div><div class="line"></div><div class="line">  &apos;SET_USERDATA&apos; (state, data) &#123;</div><div class="line">    state.userData = data</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">	&apos;SET_GROUPEDDATA&apos; (state, data) &#123;</div><div class="line">    state.groupedData = data</div><div class="line">  &#125;,</div><div class="line">  </div><div class="line">	&apos;SET_COMPAREDATA&apos; (state, data) &#123;</div><div class="line">    state.compareData = data</div><div class="line">	&#125;,</div><div class="line">	</div><div class="line">  &apos;RESET_DATA&apos; (state) &#123;</div><div class="line">    state.data = []</div><div class="line">  &#125;,</div><div class="line">  </div><div class="line">  &apos;RESET_PROJECT&apos; (state) &#123;</div><div class="line">    state.project = &#123;&#125;</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  &apos;RESET_PROJECTS&apos; (state) &#123;</div><div class="line">    state.data = []</div><div class="line">    state.project = &#123;&#125;</div><div class="line">    state.projects = []</div><div class="line">    state.channels = []</div><div class="line">    state.history = []</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">const getters = &#123;</div><div class="line">  getData: state =&gt; &#123;</div><div class="line">    return state.data</div><div class="line">  &#125;,</div><div class="line">  getUserdata: state =&gt; &#123;</div><div class="line">    return state.userData</div><div class="line">	&#125;,</div><div class="line">	getProjectData: state =&gt; &#123;</div><div class="line">		return state.projectData</div><div class="line">	&#125;,</div><div class="line">	getGroupedData: state =&gt; &#123;</div><div class="line">		return state.groupedData</div><div class="line">	&#125;,</div><div class="line">  getProject: state =&gt; &#123;</div><div class="line">    return state.project</div><div class="line">	&#125;,</div><div class="line">	getProjects: state =&gt; &#123;</div><div class="line">		return state.projects</div><div class="line">	&#125;,</div><div class="line">  getChannels: state =&gt; &#123;</div><div class="line">    return state.channels</div><div class="line">  &#125;,</div><div class="line">  getHistory: state =&gt; &#123;</div><div class="line">    return state.history</div><div class="line">  &#125;,</div><div class="line">  getCompareData: state =&gt; &#123;</div><div class="line">    return state.compareData</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default &#123;</div><div class="line">  state, </div><div class="line">  mutations,</div><div class="line">  actions,</div><div class="line">  getters</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+![VueJS]()
+
+
+---
+
+> .
+
+<br>
+
+### - 끝 -
+
+<style>
 
 video,
 p img {
