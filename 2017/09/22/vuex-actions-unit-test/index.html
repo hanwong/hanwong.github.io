@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Woong's blog.">
 <meta property="og:description" content="Axios를 활용해서 API 호출을 주로 담당하는 Action들의 Unit Test에 대해 다루는 글입니다.">
 <meta property="og:image" content="http://hanwong.github.io/assets/vue.png">
-<meta property="og:updated_time" content="2017-09-21T14:58:15.000Z">
+<meta property="og:updated_time" content="2017-09-21T14:58:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VueJS | Vuex Unit Test (1)">
 <meta name="twitter:description" content="Axios를 활용해서 API 호출을 주로 담당하는 Action들의 Unit Test에 대해 다루는 글입니다.">
@@ -265,8 +265,7 @@
 <p>아무튼 서두가 많이 길어졌는데 TDD를 하기 위해서는 얕은 지식으로 Test코드를 먼저 구현한 다음에 실제 코딩을 하는것이라고 알고 있었는데 역시 그래야 하는것을 몸으로 부딪히며 느꼈습니다.<br>제가 개발한 환경은 <code>vue-cli</code>로 기본 환경을 설정하였고 <code>store</code>에 <code>vuex</code> 관련 설정을 하였었습니다. 아래 코드와 같이 기능에 따라서 <code>module</code>로 분리를 하고 <code>module</code>안에 <code>state</code>, <code>mutations</code>, <code>actions</code>, <code>getters</code>를 모두 담은 구조로 개발해놓은 상태였었습니다.</p>
 <figure class="highlight js"><figcaption><span>store/modules/project.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> state = &#123;&#125;</div><div class="line"><span class="keyword">const</span> mutations = &#123;&#125;</div><div class="line"><span class="keyword">const</span> actions = &#123;&#125;</div><div class="line"><span class="keyword">const</span> getters = &#123;&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  state, </div><div class="line">  mutations,</div><div class="line">  actions,</div><div class="line">  getters</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>이런 형태로요 그런데…<br>Action들을 테스트하기 위해서는 모듈에서 별도의 파일로 분리되어 있어야</p>
-<p><img src="https://vuex.vuejs.org/kr/testing.html#" alt="VueJS]()
-z"></p>
+<p><img src="" alt="VueJS"><br><a href="https://vuex.vuejs.org/kr/testing.html#" target="_blank" rel="external">Vuex Testing</a></p>
 <hr>
 <blockquote>
 <p>ddd.</p>
