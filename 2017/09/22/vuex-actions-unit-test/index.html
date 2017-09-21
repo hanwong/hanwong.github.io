@@ -3,14 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Tag: css | Woong&#39;s blog.</title>
+    <title>VueJS | Vuex Unit Test (1) | Woong&#39;s blog.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Woong's blog.">
-<meta property="og:url" content="http://hanwong.github.io/tags/css/index.html">
+    <meta name="description" content="Axios를 활용해서 API 호출을 주로 담당하는 Action들을 Unit Test 할 때 Mock을 활요한 방법에 대해 다루는 글입니다.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VueJS | Vuex Unit Test (1)">
+<meta property="og:url" content="http://hanwong.github.io/2017/09/22/vuex-actions-unit-test/index.html">
 <meta property="og:site_name" content="Woong's blog.">
+<meta property="og:description" content="Axios를 활용해서 API 호출을 주로 담당하는 Action들을 Unit Test 할 때 Mock을 활요한 방법에 대해 다루는 글입니다.">
+<meta property="og:image" content="http://hanwong.github.io/assets/vue.png">
+<meta property="og:updated_time" content="2017-09-21T14:02:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Woong's blog.">
+<meta name="twitter:title" content="VueJS | Vuex Unit Test (1)">
+<meta name="twitter:description" content="Axios를 활용해서 API 호출을 주로 담당하는 Action들을 Unit Test 할 때 Mock을 활요한 방법에 대해 다루는 글입니다.">
+<meta name="twitter:image" content="http://hanwong.github.io/assets/vue.png">
     
 
     
@@ -200,51 +206,208 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-tag"></i></span>
-        <h1 class="title">#css</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-vuex-actions-unit-test" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="/assets/vuebanner.jpg" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2016/07/23/Isolate-Float/">Extended Isolate Float Technique</a>
+        <h1 class="article-title" itemprop="name">
+            VueJS | Vuex Unit Test (1)
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/07/23/Isolate-Float/">
-            <time datetime="2016-07-22T15:00:00.000Z" itemprop="datePublished">2016-07-23</time>
+        <a href="/2017/09/22/vuex-actions-unit-test/">
+            <time datetime="2017-09-21T15:00:00.000Z" itemprop="datePublished">2017-09-22</time>
         </a>
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/CSS/">CSS</a>
+        <a class="article-category-link" href="/categories/VueJS/">VueJS</a>
     </div>
 
-                    
+                        
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/css/">css</a>, <a class="tag-link" href="/tags/grid/">grid</a>, <a class="tag-link" href="/tags/isolate-float/">isolate-float</a>, <a class="tag-link" href="/tags/isolate-technique/">isolate-technique</a>, <a class="tag-link" href="/tags/layout/">layout</a>
+        <a class="tag-link" href="/tags/TDD/">TDD</a>, <a class="tag-link" href="/tags/actions/">actions</a>, <a class="tag-link" href="/tags/axios/">axios</a>, <a class="tag-link" href="/tags/axios-mock-adapter/">axios-mock-adapter</a>, <a class="tag-link" href="/tags/mock/">mock</a>, <a class="tag-link" href="/tags/test/">test</a>, <a class="tag-link" href="/tags/unit/">unit</a>, <a class="tag-link" href="/tags/unit-test/">unit-test</a>, <a class="tag-link" href="/tags/vue/">vue</a>, <a class="tag-link" href="/tags/vuejs/">vuejs</a>, <a class="tag-link" href="/tags/vuex/">vuex</a>
     </div>
 
-                </div>
-            </div>
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>Axios를 활용해서 API 호출을 주로 담당하는 Action들을 Unit Test 할 때 Mock을 활요한 방법에 대해 다루는 글입니다.</p>
+<hr>
+<a id="more"></a>
+<p>이번 포스팅에서는 비동기 호출을 주로 담당하는 Action들을 테스트 하는 방법에 대해서 다루고자 합니다.</p>
+<ul>
+<li><p>원칙적으로 TDD를 하고자 하면 TDD 구성을 먼저 한 후에 그에 맞춰서 코드를 작성해 나가는것이라고 알고 있지만 막상 일정을 타이트하게 잡고 개발을 시작하게 되면 TDD라는 것은 까마득하게 잊어 버리는 것 같습니다.<br>그러나 마무리가 되어갈 쯤 TDD 해야 하나 하는 생각이 항상 스쳐지나가고 한번 해봐야지 해봐야지 하다가 매번 미루고 그냥 지나갔었던것 같습니다.<br>요번엔 마침 여유 아닌 여유가 생겨서 TDD를 한번 시도해보았습니다.</p>
+</li>
+<li><p>이미 개발을 많이 해놓은지라 컴포넌트 단위의 이벤트를 처리하는 것은 시간이 많이 걸릴것 같고 API 호출을 담당하는 Action들을 조금이라도 Unit Test를 해보면 좋을것 같다는 생각이 들어서 Action Unit Test를 해보기 시작했습니다. 실제적인 Vuejs의 Unit Test에 대한 지식은 전무했던지라 하나 하나 검색해보았습니다. 처음에 생각 했을 때는 API 호출하는 기능들을 테스트하려면 DB에 뭔가 더미 데이터가 박혀 있어야 하나 생각 했었는데 이미 TDD 를 하고 계신 백엔드를 담당하시는 팀장님께서 백엔드에서는 호출 하지 않고 Mock을 만들어서 테스트를 한다고 하시더군요… Mock이라는게 있는지도 몰랐었는데 axios 관련해서도 mock을 검색하니 바로 나오더 군요. <code>axios-mock-adapter</code>라는 것이었습니다. 그런데 Unit Test를 시작하지도 않았으니… 설명을 봐도 뭔소린지 모르겠더군요… 이 모듈에 대해서는 제일 마지막에 다루게 될것 같습니다.</p>
+</li>
+</ul>
+<p>아무튼 서두가 조금 길어졌는데 </p>
+<p><img src="https://kr.vuejs.org/images/lifecycle.png" alt="VueJS 라이프사이클"></p>
+<hr>
+<blockquote>
+<p>.</p>
+</blockquote>
+<p><br></p>
+<h3 id="끝"><a href="#끝" class="headerlink" title="- 끝 -"></a>- 끝 -</h3><style>
+
+video,
+p img {
+  width: 100%;
+  box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+</style>
+
+        
         </div>
-    
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
 </div>
-</section>
+
+    <a data-url="http://hanwong.github.io/2017/09/22/vuex-actions-unit-test/" data-id="cj7uj1f3l000ona27ofh1mhfz" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://hanwong.github.io/2017/09/22/vuex-actions-unit-test/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://hanwong.github.io/2017/09/22/vuex-actions-unit-test/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/05/20/vue-stock-trader-04/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">VueJS | Stock-Trader Project Tutorial (4)</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+<div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- git-blog2 -->
+    <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-1634774047569138"
+        data-ad-slot="3851029049"
+        data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div></section>
             
                 <aside id="sidebar">
    
@@ -418,11 +581,13 @@
     <script>
     var disqus_config = function () {
         
-        this.page.identifier = 'undefined';
+            this.page.url = 'http://hanwong.github.io/2017/09/22/vuex-actions-unit-test/';
+        
+        this.page.identifier = 'vuex-actions-unit-test';
     };
     (function() { 
         var d = document, s = d.createElement('script');  
-        s.src = '//' + 'hanwong' + '.disqus.com/count.js';
+        s.src = '//' + 'hanwong' + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
