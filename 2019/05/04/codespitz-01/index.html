@@ -5,17 +5,20 @@
     
     <title>객체지향프로그래밍의 기초 | Woong&#39;s blog.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="객체지향 프로그래밍과 디자인패턴 대해 학습한 내용을 공유하고자 합니다.">
+    <meta name="description" content="&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; 작성중 &amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;
+객체지향 프로그래밍과 디자인패턴 대해 학습한 내용을 공유하고자 합니다.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="객체지향프로그래밍의 기초">
 <meta property="og:url" content="http://hanwong.github.io/2019/05/04/codespitz-01/index.html">
 <meta property="og:site_name" content="Woong's blog.">
-<meta property="og:description" content="객체지향 프로그래밍과 디자인패턴 대해 학습한 내용을 공유하고자 합니다.">
+<meta property="og:description" content="&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; 작성중 &amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;
+객체지향 프로그래밍과 디자인패턴 대해 학습한 내용을 공유하고자 합니다.">
 <meta property="og:image" content="http://hanwong.github.io/assets/vue.png">
-<meta property="og:updated_time" content="2019-05-27T13:43:01.921Z">
+<meta property="og:updated_time" content="2019-05-27T13:46:54.271Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="객체지향프로그래밍의 기초">
-<meta name="twitter:description" content="객체지향 프로그래밍과 디자인패턴 대해 학습한 내용을 공유하고자 합니다.">
+<meta name="twitter:description" content="&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; 작성중 &amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;
+객체지향 프로그래밍과 디자인패턴 대해 학습한 내용을 공유하고자 합니다.">
 <meta name="twitter:image" content="http://hanwong.github.io/assets/vue.png">
     
 
@@ -257,7 +260,8 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>객체지향 프로그래밍과 디자인패턴 대해 학습한 내용을 공유하고자 합니다.</p>
+            <p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; 작성중 &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</p>
+<p>객체지향 프로그래밍과 디자인패턴 대해 학습한 내용을 공유하고자 합니다.</p>
 <hr>
 <a id="more"></a>
 <h2 id="객체지향-프로그래밍을-구현하기-위한-두가지-속성"><a href="#객체지향-프로그래밍을-구현하기-위한-두가지-속성" class="headerlink" title="객체지향 프로그래밍을 구현하기 위한 두가지 속성"></a>객체지향 프로그래밍을 구현하기 위한 두가지 속성</h2><blockquote>
@@ -366,7 +370,7 @@
 <h3 id="2-소유위임"><a href="#2-소유위임" class="headerlink" title="2. 소유위임"></a>2. 소유위임</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">////// STARATEGY PATTERN //////</span></div><div class="line"><span class="keyword">const</span> Github = <span class="class"><span class="keyword">class</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(id, repo) &#123;</div><div class="line">    <span class="keyword">this</span>._base = <span class="string">`https://api.github.com/repos/<span class="subst">$&#123;id&#125;</span>/<span class="subst">$&#123;repo&#125;</span>/contents/`</span>;</div><div class="line">  &#125;</div><div class="line">  load(path) &#123;</div><div class="line">    <span class="keyword">if</span>(!<span class="keyword">this</span>._parser) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">const</span> id = <span class="string">'callback'</span> + Github._id++;</div><div class="line">    <span class="keyword">const</span> f = Github[id] = <span class="function">(<span class="params">&#123;data: &#123;content&#125;&#125;</span>) =&gt;</span> &#123;</div><div class="line">      <span class="keyword">delete</span> Github[id];</div><div class="line">      <span class="built_in">document</span>.head.removeChild(s);</div><div class="line">      <span class="keyword">this</span>._parser(content); <span class="comment">////// 위임부분 //////</span></div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">const</span> s = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</div><div class="line">    s.src = <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>._base + path&#125;</span>?callback=Github.<span class="subst">$&#123;id&#125;</span>`</span>;</div><div class="line">    <span class="built_in">document</span>.head.appendChild(s);</div><div class="line">  &#125;</div><div class="line">  <span class="comment">////// STARATEGY OBJECT //////</span></div><div class="line">  set parser(v)&#123;<span class="keyword">this</span>._parser = v;&#125;; <span class="comment">////// 위임객체 //////</span></div><div class="line"></div><div class="line">Github._id = <span class="number">0</span>;</div></pre></td></tr></table></figure>
 <ul>
 <li>상속위임 코드와 비슷해 보이지만 소유를 나타내는 메소드가 추가되었다.</li>
-<li><code>set parser(...)</code>로 <code>_parser</code>를 받아들이게 되어 있다. 상속계열의 this 메소드를 홀출하는것이 아니라 소유하게 된 외뷔객체인 <code>_parser</code>에게 위임을 하게 되는것이다.</li>
+<li><code>set parser(...)</code>로 <code>_parser</code>를 받아들이게 되어 있다. 상속계열의 this 메소드를 호출하는것이 아니라 소유하게 된 외뷔객체인 <code>_parser</code>에게 위임을 하게 되는것이다.</li>
 <li>소유위임을 하게 되면 내가 소유할 객체들을 원본 객체에게 전달할 책임이 생기게 된다. 이것을 <code>injection</code> 주입이라고 한다.</li>
 <li><code>위임부분</code>을 <code>위임객체체</code>가 처리해준다.</li>
 <li><code>override</code>나 내부의 <code>hook</code>을 이용한 <code>템플릿메소드패턴</code>을 소유모델로 바꾸게 되면 <code>전략패턴</code>으로 바뀌게 된다. 그래서 <code>템플릿메소드패턴</code>와 <code>전략패턴</code>은 형제 관계이다. 같은 내용을 상속으로 구현할래 소유로 구현할래의 차이이다.</li>
