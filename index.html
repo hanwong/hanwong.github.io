@@ -154,11 +154,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                10
+                11
                 <span>posts</span>
             </div>
             <div class="article-info-block">
-                30
+                32
                 <span>tags</span>
             </div>
         </div>
@@ -201,6 +201,150 @@
 
             
             <section id="main">
+    <article id="post-codespitz-01" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<a href="/2019/05/04/codespitz-01/" itemprop="url">
+            <img src="/assets/oop.png" class="article-banner" />
+        </a>
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2019/05/04/codespitz-01/">객체지향프로그래밍의 기초</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2019/05/04/codespitz-01/">
+            <time datetime="2019-05-03T15:00:00.000Z" itemprop="datePublished">2019-05-04</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/OOP/">OOP</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/DESIGNPATTERN/">DESIGNPATTERN</a>, <a class="tag-link" href="/tags/OOP/">OOP</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>객체지향 프로그래밍과 디자인패턴 대해 학습한 내용을 공유하고자 합니다.</p>
+<hr></p>
+            <p class="article-more-link">
+                <a href="/2019/05/04/codespitz-01/#more">Read More</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://hanwong.github.io/2019/05/04/codespitz-01/" data-id="cjw6faeyf0000ug27sb3xwb5j" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://hanwong.github.io/2019/05/04/codespitz-01/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://hanwong.github.io/2019/05/04/codespitz-01/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-vuex-actions-unit-test" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -925,141 +1069,6 @@
 
 
 
-    <article id="post-vue-resource-firebase03" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/02/25/vue-resource-firebase03/">VueJS 공부하기 (3) | vue-resource - interceptors, $resource</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/02/25/vue-resource-firebase03/">
-            <time datetime="2017-02-24T15:00:00.000Z" itemprop="datePublished">2017-02-25</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/VueJS/">VueJS</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/resource/">$resource</a>, <a class="tag-link" href="/tags/firebase/">firebase</a>, <a class="tag-link" href="/tags/http/">http</a>, <a class="tag-link" href="/tags/interceptors/">interceptors</a>, <a class="tag-link" href="/tags/resource/">resource</a>, <a class="tag-link" href="/tags/vue/">vue</a>, <a class="tag-link" href="/tags/vue-resource/">vue-resource</a>, <a class="tag-link" href="/tags/vuejs/">vuejs</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><p>firebase를 아주 간단한 하게 활용해서 vue-resource를 아주 간단하게 체험해보기<br>이 포스팅은 <a href="https://www.udemy.com/vuejs-2-the-complete-guide/learn/v4/overview">Max의 Vuejs 강좌</a> 내용을 정리한것 입니다.</p>
-<hr>
-<p><em>이번 포스팅에서는 <code>interceptors</code>와 <code>resource</code>에 대해서 알아 볼 것입니다.</em><br><br><br></p>
-            <p class="article-more-link">
-                <a href="/2017/02/25/vue-resource-firebase03/#more">Read More</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://hanwong.github.io/2017/02/25/vue-resource-firebase03/" data-id="cj7uj1f38000bna27vvudx6q9" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://hanwong.github.io/2017/02/25/vue-resource-firebase03/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://hanwong.github.io/2017/02/25/vue-resource-firebase03/">Comments</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <nav id="page-nav">
         <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
@@ -1072,6 +1081,25 @@
         <h3 class="widget-title">recent</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/04/codespitz-01/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="객체지향프로그래밍의 기초" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/OOP/">OOP</a></p>
+                            <p class="item-title"><a href="/2019/05/04/codespitz-01/" class="title">객체지향프로그래밍의 기초</a></p>
+                            <p class="item-date"><time datetime="2019-05-03T15:00:00.000Z" itemprop="datePublished">2019-05-04</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -1149,25 +1177,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/08/vue-stock-trader-01/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/assets/vue.png)" alt="VueJS | Stock-Trader Project Tutorial (1)" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
-                            <p class="item-title"><a href="/2017/04/08/vue-stock-trader-01/" class="title">VueJS | Stock-Trader Project Tutorial (1)</a></p>
-                            <p class="item-date"><time datetime="2017-04-07T15:00:00.000Z" itemprop="datePublished">2017-04-08</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -1177,7 +1186,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Guide/">Guide</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VueJS/">VueJS</a><span class="category-list-count">8</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Guide/">Guide</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OOP/">OOP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VueJS/">VueJS</a><span class="category-list-count">8</span></li></ul>
         </div>
     </div>
 
@@ -1186,7 +1195,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -1195,7 +1204,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/resource/" style="font-size: 10px;">$resource</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CodeGuide/" style="font-size: 10px;">CodeGuide</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/TDD/" style="font-size: 10px;">TDD</a> <a href="/tags/actions/" style="font-size: 10px;">actions</a> <a href="/tags/animation/" style="font-size: 10px;">animation</a> <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/axios-mock-adapter/" style="font-size: 10px;">axios-mock-adapter</a> <a href="/tags/components/" style="font-size: 14px;">components</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/filter/" style="font-size: 10px;">filter</a> <a href="/tags/firebase/" style="font-size: 14px;">firebase</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/http/" style="font-size: 12px;">http</a> <a href="/tags/interceptors/" style="font-size: 10px;">interceptors</a> <a href="/tags/isolate-float/" style="font-size: 10px;">isolate-float</a> <a href="/tags/isolate-technique/" style="font-size: 10px;">isolate-technique</a> <a href="/tags/layout/" style="font-size: 10px;">layout</a> <a href="/tags/mock/" style="font-size: 10px;">mock</a> <a href="/tags/resource/" style="font-size: 10px;">resource</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/tutorial/" style="font-size: 14px;">tutorial</a> <a href="/tags/unit/" style="font-size: 10px;">unit</a> <a href="/tags/unit-test/" style="font-size: 10px;">unit-test</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/vue-resource/" style="font-size: 18px;">vue-resource</a> <a href="/tags/vue-router/" style="font-size: 14px;">vue-router</a> <a href="/tags/vuejs/" style="font-size: 20px;">vuejs</a> <a href="/tags/vuex/" style="font-size: 16px;">vuex</a>
+            <a href="/tags/resource/" style="font-size: 10px;">$resource</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CodeGuide/" style="font-size: 10px;">CodeGuide</a> <a href="/tags/DESIGNPATTERN/" style="font-size: 10px;">DESIGNPATTERN</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/TDD/" style="font-size: 10px;">TDD</a> <a href="/tags/actions/" style="font-size: 10px;">actions</a> <a href="/tags/animation/" style="font-size: 10px;">animation</a> <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/axios-mock-adapter/" style="font-size: 10px;">axios-mock-adapter</a> <a href="/tags/components/" style="font-size: 14px;">components</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/filter/" style="font-size: 10px;">filter</a> <a href="/tags/firebase/" style="font-size: 14px;">firebase</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/http/" style="font-size: 12px;">http</a> <a href="/tags/interceptors/" style="font-size: 10px;">interceptors</a> <a href="/tags/isolate-float/" style="font-size: 10px;">isolate-float</a> <a href="/tags/isolate-technique/" style="font-size: 10px;">isolate-technique</a> <a href="/tags/layout/" style="font-size: 10px;">layout</a> <a href="/tags/mock/" style="font-size: 10px;">mock</a> <a href="/tags/resource/" style="font-size: 10px;">resource</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/tutorial/" style="font-size: 14px;">tutorial</a> <a href="/tags/unit/" style="font-size: 10px;">unit</a> <a href="/tags/unit-test/" style="font-size: 10px;">unit-test</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/vue-resource/" style="font-size: 18px;">vue-resource</a> <a href="/tags/vue-router/" style="font-size: 14px;">vue-router</a> <a href="/tags/vuejs/" style="font-size: 20px;">vuejs</a> <a href="/tags/vuex/" style="font-size: 16px;">vuex</a>
         </div>
     </div>
 
@@ -1222,7 +1231,7 @@
     <div class="outer">
         <div id="histats_counter"></div>
         <div id="footer-info" class="inner">
-            &copy; 2018 Woong
+            &copy; 2019 Woong
             <br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
         </div>

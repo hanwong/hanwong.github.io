@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>객체지향프로그래밍의 기초 | Woong&#39;s blog.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="객체지향 프로그래밍과 디자인패턴 대해 학습한 내용을 공유하고자 합니다.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="객체지향프로그래밍의 기초">
+<meta property="og:url" content="http://hanwong.github.io/2019/05/04/codespitz-01/index.html">
+<meta property="og:site_name" content="Woong's blog.">
+<meta property="og:description" content="객체지향 프로그래밍과 디자인패턴 대해 학습한 내용을 공유하고자 합니다.">
+<meta property="og:image" content="http://hanwong.github.io/assets/vue.png">
+<meta property="og:updated_time" content="2019-05-27T13:43:01.921Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="객체지향프로그래밍의 기초">
+<meta name="twitter:description" content="객체지향 프로그래밍과 디자인패턴 대해 학습한 내용을 공유하고자 합니다.">
+<meta name="twitter:image" content="http://hanwong.github.io/assets/vue.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/css/images/favicon-32.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Woong&#39;s blog.</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/profile.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/profile.png" />
+            <h2 id="name">Kim Han Woong</h2>
+            <h3 id="title">Front-end Developer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Korea</span>
+            <a id="follow" target="_blank" href="https://github.com/hanwong/">FOLLOW</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                11
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                32
+                <span>tags</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/hanwong" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.instagram.com/hanationbear" target="_blank" title="instagram" class=tooltip>
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.facebook.com/hanwong85" target="_blank" title="facebook" class=tooltip>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://twitter.com/HanW000ng" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-codespitz-01" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="/assets/oop.png" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            객체지향프로그래밍의 기초
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2019/05/04/codespitz-01/">
+            <time datetime="2019-05-03T15:00:00.000Z" itemprop="datePublished">2019-05-04</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/OOP/">OOP</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/DESIGNPATTERN/">DESIGNPATTERN</a>, <a class="tag-link" href="/tags/OOP/">OOP</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>객체지향 프로그래밍과 디자인패턴 대해 학습한 내용을 공유하고자 합니다.</p>
+<hr>
+<a id="more"></a>
+<h2 id="객체지향-프로그래밍을-구현하기-위한-두가지-속성"><a href="#객체지향-프로그래밍을-구현하기-위한-두가지-속성" class="headerlink" title="객체지향 프로그래밍을 구현하기 위한 두가지 속성"></a>객체지향 프로그래밍을 구현하기 위한 두가지 속성</h2><blockquote>
+<p>이 두가지 성질을 가져야지만 객체지향 프로그래밍이 가능한 언어라고 할 수 있습니다. 이 성질은 언아마다 매커니즘이 다릅니다. </p>
+</blockquote>
+<h3 id="1-대체가능성"><a href="#1-대체가능성" class="headerlink" title="1. 대체가능성"></a>1. 대체가능성</h3><ul>
+<li>폴리모피즘</li>
+<li>하위형은 상위형(추상형)을 대신 할 수 있다. </li>
+<li>확장된형은 확장이전형을 대체 할 수 있다</li>
+<li>자식은 부모를 대신 할 수 있다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Parent = <span class="class"><span class="keyword">class</span> </span>&#123;&#125;;</div><div class="line"><span class="keyword">const</span> Child = <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">Parent</span></span>&#123;&#125;;</div><div class="line"><span class="keyword">const</span> a = <span class="keyword">new</span> Child();</div><div class="line"><span class="built_in">console</span>.log(a <span class="keyword">instanceof</span> Parent); <span class="comment">// true</span></div><div class="line"><span class="comment">// Child는 Parent를 대신 할 수 있어! 를 의미하는 코드입니다.</span></div></pre></td></tr></table></figure>
+<ul>
+<li>이 구조는 몇단계로 확장 되어도 그 윗단계는 대체 할 수 있다는 뜻 <ul>
+<li>객체지향언어는 이것을 만족하는 장치가 있어야 한다.</li>
+<li>자바스크립트에서는 프로토타입 체인에 의해서 <code>__proto__</code>가 기록되어 있는 객체 간의 체인으로 그 체인을 다 조사해서 그 중에 한 객체라도 걸리면 <code>instanceof</code>가 성립하는 결과로 만족 시기고 있다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-내적일관성-내적동질성"><a href="#2-내적일관성-내적동질성" class="headerlink" title="2. 내적일관성(내적동질성)"></a>2. 내적일관성(내적동질성)</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Parent = <span class="class"><span class="keyword">class</span> </span>&#123;</div><div class="line">  wrap() &#123;</div><div class="line">    <span class="keyword">this</span>.action();</div><div class="line">  &#125;</div><div class="line">  action() &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Parent'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">const</span> Child = <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">Parent</span></span>&#123;</div><div class="line">  action() &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Child'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> a = <span class="keyword">new</span> Child();</div><div class="line">a.wrap(); <span class="comment">// Child</span></div></pre></td></tr></table></figure>
+<ul>
+<li>내적동질성 이란 <ul>
+<li>아무리 확장되기 전 객체들의 메소드나 다른 객체들의 메소드 계층 상에 있는 메소드를 호출해도 본래 객체의 본질은 변하지 않는다는 의미…?? 나의 본질은 Child이기 때문에 Parent로 보려고 해도 나의 본질은 Child라는 의미…</li>
+<li>태생을 그대로 유지하려는 성질</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>대체가능성과, 내적동질성  이 두가지 성질이 객체지향의 학술적 정의이고 언어가 어떤 방법으로 지원을 해야 객체지향 언아라 할 수 있다.</p>
+</blockquote>
+<hr>
+<h2 id="디자인패턴"><a href="#디자인패턴" class="headerlink" title="디자인패턴"></a>디자인패턴</h2><blockquote>
+<p>GOF의 디자인패턴 분류 - 생성패턴, 구조패턴, 행동패턴… 이런건 객체지향 설계가 익숙해진 후에 공부하는 걸로…</p>
+<p>객체지향 설계를 위한 다양한 원리들이 있지만 … 격리를 통한 역할모델을 구현하는 것에 대해서 집중적으로 보려고 합니다. </p>
+<p>디자인패턴을 역할모델을 기준으로 분류해서 어떤 방식으로 무슨 역할을 분리하기 위해 무슨 패턴을 쓰는지~ 라는 관점으로 학습해보고자 합니다.</p>
+</blockquote>
+<h2 id="디자인패턴과-제어문-기반의-알고리즘이-갖는-문제점"><a href="#디자인패턴과-제어문-기반의-알고리즘이-갖는-문제점" class="headerlink" title="디자인패턴과 제어문 기반의 알고리즘이 갖는 문제점"></a>디자인패턴과 제어문 기반의 알고리즘이 갖는 문제점</h2><ul>
+<li>기존 제어문 기반으로 알고리즘을 짜면 코드 한줄만 수정을 해도 영향이 가는 모든 코드를 테스트 해봐야 한다. 코드를 건드리는것 자체가 엄청난 일이 된다.</li>
+<li><p>알고리즘이 변화하는 부분만 수정하고 나머지는 건드리고 싶지 않다면?</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(<span class="keyword">case</span> == <span class="number">1</span>) &#123; ... &#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">case</span> == <span class="number">2</span>) &#123; ... &#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">case</span> == <span class="number">3</span>) &#123; ... &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>코드를 안건드리고 어떻게 if를 조정하지? 이 질문이 아키텍쳐 이하 모든 디자인패턴의 원형적인 목표이다.</p>
+<ul>
+<li>문제1. 경우가 변경될 때</li>
+<li>문제2. 함수 간 공통부분</li>
+<li>프로시져 지향, 공통 의존 데이터 문제, 상태에 대한 의존성이 강해지기 때문에 복잡해질수록 프로시져를 나눌수록 더욱더 원본 데이터의 수정이 불가능해진다. </li>
+<li>절차지향적으로 어딘가 데이터의 바인딩이 많이 되게 개발을 하게 되면 변화를 수용할 수 없게 되고 데이터의 구조나 목표가 조금만 바뀌어도 프로그램 전체를 다시 개발하게 된다.</li>
+</ul>
+</li>
+<li><p>이 문제를 해결하기 위해 객체지향이 나온것이다. </p>
+<ul>
+<li>프로시져가 가리키는 데이터를 은닉하고 캡슐화하여 노출해야지? 데이터를 쉐어하는 것이 문제의 원인이니까 원천적으로 데이터를 공유하지 못하도록 하겠다는 것이 객체지향이다.</li>
+<li>문제는 절차가 아니라 절차들이 공유하고 있는 데이터인것이다.</li>
+<li>이를 해결하기 위해서 데이터를 절차와 강력하게 바인딩하여 은닉시키고, 표준화된 메세지로만 통신하여 협력하는 모델로 바꿔 나간다.<ul>
+<li>데이터에 대한 서로간의 의존성이 없어지기 때문에 우리는 부분적으로 격리를 시킬수 있게 되는 것이 객체지향의 시발점이다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="알고리즘-분화-시-객체지향에서-선택할-수-있는-두가지-방법"><a href="#알고리즘-분화-시-객체지향에서-선택할-수-있는-두가지-방법" class="headerlink" title="알고리즘 분화 시 객체지향에서 선택할 수 있는 두가지 방법"></a>알고리즘 분화 시 객체지향에서 선택할 수 있는 두가지 방법</h2><blockquote>
+<p>상속위임 - 내부계약관계로 추상층에서 공통 요소를 해결하고 상태를 공유 할 수 있음. 공통 부분을 처리하기 위해 사용한다. 나는 너를 알지의 개념. 확장된 쪽이 부모쪽을 아는 것. 상속위임은 내부사정으로 약속이 확정되어 있다. 객체간 내부사정을 다 안다고 하면 통신을 따로 약속하지 않고 훨씬 더 안전하게 통신 할 수 있다는 장점이 있다.</p>
+<p>소유위임 - 외부계약관계로 각각이 독립적인 문제를 해결하며 메세지를 주고 받는 것으로 문제를 해결함. 내 할일하고 나머지는 맡기는 방법. 소유위임은 분리된 객체끼리 통신할 통신망을 확보해야만 한다. 독립되어 있는 객체간의 약속이 필요하다. 객체망을 구성한다고도 함.</p>
+</blockquote>
+<ul>
+<li>어찌됬든 소유와 상속을 사용하는 이유는 케이스에 대응하기 위해서와 케이스에 대한 처리를 확장하기 위해서이다.</li>
+<li>디자인패턴은 소유위임을 위주로 설명한다.<ul>
+<li>디자인패턴을 사용하면 여러가지 프로토콜, 객체 간의 통신하는 층을 만들어 줘야 한다. 부속물이 많이 생기게 된다. 더 넗게 더 관계 없는 것과도 통신할 수 있게 하고 싶은 것.</li>
+<li>연결해야 하는 대상이 많으면 많을수록 소요위임이 훨씬 유리해진다.</li>
+<li>소유위임은 케이스의 확장, 처리기의 확장을 더 멀리 넓게 퍼뜨릴 수 있지만 처리속도는 낮아지고 더 많은 부하를 걸게 될 수도 있다.</li>
+<li>상속위임은 그 반대가 일어난다.</li>
+<li>속도와 메모리는 바꿀 수 있다.</li>
+<li>상속위임은 속도나 효율이 좋아지고, 소유위임은 메모리를 많이 사용하는 방식이다.</li>
+<li>소유위임은 더 많은 경우의 수를 처리 할 수 있는 범용적인 솔루션으로써의 패턴을 제안하는것이다.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="1-상속위임"><a href="#1-상속위임" class="headerlink" title="1. 상속위임"></a>1. 상속위임</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/////// TEMPLATE METHOD PATTERN //////</span></div><div class="line"><span class="keyword">const</span> Github = <span class="class"><span class="keyword">class</span> </span>&#123; <span class="comment">////// 정의시점 - 변하지 않는 부분 //////</span></div><div class="line">  <span class="keyword">constructor</span>(id, repo) &#123;</div><div class="line">    <span class="keyword">this</span>._base = <span class="string">`https://api.github.com/repos/<span class="subst">$&#123;id&#125;</span>/<span class="subst">$&#123;repo&#125;</span>/contents/`</span>;</div><div class="line">  &#125;</div><div class="line">  load(path) &#123;</div><div class="line">    <span class="comment">/////////////////// 공통부부분 - start ///////////////////</span></div><div class="line">    <span class="keyword">const</span> id = <span class="string">'callback'</span> + Github._id++;</div><div class="line">    <span class="keyword">const</span> f = Github[id] = <span class="function">(<span class="params">&#123;data: &#123;content&#125;&#125;</span>) =&gt;</span> &#123;</div><div class="line">      <span class="keyword">delete</span> Github[id];</div><div class="line">      <span class="built_in">document</span>.head.removeChild(s);</div><div class="line">      <span class="comment">/////// 위임부분 - start ///////</span></div><div class="line">      <span class="keyword">this</span>._loaded(content);</div><div class="line">      <span class="comment">/////// 위임부분 - end ///////</span></div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">const</span> s = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</div><div class="line">    s.src = <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>._base + path&#125;</span>?callback=Github.<span class="subst">$&#123;id&#125;</span>`</span>;</div><div class="line">    <span class="built_in">document</span>.head.appendChild(s);</div><div class="line">    <span class="comment">/////////////////// 공통부부분 - end ///////////////////</span></div><div class="line">  &#125;</div><div class="line">  _loaded(v)&#123;<span class="keyword">throw</span> <span class="string">'override!'</span>&#125;; <span class="comment">/////// HOOK //////</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">Github._id = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> ImageLoader = <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">Github</span> </span>&#123; <span class="comment">////// 실행시점 - 변하는 부분 //////</span></div><div class="line">  _loaded(v) &#123;...&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ul>
+<li>위 코드는 상속위임을 위한 기본 골격이 되는 코드이다.</li>
+<li><code>공통부분</code>은 이미지를 로딩하던지 텍스트를 로딩하던지 이 로직은 변하지 않는 부분이다.</li>
+<li><code>위임부분</code>이 변하는 부분이고, <code>if</code> 케이스 별로 바뀌어야 하는 부분이다.</li>
+<li><code>위임부분</code>을 내적동질성을 이용해서 서브클래스에게 위임하는 것이다.</li>
+<li>자식 별로 다르게 처리해야 하는 부분만 처리 할 수 있도록 하는 것이다. 코드를 격리 할 수 있다.</li>
+<li><code>ImageLoader</code>는 <code>Github</code>이라는 것을 상속 받아서 <code>_loaded</code>만 오버라이드해서 작성하면 이미지를 로드하는 동작을 하게 될것입니다.</li>
+<li>정의시점 부분을 건드리지 않고도 다양한 경우를 새로운 클래스만 추가해서 만들 수 있게 된다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> ImageLoader = <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">Github</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(id, repo, target) &#123;</div><div class="line">    <span class="keyword">super</span>(id, repo);</div><div class="line">    <span class="keyword">this</span>._target = target;</div><div class="line">  &#125;</div><div class="line">  _loaded(v) &#123;</div><div class="line">    <span class="keyword">this</span>._target.src = <span class="string">'data:text/plain;base64,'</span> + v;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> woongImg = <span class="keyword">new</span> ImageLoader(</div><div class="line">  <span class="string">'hanwong'</span>,</div><div class="line">  <span class="string">'codespitz'</span>,</div><div class="line">  <span class="built_in">document</span>.querySelector(<span class="string">'#a'</span>)</div><div class="line">)</div><div class="line">woomgImg.load(<span class="string">'test.png'</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> MdLoader = <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">Github</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(id, repo, target) &#123;</div><div class="line">    <span class="keyword">super</span>(id, repo);</div><div class="line">    <span class="keyword">this</span>._target = targe;</div><div class="line">  &#125;</div><div class="line">  _loaded(v) &#123;</div><div class="line">    <span class="keyword">this</span>._target.innerHTML = <span class="keyword">this</span>._parseMD(v);</div><div class="line">  &#125;</div><div class="line">  _parseMD(v) &#123;</div><div class="line">    <span class="keyword">return</span> d64(v).split(<span class="string">'\n'</span>).map(<span class="function"><span class="params">v</span> =&gt;</span> &#123;</div><div class="line">      <span class="keyword">let</span> i = <span class="number">3</span>;</div><div class="line">      <span class="keyword">while</span>(i--) &#123;</div><div class="line">        <span class="keyword">if</span>(v.startsWith(<span class="string">'#'</span>.repeat(i+<span class="number">1</span>))) &#123;</div><div class="line">          <span class="keyword">return</span> <span class="string">`&lt;h<span class="subst">$&#123;i+<span class="number">1</span>&#125;</span>&gt;<span class="subst">$&#123;v.substr(i+<span class="number">1</span>)&#125;</span>&lt;/h<span class="subst">$&#123;i+<span class="number">1</span>&#125;</span>&gt;`</span>;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> v;</div><div class="line">    &#125;).join(<span class="string">'&lt;br&gt;'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">const</span> d64 = <span class="function"><span class="params">v</span> =&gt;</span> <span class="built_in">decodeURIComponent</span>(</div><div class="line">  atob(v).split(<span class="string">''</span>).map(<span class="function"><span class="params">c</span> =&gt;</span> <span class="string">'%'</span> + (<span class="string">'00'</span> + c.charCodeAt(<span class="number">0</span>).toString(<span class="number">16</span>)).slice(<span class="number">-2</span>)).join(<span class="string">''</span>)</div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">const</span> woongMd = <span class="keyword">new</span> MdLoader(<span class="string">'hanwong'</span>, <span class="string">'codespitz'</span>. document.querySelector(<span class="string">'#b'</span>));</div><div class="line">woongMd.load(<span class="string">'README.md'</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li>이처럼 상속구현으로 <code>if</code>의 분기를 해결할 수 있다. image일 때, md일 때…</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 정의 시점 - start --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"Github.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"ImageLoader.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"MdLoader.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 정의 시점 - end --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="comment">/////// 실행 시점 선택 - start ///////</span></div><div class="line">  <span class="keyword">const</span> img = <span class="keyword">new</span> ImageLoader(...);</div><div class="line">  img.load(...);</div><div class="line"></div><div class="line">  <span class="keyword">const</span> md = <span class="keyword">new</span> MdLoader(...);</div><div class="line">  md.load(...);</div><div class="line">  <span class="comment">/////// 실행 시점 선택 - end ///////</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li><code>if else</code> 는 정의시점에서 확정되었었다. 지금 구조에서는 파일을 추가 할 때 마다 케이스를 추가 할 수 있다.</li>
+<li>뿐만 아니라 실행시점에서 사용될 때 코드에서 경우의 수의 분기를 담당하게 된다. 정의시점에 분기하던 것을 실행시점으로 밀어낸 것이다.</li>
+<li><code>if else</code> 를 제거하는 유일한 방법은 케이스 만큼의 객체를 만든 다음에 그 객체의 선택을 런타임으로 위임해버리는 수 밖에 없다라고 표현하는 것이다.</li>
+<li>기저층에서 <code>if else</code>를 제거한 것 뿐이지 절대로 사라지지는 않는다.</li>
+<li>OOP는 결국 <code>if else</code>를 어떻게 제거하고 밑으로 밀어버릴까, 런타임에 결정 할 수 있는 권한으로 바꿔줄까, 되도록이면 정의시점에서 한단계라도 더 밑으로 내릴까?<ul>
+<li>내릴 떄 마다 비용은 발샐 할 수 밖에 없다. 케이스 만큼 객체를 만들어야 하고 결국 다음번 런타임에 선택하는 로직으로 옮겨질 뿐이다. 어떤 패턴을 써도 이 본질은 변하지 않는다.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-소유위임"><a href="#2-소유위임" class="headerlink" title="2. 소유위임"></a>2. 소유위임</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">////// STARATEGY PATTERN //////</span></div><div class="line"><span class="keyword">const</span> Github = <span class="class"><span class="keyword">class</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(id, repo) &#123;</div><div class="line">    <span class="keyword">this</span>._base = <span class="string">`https://api.github.com/repos/<span class="subst">$&#123;id&#125;</span>/<span class="subst">$&#123;repo&#125;</span>/contents/`</span>;</div><div class="line">  &#125;</div><div class="line">  load(path) &#123;</div><div class="line">    <span class="keyword">if</span>(!<span class="keyword">this</span>._parser) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">const</span> id = <span class="string">'callback'</span> + Github._id++;</div><div class="line">    <span class="keyword">const</span> f = Github[id] = <span class="function">(<span class="params">&#123;data: &#123;content&#125;&#125;</span>) =&gt;</span> &#123;</div><div class="line">      <span class="keyword">delete</span> Github[id];</div><div class="line">      <span class="built_in">document</span>.head.removeChild(s);</div><div class="line">      <span class="keyword">this</span>._parser(content); <span class="comment">////// 위임부분 //////</span></div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">const</span> s = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</div><div class="line">    s.src = <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>._base + path&#125;</span>?callback=Github.<span class="subst">$&#123;id&#125;</span>`</span>;</div><div class="line">    <span class="built_in">document</span>.head.appendChild(s);</div><div class="line">  &#125;</div><div class="line">  <span class="comment">////// STARATEGY OBJECT //////</span></div><div class="line">  set parser(v)&#123;<span class="keyword">this</span>._parser = v;&#125;; <span class="comment">////// 위임객체 //////</span></div><div class="line"></div><div class="line">Github._id = <span class="number">0</span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>상속위임 코드와 비슷해 보이지만 소유를 나타내는 메소드가 추가되었다.</li>
+<li><code>set parser(...)</code>로 <code>_parser</code>를 받아들이게 되어 있다. 상속계열의 this 메소드를 홀출하는것이 아니라 소유하게 된 외뷔객체인 <code>_parser</code>에게 위임을 하게 되는것이다.</li>
+<li>소유위임을 하게 되면 내가 소유할 객체들을 원본 객체에게 전달할 책임이 생기게 된다. 이것을 <code>injection</code> 주입이라고 한다.</li>
+<li><code>위임부분</code>을 <code>위임객체체</code>가 처리해준다.</li>
+<li><code>override</code>나 내부의 <code>hook</code>을 이용한 <code>템플릿메소드패턴</code>을 소유모델로 바꾸게 되면 <code>전략패턴</code>으로 바뀌게 된다. 그래서 <code>템플릿메소드패턴</code>와 <code>전략패턴</code>은 형제 관계이다. 같은 내용을 상속으로 구현할래 소유로 구현할래의 차이이다.</li>
+<li><code>템플릿메소드패턴</code>는 내적일관성 원리를 이용하여 상속을 통해서 상속된 인스턴스가 처리를 했었는데 <code>전략패턴</code>은 소유객체에게 전달하면 되니까 내적일관성을 사용하지 않고 있다.</li>
+<li>이렇게 소유위임은 객체지향의 개념을 덜 사용하고도 같은 기능을 처리할 수 있게 된다.</li>
+<li><code>정의시점</code>이 <code>Github</code>클래스 자체가 되는 것이고, 더이상 <code>정의시점</code>에 서브 클래스는 안나오게 되고, 받아온 객체를 <code>실행시점</code>에 받아서 처리하게 된다. 받아온 객체 자체가 런타임 객체가 왼다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> el = <span class="function"><span class="params">v</span> =&gt;</span> <span class="built_in">document</span>.querySelector(v);</div><div class="line"><span class="keyword">const</span> parseMD = <span class="function"><span class="params">v</span> =&gt;</span> ... ;</div><div class="line"><span class="keyword">const</span> loader = <span class="keyword">new</span> Github(<span class="string">'hanwong'</span>, <span class="string">'codespitz'</span>);</div><div class="line"></div><div class="line"><span class="comment">// imgLoader</span></div><div class="line"><span class="keyword">const</span> img = <span class="function"><span class="params">v</span> =&gt;</span> el(<span class="string">'#a'</span>).src = <span class="string">'data:text/plain;base64,'</span> + v;</div><div class="line">loader.parser = img;</div><div class="line">loader.load(<span class="string">'test.png'</span>);</div><div class="line"></div><div class="line"><span class="comment">// mdLoader</span></div><div class="line"><span class="keyword">const</span> md = <span class="function"><span class="params">v</span> =&gt;</span> el(<span class="string">'#b'</span>).innerHTML = parserMD(v);</div><div class="line">loader.parser = md;</div><div class="line">loader.load(<span class="string">'README.md'</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li>새로운 객체를 만들지 않고 <code>parser</code>만 변경하여서 바로 로드를 시킬수 있다. 이 부분이 <code>템플릿메소드패턴</code>과 <code>전략패턴</code>의 가장 큰 차이점이다.</li>
+<li><code>템플릿메소드패턴</code>은 <code>new</code>로 이미지로더를 사용하려면 이미지로더 기능만 하는 단일적인 책임을 가지는 인스턴스를 생성해줘야 하지만 <code>전략패턴</code>은 이미 정의된 객체를 가지고 몇 번이고 재활용 할 수 있다. <code>mutation</code>이 일어난다고 한다.</li>
+<li><code>mutation</code>은 개발자가 흐름을 기억해야 할 부분이 많이 생긴다. </li>
+</ul>
+<style>
+
+video,
+p img {
+  width: 100%;
+  box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+</style>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://hanwong.github.io/2019/05/04/codespitz-01/" data-id="cjw6faeyf0000ug27sb3xwb5j" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://hanwong.github.io/2019/05/04/codespitz-01/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://hanwong.github.io/2019/05/04/codespitz-01/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/09/23/vuex-actions-unit-test/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">VueJS | Vuex Unit Test (1)</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+<div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- git-blog2 -->
+    <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-1634774047569138"
+        data-ad-slot="3851029049"
+        data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div></section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/04/codespitz-01/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="객체지향프로그래밍의 기초" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/OOP/">OOP</a></p>
+                            <p class="item-title"><a href="/2019/05/04/codespitz-01/" class="title">객체지향프로그래밍의 기초</a></p>
+                            <p class="item-date"><time datetime="2019-05-03T15:00:00.000Z" itemprop="datePublished">2019-05-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/23/vuex-actions-unit-test/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS | Vuex Unit Test (1)" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/09/23/vuex-actions-unit-test/" class="title">VueJS | Vuex Unit Test (1)</a></p>
+                            <p class="item-date"><time datetime="2017-09-22T15:00:00.000Z" itemprop="datePublished">2017-09-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/05/20/vue-stock-trader-04/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS | Stock-Trader Project Tutorial (4)" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/05/20/vue-stock-trader-04/" class="title">VueJS | Stock-Trader Project Tutorial (4)</a></p>
+                            <p class="item-date"><time datetime="2017-05-19T15:00:00.000Z" itemprop="datePublished">2017-05-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/05/09/vue-stock-trader-03/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS | Stock-Trader Project Tutorial (3)" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/05/09/vue-stock-trader-03/" class="title">VueJS | Stock-Trader Project Tutorial (3)</a></p>
+                            <p class="item-date"><time datetime="2017-05-08T15:00:00.000Z" itemprop="datePublished">2017-05-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/05/01/vue-stock-trader-02/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS | Stock-Trader Project Tutorial (2)" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/05/01/vue-stock-trader-02/" class="title">VueJS | Stock-Trader Project Tutorial (2)</a></p>
+                            <p class="item-date"><time datetime="2017-04-30T15:00:00.000Z" itemprop="datePublished">2017-05-01</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Guide/">Guide</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OOP/">OOP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VueJS/">VueJS</a><span class="category-list-count">8</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/resource/" style="font-size: 10px;">$resource</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CodeGuide/" style="font-size: 10px;">CodeGuide</a> <a href="/tags/DESIGNPATTERN/" style="font-size: 10px;">DESIGNPATTERN</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/TDD/" style="font-size: 10px;">TDD</a> <a href="/tags/actions/" style="font-size: 10px;">actions</a> <a href="/tags/animation/" style="font-size: 10px;">animation</a> <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/axios-mock-adapter/" style="font-size: 10px;">axios-mock-adapter</a> <a href="/tags/components/" style="font-size: 14px;">components</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/filter/" style="font-size: 10px;">filter</a> <a href="/tags/firebase/" style="font-size: 14px;">firebase</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/http/" style="font-size: 12px;">http</a> <a href="/tags/interceptors/" style="font-size: 10px;">interceptors</a> <a href="/tags/isolate-float/" style="font-size: 10px;">isolate-float</a> <a href="/tags/isolate-technique/" style="font-size: 10px;">isolate-technique</a> <a href="/tags/layout/" style="font-size: 10px;">layout</a> <a href="/tags/mock/" style="font-size: 10px;">mock</a> <a href="/tags/resource/" style="font-size: 10px;">resource</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/tutorial/" style="font-size: 14px;">tutorial</a> <a href="/tags/unit/" style="font-size: 10px;">unit</a> <a href="/tags/unit-test/" style="font-size: 10px;">unit-test</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/vue-resource/" style="font-size: 18px;">vue-resource</a> <a href="/tags/vue-router/" style="font-size: 14px;">vue-router</a> <a href="/tags/vuejs/" style="font-size: 20px;">vuejs</a> <a href="/tags/vuex/" style="font-size: 16px;">vuex</a>
+        </div>
+    </div>
+
+
+
+<div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- git-blog2 -->
+    <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-1634774047569138"
+        data-ad-slot="3851029049"
+        data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="histats_counter"></div>
+        <div id="footer-info" class="inner">
+            &copy; 2019 Woong
+            <br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript">var _Hasync= _Hasync|| [];
+    _Hasync.push(['Histats.start', '1,4173266,4,603,110,40,00010010']);
+    _Hasync.push(['Histats.fasi', '1']);
+    _Hasync.push(['Histats.track_hits', '']);
+    (function() {
+    var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+    hs.src = ('//s10.histats.com/js15_as.js');
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+    })();</script>
+<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4173266&101" alt="site stats" border="0"></a></noscript>
+        
+    
+    <script>
+    var disqus_config = function () {
+        
+            this.page.url = 'http://hanwong.github.io/2019/05/04/codespitz-01/';
+        
+        this.page.identifier = 'codespitz-01';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'hanwong' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
