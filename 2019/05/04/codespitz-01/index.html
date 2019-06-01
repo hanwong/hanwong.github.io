@@ -14,7 +14,7 @@
 <meta property="og:description" content="&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; 작성중 &amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;
 객체지향 프로그래밍과 디자인패턴 대해 학습한 내용을 공유하고자 합니다.">
 <meta property="og:image" content="http://hanwong.github.io/assets/oop-icon.png">
-<meta property="og:updated_time" content="2019-06-01T14:44:43.253Z">
+<meta property="og:updated_time" content="2019-06-01T15:22:09.302Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="객체지향프로그래밍과 디자인패턴">
 <meta name="twitter:description" content="&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; 작성중 &amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;
@@ -412,7 +412,36 @@
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Loader = <span class="class"><span class="keyword">class</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(id, repo) &#123;</div><div class="line">    <span class="keyword">this</span>._git = <span class="keyword">new</span> Github(id, repo);</div><div class="line">    <span class="keyword">this</span>._router = <span class="keyword">new</span> <span class="built_in">Map</span>;</div><div class="line">  &#125;</div><div class="line">  add(ext, f, ...arg) &#123;</div><div class="line">    ext.split(<span class="string">','</span>).forEach( <span class="function"><span class="params">v</span> =&gt;</span> <span class="keyword">this</span>._router.set(v, [f, ...arg]));</div><div class="line">  &#125;</div><div class="line">  load(v) &#123;</div><div class="line">    <span class="keyword">const</span> ext = <span class="keyword">this</span>._v.split(<span class="string">'.'</span>).pop();</div><div class="line">    <span class="keyword">if</span>(!<span class="keyword">this</span>._router.has(ext)) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">this</span>._git.setParser(...this._router.get(ext));</div><div class="line">    <span class="keyword">this</span>._git.load(v);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <ul>
-<li></li>
+<li><code>Loader</code> 를 통해 if문 처리를 값만 계속 추가해서 처리 할 수 있는 형태로 변환하였다. 케이스가 늘어나도 if else 를 늘릴 필요 없이 값만 추가하면 되는 방식이다.</li>
+<li><code>if문</code>이 값으로 변환된 것이다. 디자인패턴의 원리 중 하나는 문을 제거해서 값으로 바꿀 수 있는 객체화 시키는 것이다. 값으로 바꿔야지만 코드를 고치지 않고 확장이 가능하다. 문이 되면 우리가 타이핑을 쳐서 저장해야만 한다.</li>
+<li>이를 활용해서 우리는 더 많은 확장자를 지원하도록 코드를 지연시켜서 작성 할 수도 있고, 업그레이드를 할 수도 있고, 플러그인을 추가 할 수도 있고, 개발자의 코드를 안전하게 위임 할 수 있게 된다.</li>
+<li>업무를 나눠서 진짜 병렬적인 업무를 가능하게 해준다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> loader = <span class="keyword">new</span> Loader(<span class="string">'hanwong'</span>, <span class="string">'codespitz'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 발생가능한 경우의 수를 값으로 기술</span></div><div class="line">loader.add(<span class="string">'jpg, png, gif'</span>, img, el(<span class="string">'#a'</span>));</div><div class="line">loader.add(<span class="string">'md'</span>, md, el(<span class="string">'#b'</span>));</div><div class="line"></div><div class="line">loader.load(<span class="string">'xx.png'</span>);</div><div class="line">loader.load(<span class="string">'xx.md'</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li>결론은 실행시점의 선택 위임을 통해서 발생가능한 경우의 수를 값으로 기술하게 하는 것이다.</li>
+<li><code>소유위임</code>을 통해서 코드의 분산을 정적으로 정의하지 않고 경우의 수에 따라 동적으로 정의 할 수 있는 발판을 마련했다면, <code>if문</code>에 대한 분기는 문을 계속해서 값으로 바꿔주는 것으로써 대체한다.</li>
+<li>디자인패턴 중 <code>if문</code>을 제거하기 위한 패턴으로 <code>템플릿메소드패턴</code>, <code>전략패턴</code>, 더 나아가서 <code>상태패턴</code>이라는 것이 있다.<ul>
+<li><code>for문</code>을 제거하기 위한 패턴으로는 <code>이터레이터</code>, <code>컴포지트</code>, <code>비지터</code> 패턴이 있다.</li>
+<li><code>for문</code>을 돌다가 <code>if문</code>을 하고 싶다면? <code>데코레이터</code>, <code>체인오브리스판서빌리티</code> 패턴을 활용하여 문들을 제거하고 값으로 바꿀 수 있게 된다.</li>
+<li>절차적인 부분을 감싸서 값으로 만들고 싶다면? <code>커맨드패턴</code> 또는 <code>미디에이터</code></li>
+<li>여러 개의 객체들을 조립하는 과정들이 있다면? <code>빌더패턴</code>, <code>파스드패턴</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>결국엔 문으로 구성하던 것들을 값으로 바꿔서 대체하고 싶은 것이다.</p>
+</blockquote>
+<hr>
+<h3 id="정리…"><a href="#정리…" class="headerlink" title="정리…"></a>정리…</h3><ul>
+<li>상태에 대한 분기는 사라지지 않는다. 그 분기가 필요해서 태어났기 때문에~<blockquote>
+<p><code>정의 시점에 제거하는 방법은?</code></p>
+<ol>
+<li>분기 수 만큼 객체를 만들고</li>
+<li>실행시점에 경우의 수를 공급한다.</li>
+</ol>
+</blockquote>
+</li>
 </ul>
 <style>
 
