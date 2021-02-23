@@ -166,7 +166,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                12
+                11
                 <span>posts</span>
             </div>
             <div class="article-info-block">
@@ -265,7 +265,7 @@
 </ul>
 </li>
 </ul>
-<figure class="highlight js"><figcaption><span>App.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">data() &#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">user</span>: &#123;</div><div class="line">      <span class="attr">username</span>: <span class="string">''</span>,</div><div class="line">      <span class="attr">mail</span>: <span class="string">''</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">users</span>: []</div><div class="line">  &#125;;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>App.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">data() &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    user: &#123;</span><br><span class="line">      username: <span class="string">''</span>,</span><br><span class="line">      mail: <span class="string">''</span></span><br><span class="line">    &#125;,</span><br><span class="line">    users: []</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 <h3 id="데이타를-불러오는-메소드-설정"><a href="#데이타를-불러오는-메소드-설정" class="headerlink" title="데이타를 불러오는 메소드 설정"></a>데이타를 불러오는 메소드 설정</h3><ul>
 <li>데이타를 호출하는 메소드 추가<ul>
 <li>첫번째 응답에서 <code>response.json()</code>로 받은 데이타는 <code>promise</code> 객체가 리턴된다.</li>
@@ -274,23 +274,23 @@
 </ul>
 </li>
 </ul>
-<figure class="highlight js"><figcaption><span>App.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">fetchData() &#123;</div><div class="line">  <span class="keyword">this</span>.$http</div><div class="line">    .get(<span class="string">'https://your-project.firebaseio.com/data.json'</span>)</div><div class="line">    .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</div><div class="line">      <span class="keyword">return</span> response.json();</div><div class="line">    &#125;)</div><div class="line">    .then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</div><div class="line">      <span class="keyword">const</span> resultArray = [];</div><div class="line">      <span class="keyword">for</span> ( <span class="keyword">let</span> key <span class="keyword">in</span> data ) &#123;</div><div class="line">        resultArray.push(data[key]);</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">this</span>.users = resultArray;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>App.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">fetchData() &#123;</span><br><span class="line">  <span class="keyword">this</span>.$http</span><br><span class="line">    .get(<span class="string">'https://your-project.firebaseio.com/data.json'</span>)</span><br><span class="line">    .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> response.json();</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> resultArray = [];</span><br><span class="line">      <span class="keyword">for</span> ( <span class="keyword">let</span> key <span class="keyword">in</span> data ) &#123;</span><br><span class="line">        resultArray.push(data[key]);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">this</span>.users = resultArray;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="fetchData-메소드를-실행할-버튼과-결과-리스트-만들기"><a href="#fetchData-메소드를-실행할-버튼과-결과-리스트-만들기" class="headerlink" title="fetchData 메소드를 실행할 버튼과 결과 리스트 만들기"></a>fetchData 메소드를 실행할 버튼과 결과 리스트 만들기</h3><ul>
 <li>버튼을 클릭 했을 때 fetchData 메소드로 데이타를 호출하는 버튼 생성</li>
 <li>호출된 데이타가 users 배열에 저장되고 해당 데이터 결과를 리스트로 출력</li>
 </ul>
-<figure class="highlight html"><figcaption><span>App.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"btn btn-primary"</span> @<span class="attr">click</span>=<span class="string">"fetchData"</span>&gt;</span>GetData<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"list-group"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-group-item"</span> <span class="attr">v-for</span>=<span class="string">"u in users"</span>&gt;</span>&#123;&#123;u.username&#125;&#125; - &#123;&#123;u.mail&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>App.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"btn btn-primary"</span> @<span class="attr">click</span>=<span class="string">"fetchData"</span>&gt;</span>GetData<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"list-group"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-group-item"</span> <span class="attr">v-for</span>=<span class="string">"u in users"</span>&gt;</span>&#123;&#123;u.username&#125;&#125; - &#123;&#123;u.mail&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="공통-url-설정"><a href="#공통-url-설정" class="headerlink" title="공통 url 설정"></a>공통 url 설정</h3><ul>
 <li><code>Vue.http.options.root</code> 사용하기<ul>
 <li>url의 반복되는 root 부분을 <code>main.js</code>에 설정해 놓으면 하위 구조에서는 편하게 필요한 정보만 입력 할 수 있게 해줌</li>
 </ul>
 </li>
 </ul>
-<figure class="highlight js"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Vue.http.options.root = <span class="string">'https://your-project.firebaseio.com/'</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue.http.options.root = <span class="string">'https://your-project.firebaseio.com/'</span>;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>위와 같이 설정해 놓으면 <code>post</code>, <code>get</code> 사용시 좀 더 편리할 듯</li>
 </ul>
-<figure class="highlight js"><figcaption><span>App.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">this.$http</div><div class="line">  .post(<span class="string">'data.json'</span>, <span class="keyword">this</span>.user)</div><div class="line">...</div><div class="line">this.$http</div><div class="line">  .get(<span class="string">'data.json'</span>)</div><div class="line">...</div></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>App.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">this</span>.$http</span><br><span class="line">  .post(<span class="string">'data.json'</span>, <span class="keyword">this</span>.user)</span><br><span class="line">...</span><br><span class="line"><span class="keyword">this</span>.$http</span><br><span class="line">  .get(<span class="string">'data.json'</span>)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p><img src="/assets/002-01.png" alt="002-01"></p>
 <h3 id="끝"><a href="#끝" class="headerlink" title="- 끝 -"></a>- 끝 -</h3><style>
 p img {
@@ -308,7 +308,7 @@ p img {
 
 </div>
 
-    <a data-url="http://hanwong.github.io/2017/02/12/vue-resource-firebase02/" data-id="cj7uj1f340008na27okjrixes" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://hanwong.github.io/2017/02/12/vue-resource-firebase02/" data-id="cklha9j70000mygnmetqtcow4" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -463,25 +463,6 @@ p img {
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2019/06/02/codespitz-02/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/assets/oop-icon.png)" alt="코드스피츠 - 이터레이터 디자인패턴" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Design-Pattern/">Design Pattern</a></p>
-                            <p class="item-title"><a href="/2019/06/02/codespitz-02/" class="title">코드스피츠 - 이터레이터 디자인패턴</a></p>
-                            <p class="item-date"><time datetime="2019-06-01T15:00:00.000Z" itemprop="datePublished">2019-06-02</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
                             <a href="/2017/09/23/vuex-actions-unit-test/" class="thumbnail">
     
     
@@ -536,6 +517,25 @@ p img {
                         </div>
                     </li>
                 
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/05/01/vue-stock-trader-02/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS | Stock-Trader Project Tutorial (2)" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/05/01/vue-stock-trader-02/" class="title">VueJS | Stock-Trader Project Tutorial (2)</a></p>
+                            <p class="item-date"><time datetime="2017-04-30T15:00:00.000Z" itemprop="datePublished">2017-05-01</time></p>
+                        </div>
+                    </li>
+                
             </ul>
         </div>
     </div>
@@ -545,7 +545,7 @@ p img {
     <div class="widget-wrap">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Design-Pattern/">Design Pattern</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Guide/">Guide</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VueJS/">VueJS</a><span class="category-list-count">8</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Design-Pattern/">Design Pattern</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Guide/">Guide</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VueJS/">VueJS</a><span class="category-list-count">8</span></li></ul>
         </div>
     </div>
 
@@ -554,7 +554,7 @@ p img {
     <div class="widget-wrap">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -563,7 +563,7 @@ p img {
     <div class="widget-wrap">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/resource/" style="font-size: 10px;">$resource</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CodeGuide/" style="font-size: 10px;">CodeGuide</a> <a href="/tags/Command-Pattern/" style="font-size: 10px;">Command Pattern</a> <a href="/tags/Design-Pattern/" style="font-size: 11.67px;">Design Pattern</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/OOP/" style="font-size: 11.67px;">OOP</a> <a href="/tags/Router-Table/" style="font-size: 10px;">Router Table</a> <a href="/tags/Strategy-Pattern/" style="font-size: 10px;">Strategy Pattern</a> <a href="/tags/TDD/" style="font-size: 10px;">TDD</a> <a href="/tags/Template-Method-Pattern/" style="font-size: 10px;">Template Method Pattern</a> <a href="/tags/actions/" style="font-size: 10px;">actions</a> <a href="/tags/animation/" style="font-size: 10px;">animation</a> <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/axios-mock-adapter/" style="font-size: 10px;">axios-mock-adapter</a> <a href="/tags/components/" style="font-size: 15px;">components</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/filter/" style="font-size: 10px;">filter</a> <a href="/tags/firebase/" style="font-size: 15px;">firebase</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/http/" style="font-size: 13.33px;">http</a> <a href="/tags/interceptors/" style="font-size: 10px;">interceptors</a> <a href="/tags/isolate-float/" style="font-size: 10px;">isolate-float</a> <a href="/tags/isolate-technique/" style="font-size: 10px;">isolate-technique</a> <a href="/tags/layout/" style="font-size: 10px;">layout</a> <a href="/tags/mock/" style="font-size: 10px;">mock</a> <a href="/tags/resource/" style="font-size: 10px;">resource</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/tutorial/" style="font-size: 15px;">tutorial</a> <a href="/tags/unit/" style="font-size: 10px;">unit</a> <a href="/tags/unit-test/" style="font-size: 10px;">unit-test</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/vue-resource/" style="font-size: 18.33px;">vue-resource</a> <a href="/tags/vue-router/" style="font-size: 15px;">vue-router</a> <a href="/tags/vuejs/" style="font-size: 20px;">vuejs</a> <a href="/tags/vuex/" style="font-size: 16.67px;">vuex</a> <a href="/tags/디자인패턴/" style="font-size: 11.67px;">디자인패턴</a> <a href="/tags/라우터테이블/" style="font-size: 10px;">라우터테이블</a> <a href="/tags/전략패턴/" style="font-size: 10px;">전략패턴</a> <a href="/tags/커맨드패턴/" style="font-size: 10px;">커맨드패턴</a> <a href="/tags/탬플릿메소드패턴/" style="font-size: 11.67px;">탬플릿메소드패턴</a>
+            <a href="/tags/resource/" style="font-size: 10px;">$resource</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CodeGuide/" style="font-size: 10px;">CodeGuide</a> <a href="/tags/Command-Pattern/" style="font-size: 10px;">Command Pattern</a> <a href="/tags/Design-Pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/Router-Table/" style="font-size: 10px;">Router Table</a> <a href="/tags/Strategy-Pattern/" style="font-size: 10px;">Strategy Pattern</a> <a href="/tags/TDD/" style="font-size: 10px;">TDD</a> <a href="/tags/Template-Method-Pattern/" style="font-size: 10px;">Template Method Pattern</a> <a href="/tags/actions/" style="font-size: 10px;">actions</a> <a href="/tags/animation/" style="font-size: 10px;">animation</a> <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/axios-mock-adapter/" style="font-size: 10px;">axios-mock-adapter</a> <a href="/tags/components/" style="font-size: 14px;">components</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/filter/" style="font-size: 10px;">filter</a> <a href="/tags/firebase/" style="font-size: 14px;">firebase</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/http/" style="font-size: 12px;">http</a> <a href="/tags/interceptors/" style="font-size: 10px;">interceptors</a> <a href="/tags/isolate-float/" style="font-size: 10px;">isolate-float</a> <a href="/tags/isolate-technique/" style="font-size: 10px;">isolate-technique</a> <a href="/tags/layout/" style="font-size: 10px;">layout</a> <a href="/tags/mock/" style="font-size: 10px;">mock</a> <a href="/tags/resource/" style="font-size: 10px;">resource</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/tutorial/" style="font-size: 14px;">tutorial</a> <a href="/tags/unit/" style="font-size: 10px;">unit</a> <a href="/tags/unit-test/" style="font-size: 10px;">unit-test</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/vue-resource/" style="font-size: 18px;">vue-resource</a> <a href="/tags/vue-router/" style="font-size: 14px;">vue-router</a> <a href="/tags/vuejs/" style="font-size: 20px;">vuejs</a> <a href="/tags/vuex/" style="font-size: 16px;">vuex</a> <a href="/tags/디자인패턴/" style="font-size: 10px;">디자인패턴</a> <a href="/tags/라우터테이블/" style="font-size: 10px;">라우터테이블</a> <a href="/tags/전략패턴/" style="font-size: 10px;">전략패턴</a> <a href="/tags/커맨드패턴/" style="font-size: 10px;">커맨드패턴</a> <a href="/tags/탬플릿메소드패턴/" style="font-size: 10px;">탬플릿메소드패턴</a>
         </div>
     </div>
 
@@ -590,7 +590,7 @@ p img {
     <div class="outer">
         <div id="histats_counter"></div>
         <div id="footer-info" class="inner">
-            &copy; 2020 Woong
+            &copy; 2021 Woong
             <br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
         </div>

@@ -166,7 +166,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                12
+                11
                 <span>posts</span>
             </div>
             <div class="article-info-block">
@@ -264,11 +264,11 @@
 <li><p>Intercepting Request<br>– 요청을 인터셉트하는 예제에서는 간단히 POST 메소드로 요청시에 PUT 메소드로 변경해서 처리를 하는 것을 구현하였습니다.</p>
 </li>
 </ul>
-<figure class="highlight js"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">Vue.http.interceptors.push(<span class="function">(<span class="params">request, next</span>) =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(request);</div><div class="line">    <span class="keyword">if</span>(request.method === <span class="string">'POST'</span>) &#123;</div><div class="line">        request.method = <span class="string">'PUT'</span>;</div><div class="line">    &#125;</div><div class="line">    next();</div><div class="line">&#125;);</div><div class="line">...</div></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">Vue.http.interceptors.push(<span class="function">(<span class="params">request, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(request);</span><br><span class="line">    <span class="keyword">if</span>(request.method === <span class="string">'POST'</span>) &#123;</span><br><span class="line">        request.method = <span class="string">'PUT'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    next();</span><br><span class="line">&#125;);</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <ul>
 <li>Intercepting Response<br>– 인터셉터를 사용하면 응답이 왔을 때에도 데이터를 필요한 형태의 구조로 변경해서 반환해주는 처리를 할 수 있도록 구현 할 수 있습니다.</li>
 </ul>
-<figure class="highlight js"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">  next(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</div><div class="line">      response.json = <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="keyword">return</span> &#123; <span class="attr">message</span>: response.body &#125; &#125;;</div><div class="line">  &#125;);</div><div class="line">...</div></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  next(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">      response.json = <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="keyword">return</span> &#123; <span class="attr">message</span>: response.body &#125; &#125;;</span><br><span class="line">  &#125;);</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <h3 id="resource"><a href="#resource" class="headerlink" title="resource"></a><a href="https://github.com/pagekit/vue-resource/blob/develop/docs/resource.md" target="_blank" rel="external">resource</a></h3><ul>
 <li><code>resource</code>를 사용하면 <code>$http</code> 보다 더욱 간편하고 좀 더 RESTful하게 사용 할 수 있는것 같습니다.<br>– 전역에서는 <code>Vue.resource</code>로 사용 할 수 있고 개별 인스턴스 안에서는 <code>this.$resource</code>로 사용 할 수 있습니다.<br>– <code>resource(url, [params], [actions], [options])</code></li>
 </ul>
@@ -277,16 +277,16 @@
 <li><code>created()</code> hook 함수 안에 <code>$resource</code> 서비스를 참조해줍니다.</li>
 <li>그러면 <code>resource</code>를 활용하기 위한 기본적인 설정은 완료되었습니다.</li>
 </ul>
-<figure class="highlight js"><figcaption><span>App.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">data() &#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    ...</div><div class="line">    resource: &#123;&#125;</div><div class="line">  &#125;;</div><div class="line">&#125;,</div><div class="line">...</div><div class="line">...</div><div class="line">created() &#123;</div><div class="line">  <span class="keyword">this</span>.resource = <span class="keyword">this</span>.$resource(<span class="string">'data.json'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>App.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">data() &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    resource: &#123;&#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;,</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">created() &#123;</span><br><span class="line">  <span class="keyword">this</span>.resource = <span class="keyword">this</span>.$resource(<span class="string">'data.json'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="2-submit-메소드-수정하기"><a href="#2-submit-메소드-수정하기" class="headerlink" title="2. submit() 메소드 수정하기"></a>2. submit() 메소드 수정하기</h4><ul>
 <li>기존에 <code>$http</code>를 사용하던 부분은 주석 처리를 해줍니다.</li>
 <li>그리고 <code>this.resource.save</code>에 전송할 <code>this.user</code>를 argument로 넣습니다.<br>– save와 같이 기본적으로 <code>get</code>, <code>save</code>, <code>query</code>, <code>update</code>, <code>remove</code>, <code>delete</code> 내장 메소드를 제공해줘서 편하게 사용할 수 있습니다.</li>
 </ul>
-<figure class="highlight js"><figcaption><span>App.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">submit() &#123;</div><div class="line">  <span class="comment">// this.$http</span></div><div class="line">  <span class="comment">//   .post('data.json', this.user)</span></div><div class="line">  <span class="comment">//   .then(response =&gt; &#123;</span></div><div class="line">  <span class="comment">//     console.log(response);</span></div><div class="line">  <span class="comment">//   &#125;, error =&gt; &#123;</span></div><div class="line">  <span class="comment">//     console.log(error);</span></div><div class="line">  <span class="comment">//   &#125;);</span></div><div class="line">  <span class="keyword">this</span>.resource.save(&#123;&#125;, <span class="keyword">this</span>.user);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>App.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">submit() &#123;</span><br><span class="line">  <span class="comment">// this.$http</span></span><br><span class="line">  <span class="comment">//   .post('data.json', this.user)</span></span><br><span class="line">  <span class="comment">//   .then(response =&gt; &#123;</span></span><br><span class="line">  <span class="comment">//     console.log(response);</span></span><br><span class="line">  <span class="comment">//   &#125;, error =&gt; &#123;</span></span><br><span class="line">  <span class="comment">//     console.log(error);</span></span><br><span class="line">  <span class="comment">//   &#125;);</span></span><br><span class="line">  <span class="keyword">this</span>.resource.save(&#123;&#125;, <span class="keyword">this</span>.user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="3-fetchData-메소드-수정하기"><a href="#3-fetchData-메소드-수정하기" class="headerlink" title="3. fetchData() 메소드 수정하기"></a>3. fetchData() 메소드 수정하기</h4><ul>
 <li><code>get</code>을 사용하는 것도 크게 다르지 않습니다. <code>$http</code> 대신에 <code>resource</code>로 바꿔주면 됩니다.<br>– <code>this.resource.get()</code>에 <code>url</code>이 포함 되어 있지 않은 이유는 위에서 초기 설정에 지정을 해두어서 필요하지 않은것입니다. 초기 설정에 <code>url</code> 값을 넣어주지 않는다면 각 메소드들에서 직접 설정해도 됩니다.</li>
 </ul>
-<figure class="highlight js"><figcaption><span>App.vue</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">fetchData() &#123;</div><div class="line">  <span class="comment">// this.$http</span></div><div class="line">  <span class="comment">//   .get('data.json')</span></div><div class="line">  <span class="keyword">this</span>.resource.get()</div><div class="line">    .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</div><div class="line">      <span class="keyword">return</span> response.json();</div><div class="line">    &#125;)</div><div class="line">    .then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</div><div class="line">      <span class="keyword">const</span> resultArray = [];</div><div class="line">      <span class="keyword">for</span> ( <span class="keyword">let</span> key <span class="keyword">in</span> data ) &#123;</div><div class="line">        resultArray.push(data[key]);</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">this</span>.users = resultArray;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>App.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">fetchData() &#123;</span><br><span class="line">  <span class="comment">// this.$http</span></span><br><span class="line">  <span class="comment">//   .get('data.json')</span></span><br><span class="line">  <span class="keyword">this</span>.resource.get()</span><br><span class="line">    .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> response.json();</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> resultArray = [];</span><br><span class="line">      <span class="keyword">for</span> ( <span class="keyword">let</span> key <span class="keyword">in</span> data ) &#123;</span><br><span class="line">        resultArray.push(data[key]);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">this</span>.users = resultArray;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>해당 예제와 관련된 소스는 아래 링크를 참조하시기 바랍니다.<br><a href="https://github.com/hanwong/TIL/tree/master/vue/vue-resource/003" target="_blank" rel="external">[resource예제]</a></p>
 <h3 id="끝"><a href="#끝" class="headerlink" title="- 끝 -"></a>- 끝 -</h3>
         
@@ -298,7 +298,7 @@
 
 </div>
 
-    <a data-url="http://hanwong.github.io/2017/02/25/vue-resource-firebase03/" data-id="cj7uj1f38000bna27vvudx6q9" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://hanwong.github.io/2017/02/25/vue-resource-firebase03/" data-id="cklha9j71000oygnmpv7hd19s" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -453,25 +453,6 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2019/06/02/codespitz-02/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/assets/oop-icon.png)" alt="코드스피츠 - 이터레이터 디자인패턴" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Design-Pattern/">Design Pattern</a></p>
-                            <p class="item-title"><a href="/2019/06/02/codespitz-02/" class="title">코드스피츠 - 이터레이터 디자인패턴</a></p>
-                            <p class="item-date"><time datetime="2019-06-01T15:00:00.000Z" itemprop="datePublished">2019-06-02</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
                             <a href="/2017/09/23/vuex-actions-unit-test/" class="thumbnail">
     
     
@@ -526,6 +507,25 @@
                         </div>
                     </li>
                 
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/05/01/vue-stock-trader-02/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS | Stock-Trader Project Tutorial (2)" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/05/01/vue-stock-trader-02/" class="title">VueJS | Stock-Trader Project Tutorial (2)</a></p>
+                            <p class="item-date"><time datetime="2017-04-30T15:00:00.000Z" itemprop="datePublished">2017-05-01</time></p>
+                        </div>
+                    </li>
+                
             </ul>
         </div>
     </div>
@@ -535,7 +535,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Design-Pattern/">Design Pattern</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Guide/">Guide</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VueJS/">VueJS</a><span class="category-list-count">8</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Design-Pattern/">Design Pattern</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Guide/">Guide</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VueJS/">VueJS</a><span class="category-list-count">8</span></li></ul>
         </div>
     </div>
 
@@ -544,7 +544,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -553,7 +553,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/resource/" style="font-size: 10px;">$resource</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CodeGuide/" style="font-size: 10px;">CodeGuide</a> <a href="/tags/Command-Pattern/" style="font-size: 10px;">Command Pattern</a> <a href="/tags/Design-Pattern/" style="font-size: 11.67px;">Design Pattern</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/OOP/" style="font-size: 11.67px;">OOP</a> <a href="/tags/Router-Table/" style="font-size: 10px;">Router Table</a> <a href="/tags/Strategy-Pattern/" style="font-size: 10px;">Strategy Pattern</a> <a href="/tags/TDD/" style="font-size: 10px;">TDD</a> <a href="/tags/Template-Method-Pattern/" style="font-size: 10px;">Template Method Pattern</a> <a href="/tags/actions/" style="font-size: 10px;">actions</a> <a href="/tags/animation/" style="font-size: 10px;">animation</a> <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/axios-mock-adapter/" style="font-size: 10px;">axios-mock-adapter</a> <a href="/tags/components/" style="font-size: 15px;">components</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/filter/" style="font-size: 10px;">filter</a> <a href="/tags/firebase/" style="font-size: 15px;">firebase</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/http/" style="font-size: 13.33px;">http</a> <a href="/tags/interceptors/" style="font-size: 10px;">interceptors</a> <a href="/tags/isolate-float/" style="font-size: 10px;">isolate-float</a> <a href="/tags/isolate-technique/" style="font-size: 10px;">isolate-technique</a> <a href="/tags/layout/" style="font-size: 10px;">layout</a> <a href="/tags/mock/" style="font-size: 10px;">mock</a> <a href="/tags/resource/" style="font-size: 10px;">resource</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/tutorial/" style="font-size: 15px;">tutorial</a> <a href="/tags/unit/" style="font-size: 10px;">unit</a> <a href="/tags/unit-test/" style="font-size: 10px;">unit-test</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/vue-resource/" style="font-size: 18.33px;">vue-resource</a> <a href="/tags/vue-router/" style="font-size: 15px;">vue-router</a> <a href="/tags/vuejs/" style="font-size: 20px;">vuejs</a> <a href="/tags/vuex/" style="font-size: 16.67px;">vuex</a> <a href="/tags/디자인패턴/" style="font-size: 11.67px;">디자인패턴</a> <a href="/tags/라우터테이블/" style="font-size: 10px;">라우터테이블</a> <a href="/tags/전략패턴/" style="font-size: 10px;">전략패턴</a> <a href="/tags/커맨드패턴/" style="font-size: 10px;">커맨드패턴</a> <a href="/tags/탬플릿메소드패턴/" style="font-size: 11.67px;">탬플릿메소드패턴</a>
+            <a href="/tags/resource/" style="font-size: 10px;">$resource</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CodeGuide/" style="font-size: 10px;">CodeGuide</a> <a href="/tags/Command-Pattern/" style="font-size: 10px;">Command Pattern</a> <a href="/tags/Design-Pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/Router-Table/" style="font-size: 10px;">Router Table</a> <a href="/tags/Strategy-Pattern/" style="font-size: 10px;">Strategy Pattern</a> <a href="/tags/TDD/" style="font-size: 10px;">TDD</a> <a href="/tags/Template-Method-Pattern/" style="font-size: 10px;">Template Method Pattern</a> <a href="/tags/actions/" style="font-size: 10px;">actions</a> <a href="/tags/animation/" style="font-size: 10px;">animation</a> <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/axios-mock-adapter/" style="font-size: 10px;">axios-mock-adapter</a> <a href="/tags/components/" style="font-size: 14px;">components</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/filter/" style="font-size: 10px;">filter</a> <a href="/tags/firebase/" style="font-size: 14px;">firebase</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/http/" style="font-size: 12px;">http</a> <a href="/tags/interceptors/" style="font-size: 10px;">interceptors</a> <a href="/tags/isolate-float/" style="font-size: 10px;">isolate-float</a> <a href="/tags/isolate-technique/" style="font-size: 10px;">isolate-technique</a> <a href="/tags/layout/" style="font-size: 10px;">layout</a> <a href="/tags/mock/" style="font-size: 10px;">mock</a> <a href="/tags/resource/" style="font-size: 10px;">resource</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/tutorial/" style="font-size: 14px;">tutorial</a> <a href="/tags/unit/" style="font-size: 10px;">unit</a> <a href="/tags/unit-test/" style="font-size: 10px;">unit-test</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/vue-resource/" style="font-size: 18px;">vue-resource</a> <a href="/tags/vue-router/" style="font-size: 14px;">vue-router</a> <a href="/tags/vuejs/" style="font-size: 20px;">vuejs</a> <a href="/tags/vuex/" style="font-size: 16px;">vuex</a> <a href="/tags/디자인패턴/" style="font-size: 10px;">디자인패턴</a> <a href="/tags/라우터테이블/" style="font-size: 10px;">라우터테이블</a> <a href="/tags/전략패턴/" style="font-size: 10px;">전략패턴</a> <a href="/tags/커맨드패턴/" style="font-size: 10px;">커맨드패턴</a> <a href="/tags/탬플릿메소드패턴/" style="font-size: 10px;">탬플릿메소드패턴</a>
         </div>
     </div>
 
@@ -580,7 +580,7 @@
     <div class="outer">
         <div id="histats_counter"></div>
         <div id="footer-info" class="inner">
-            &copy; 2020 Woong
+            &copy; 2021 Woong
             <br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
         </div>

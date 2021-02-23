@@ -160,7 +160,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                12
+                11
                 <span>posts</span>
             </div>
             <div class="article-info-block">
@@ -257,12 +257,12 @@
 <h3 id="Extended-Isolate-Float"><a href="#Extended-Isolate-Float" class="headerlink" title="Extended Isolate Float"></a>Extended Isolate Float</h3><blockquote>
 <p>이 방식은 제멋대로 이름을 한번 붙여 본 거고, 검색 능력이 부족한 것인지 같은 방식을 쓰는 사례는 찾지 못했습니다.</p>
 </blockquote>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.iso-box</span> &#123;</div><div class="line">  <span class="attribute">margin-right</span>: -<span class="number">100%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.iso-box</span> &#123;</span><br><span class="line">  <span class="attribute">margin-right</span>: -<span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>이 코드가 기존 방식의 핵심이죠. <code>float: left</code>된 박스들 모두에게 <code>margin-right: -100%;</code> 속성을 준 후에 <code>margin-left</code> 속성으로 그 페이지의 그리드 시스템에 맞게 배치하는 방식이었습니다.</p>
 <p>그런데 한 디자인 예제를 구현해보면서 박스의 사이즈가 다양해 이 방법만으로는 레이아웃을 구성하기가 어려워서 고민하던 중에 <code>margin-top</code>을 활용해서 행 뿐만 아니라 열에도 Isolate Technique이 가능하지 않을까 생각이 들어서 한번 해보았습니다.</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.iso-box</span> &#123;</div><div class="line">  <span class="attribute">margin-top</span>: -<span class="number">100%</span>;  </div><div class="line">  <span class="attribute">margin-right</span>: -<span class="number">100%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.iso-box</span> &#123;</span><br><span class="line">  <span class="attribute">margin-top</span>: -<span class="number">100%</span>;  </span><br><span class="line">  <span class="attribute">margin-right</span>: -<span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>그리고 요런 식으로 그리드 시스템도 구성했습니다.</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.iso-col-1</span> &#123; <span class="attribute">margin-top</span>: <span class="built_in">calc</span>(20%*0); &#125;</div><div class="line"><span class="selector-class">.iso-col-2</span> &#123; <span class="attribute">margin-top</span>: <span class="built_in">calc</span>(20%*1); &#125;</div><div class="line"><span class="selector-class">.iso-col-3</span> &#123; <span class="attribute">margin-top</span>: <span class="built_in">calc</span>(20%*2); &#125;</div><div class="line"><span class="selector-class">.iso-col-4</span> &#123; <span class="attribute">margin-top</span>: <span class="built_in">calc</span>(20%*3); &#125;</div><div class="line"><span class="selector-class">.iso-col-5</span> &#123; <span class="attribute">margin-top</span>: <span class="built_in">calc</span>(20%*4); &#125;</div><div class="line"><span class="selector-class">.iso-row-1</span> &#123; <span class="attribute">margin-left</span>: <span class="built_in">calc</span>(20%*0); &#125;</div><div class="line"><span class="selector-class">.iso-row-2</span> &#123; <span class="attribute">margin-left</span>: <span class="built_in">calc</span>(20%*1); &#125;</div><div class="line"><span class="selector-class">.iso-row-3</span> &#123; <span class="attribute">margin-left</span>: <span class="built_in">calc</span>(20%*2); &#125;</div><div class="line"><span class="selector-class">.iso-row-4</span> &#123; <span class="attribute">margin-left</span>: <span class="built_in">calc</span>(20%*3); &#125;</div><div class="line"><span class="selector-class">.iso-row-5</span> &#123; <span class="attribute">margin-left</span>: <span class="built_in">calc</span>(20%*4); &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.iso-col-1</span> &#123; <span class="attribute">margin-top</span>: <span class="built_in">calc</span>(<span class="number">20%</span>*<span class="number">0</span>); &#125;</span><br><span class="line"><span class="selector-class">.iso-col-2</span> &#123; <span class="attribute">margin-top</span>: <span class="built_in">calc</span>(<span class="number">20%</span>*<span class="number">1</span>); &#125;</span><br><span class="line"><span class="selector-class">.iso-col-3</span> &#123; <span class="attribute">margin-top</span>: <span class="built_in">calc</span>(<span class="number">20%</span>*<span class="number">2</span>); &#125;</span><br><span class="line"><span class="selector-class">.iso-col-4</span> &#123; <span class="attribute">margin-top</span>: <span class="built_in">calc</span>(<span class="number">20%</span>*<span class="number">3</span>); &#125;</span><br><span class="line"><span class="selector-class">.iso-col-5</span> &#123; <span class="attribute">margin-top</span>: <span class="built_in">calc</span>(<span class="number">20%</span>*<span class="number">4</span>); &#125;</span><br><span class="line"><span class="selector-class">.iso-row-1</span> &#123; <span class="attribute">margin-left</span>: <span class="built_in">calc</span>(<span class="number">20%</span>*<span class="number">0</span>); &#125;</span><br><span class="line"><span class="selector-class">.iso-row-2</span> &#123; <span class="attribute">margin-left</span>: <span class="built_in">calc</span>(<span class="number">20%</span>*<span class="number">1</span>); &#125;</span><br><span class="line"><span class="selector-class">.iso-row-3</span> &#123; <span class="attribute">margin-left</span>: <span class="built_in">calc</span>(<span class="number">20%</span>*<span class="number">2</span>); &#125;</span><br><span class="line"><span class="selector-class">.iso-row-4</span> &#123; <span class="attribute">margin-left</span>: <span class="built_in">calc</span>(<span class="number">20%</span>*<span class="number">3</span>); &#125;</span><br><span class="line"><span class="selector-class">.iso-row-5</span> &#123; <span class="attribute">margin-left</span>: <span class="built_in">calc</span>(<span class="number">20%</span>*<span class="number">4</span>); &#125;</span><br></pre></td></tr></table></figure>
 <p>해봤더니 되더라구요…</p>
 <p>이렇게 배치된 박스들을 ~</p>
 <style>
@@ -313,7 +313,7 @@
 <p>이렇게 내 맘대로 아무 데나 배치할 수 있습니다.</p>
 <div class="container"><div class="wrapper2"><div class="box1 iso-box iso-col-0 iso-row-3">box1</div><div class="box2 iso-box iso-col-0 iso-row-4">box2</div><div class="box3 iso-box iso-col-0 iso-row-0">box3</div><div class="box4 iso-box iso-col-0 iso-row-1">box4</div><div class="box5 iso-box iso-col-0 iso-row-2">box5</div><div class="box1 iso-box iso-col-1 iso-row-0">box1</div><div class="box2 iso-box iso-col-2 iso-row-1">box2</div><div class="box3 iso-box iso-col-3 iso-row-2">box3</div><div class="box4 iso-box iso-col-4 iso-row-3">box4</div><div class="box5 iso-box iso-col-3 iso-row-4">box5</div></div></div>
 
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box1 iso-box iso-col-1 iso-row-0"</span>&gt;</span>box1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box2 iso-box iso-col-2 iso-row-1"</span>&gt;</span>box2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box1 iso-box iso-col-1 iso-row-0"</span>&gt;</span>box1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box2 iso-box iso-col-2 iso-row-1"</span>&gt;</span>box2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>위와 같이 일정한 그리드 시스템을 가진 컨테이너 안에서는 각 박스 아이템의 클래스를 조정해서 엑셀을 사용하듯이(?) 아주 쉽게(?) ㅎㅎ 아무튼 원하는 레이아웃으로 박스를 배치하기에 조금 쉬운 방법이 아닐까 생각합니다.</p>
 <p>그리고 물론 CSS에서 높이 값을 조절하는 데는 한계가 많죠. 이 방법도 박스들을 담고 있는 컨테이너가 높이 값을 가지고 있지 않거나 clearfix가 적용되어 있지 않다면 레이아웃이 무너질 수도 있을 것입니다. 아무튼 이 방법은 최근에 알게된 내용을 활용하다가 조금 확장해본 방법입니다. 요즘은 <code>flex</code>나 다른 프레임웍을 이용한 더 훌륭한 방법들도 많지만 이 방법도 어떤지 한번 참고 해보시고 보완할 점이나 더 좋은 방법들이 있다면 피드백 주시면 감사하겠습니다.</p>
 
@@ -326,7 +326,7 @@
 
 </div>
 
-    <a data-url="http://hanwong.github.io/2016/07/23/Isolate-Float/" data-id="cj7uj1f2r0002na27ihcwktj8" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://hanwong.github.io/2016/07/23/Isolate-Float/" data-id="cklha9j630001ygnmk2e8n8c9" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -481,25 +481,6 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2019/06/02/codespitz-02/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/assets/oop-icon.png)" alt="코드스피츠 - 이터레이터 디자인패턴" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Design-Pattern/">Design Pattern</a></p>
-                            <p class="item-title"><a href="/2019/06/02/codespitz-02/" class="title">코드스피츠 - 이터레이터 디자인패턴</a></p>
-                            <p class="item-date"><time datetime="2019-06-01T15:00:00.000Z" itemprop="datePublished">2019-06-02</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
                             <a href="/2017/09/23/vuex-actions-unit-test/" class="thumbnail">
     
     
@@ -554,6 +535,25 @@
                         </div>
                     </li>
                 
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/05/01/vue-stock-trader-02/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/assets/vue.png)" alt="VueJS | Stock-Trader Project Tutorial (2)" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VueJS/">VueJS</a></p>
+                            <p class="item-title"><a href="/2017/05/01/vue-stock-trader-02/" class="title">VueJS | Stock-Trader Project Tutorial (2)</a></p>
+                            <p class="item-date"><time datetime="2017-04-30T15:00:00.000Z" itemprop="datePublished">2017-05-01</time></p>
+                        </div>
+                    </li>
+                
             </ul>
         </div>
     </div>
@@ -563,7 +563,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Design-Pattern/">Design Pattern</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Guide/">Guide</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VueJS/">VueJS</a><span class="category-list-count">8</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Design-Pattern/">Design Pattern</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Guide/">Guide</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VueJS/">VueJS</a><span class="category-list-count">8</span></li></ul>
         </div>
     </div>
 
@@ -572,7 +572,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -581,7 +581,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/resource/" style="font-size: 10px;">$resource</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CodeGuide/" style="font-size: 10px;">CodeGuide</a> <a href="/tags/Command-Pattern/" style="font-size: 10px;">Command Pattern</a> <a href="/tags/Design-Pattern/" style="font-size: 11.67px;">Design Pattern</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/OOP/" style="font-size: 11.67px;">OOP</a> <a href="/tags/Router-Table/" style="font-size: 10px;">Router Table</a> <a href="/tags/Strategy-Pattern/" style="font-size: 10px;">Strategy Pattern</a> <a href="/tags/TDD/" style="font-size: 10px;">TDD</a> <a href="/tags/Template-Method-Pattern/" style="font-size: 10px;">Template Method Pattern</a> <a href="/tags/actions/" style="font-size: 10px;">actions</a> <a href="/tags/animation/" style="font-size: 10px;">animation</a> <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/axios-mock-adapter/" style="font-size: 10px;">axios-mock-adapter</a> <a href="/tags/components/" style="font-size: 15px;">components</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/filter/" style="font-size: 10px;">filter</a> <a href="/tags/firebase/" style="font-size: 15px;">firebase</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/http/" style="font-size: 13.33px;">http</a> <a href="/tags/interceptors/" style="font-size: 10px;">interceptors</a> <a href="/tags/isolate-float/" style="font-size: 10px;">isolate-float</a> <a href="/tags/isolate-technique/" style="font-size: 10px;">isolate-technique</a> <a href="/tags/layout/" style="font-size: 10px;">layout</a> <a href="/tags/mock/" style="font-size: 10px;">mock</a> <a href="/tags/resource/" style="font-size: 10px;">resource</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/tutorial/" style="font-size: 15px;">tutorial</a> <a href="/tags/unit/" style="font-size: 10px;">unit</a> <a href="/tags/unit-test/" style="font-size: 10px;">unit-test</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/vue-resource/" style="font-size: 18.33px;">vue-resource</a> <a href="/tags/vue-router/" style="font-size: 15px;">vue-router</a> <a href="/tags/vuejs/" style="font-size: 20px;">vuejs</a> <a href="/tags/vuex/" style="font-size: 16.67px;">vuex</a> <a href="/tags/디자인패턴/" style="font-size: 11.67px;">디자인패턴</a> <a href="/tags/라우터테이블/" style="font-size: 10px;">라우터테이블</a> <a href="/tags/전략패턴/" style="font-size: 10px;">전략패턴</a> <a href="/tags/커맨드패턴/" style="font-size: 10px;">커맨드패턴</a> <a href="/tags/탬플릿메소드패턴/" style="font-size: 11.67px;">탬플릿메소드패턴</a>
+            <a href="/tags/resource/" style="font-size: 10px;">$resource</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/CodeGuide/" style="font-size: 10px;">CodeGuide</a> <a href="/tags/Command-Pattern/" style="font-size: 10px;">Command Pattern</a> <a href="/tags/Design-Pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/OOP/" style="font-size: 10px;">OOP</a> <a href="/tags/Router-Table/" style="font-size: 10px;">Router Table</a> <a href="/tags/Strategy-Pattern/" style="font-size: 10px;">Strategy Pattern</a> <a href="/tags/TDD/" style="font-size: 10px;">TDD</a> <a href="/tags/Template-Method-Pattern/" style="font-size: 10px;">Template Method Pattern</a> <a href="/tags/actions/" style="font-size: 10px;">actions</a> <a href="/tags/animation/" style="font-size: 10px;">animation</a> <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/axios-mock-adapter/" style="font-size: 10px;">axios-mock-adapter</a> <a href="/tags/components/" style="font-size: 14px;">components</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/filter/" style="font-size: 10px;">filter</a> <a href="/tags/firebase/" style="font-size: 14px;">firebase</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/http/" style="font-size: 12px;">http</a> <a href="/tags/interceptors/" style="font-size: 10px;">interceptors</a> <a href="/tags/isolate-float/" style="font-size: 10px;">isolate-float</a> <a href="/tags/isolate-technique/" style="font-size: 10px;">isolate-technique</a> <a href="/tags/layout/" style="font-size: 10px;">layout</a> <a href="/tags/mock/" style="font-size: 10px;">mock</a> <a href="/tags/resource/" style="font-size: 10px;">resource</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/tutorial/" style="font-size: 14px;">tutorial</a> <a href="/tags/unit/" style="font-size: 10px;">unit</a> <a href="/tags/unit-test/" style="font-size: 10px;">unit-test</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/vue-resource/" style="font-size: 18px;">vue-resource</a> <a href="/tags/vue-router/" style="font-size: 14px;">vue-router</a> <a href="/tags/vuejs/" style="font-size: 20px;">vuejs</a> <a href="/tags/vuex/" style="font-size: 16px;">vuex</a> <a href="/tags/디자인패턴/" style="font-size: 10px;">디자인패턴</a> <a href="/tags/라우터테이블/" style="font-size: 10px;">라우터테이블</a> <a href="/tags/전략패턴/" style="font-size: 10px;">전략패턴</a> <a href="/tags/커맨드패턴/" style="font-size: 10px;">커맨드패턴</a> <a href="/tags/탬플릿메소드패턴/" style="font-size: 10px;">탬플릿메소드패턴</a>
         </div>
     </div>
 
@@ -608,7 +608,7 @@
     <div class="outer">
         <div id="histats_counter"></div>
         <div id="footer-info" class="inner">
-            &copy; 2020 Woong
+            &copy; 2021 Woong
             <br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
         </div>
